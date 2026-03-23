@@ -1,0 +1,13 @@
+{
+  "id": "BigDogMod",
+  "name": "Big Dog",
+  "author": "Chromosome",
+  "description": "Custom character test mod.",
+  "version": "1.0",
+  "has_pck": true,
+  "has_dll": true,
+  "dependencies": [
+    "BaseLib"
+  ],
+  "affects_gameplay": true
+}

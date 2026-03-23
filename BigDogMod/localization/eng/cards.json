@@ -1,0 +1,10 @@
+{
+  "BIGDOGMOD-BIG_BITE.description": "Deal {Damage} damage.",
+  "BIGDOGMOD-BIG_BITE.title": "Big Bite",
+  "BIGDOGMOD-LOYAL_GUARD.description": "Gain {Block} Block. Draw {Cards} card.",
+  "BIGDOGMOD-LOYAL_GUARD.title": "Loyal Guard",
+  "BIG_BITE.description": "Deal {Damage} damage.",
+  "BIG_BITE.title": "Big Bite",
+  "LOYAL_GUARD.description": "Gain {Block} Block. Draw {Cards} card.",
+  "LOYAL_GUARD.title": "Loyal Guard"
+}
