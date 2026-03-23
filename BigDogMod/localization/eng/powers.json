@@ -1,0 +1,10 @@
+{
+  "BIGDOGMOD-BLEEDING_POWER.description": "At the start of the owner's turn, lose HP equal to Bleeding, then gain 2 Bleeding.",
+  "BIGDOGMOD-BLEEDING_POWER.title": "Bleeding",
+  "BIGDOGMOD-WILDNESS_POWER.description": "Each stack gives Attack cards +1 value and Block cards -1 value. This is calculated separately from Strength and Dexterity.",
+  "BIGDOGMOD-WILDNESS_POWER.title": "Wildness",
+  "BLEEDING_POWER.description": "At the start of the owner's turn, lose HP equal to Bleeding, then gain 2 Bleeding.",
+  "BLEEDING_POWER.title": "Bleeding",
+  "WILDNESS_POWER.description": "Each stack gives Attack cards +1 value and Block cards -1 value. This is calculated separately from Strength and Dexterity.",
+  "WILDNESS_POWER.title": "Wildness"
+}

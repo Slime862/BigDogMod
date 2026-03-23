@@ -1,10 +1,10 @@
 {
-  "BIGDOGMOD-BIG_BITE.description": "造成 {Damage} 点伤害。",
-  "BIGDOGMOD-BIG_BITE.title": "大口咬击",
-  "BIGDOGMOD-LOYAL_GUARD.description": "获得 {Block} 点格挡。抽 {Cards} 张牌。",
-  "BIGDOGMOD-LOYAL_GUARD.title": "忠诚防守",
-  "BIG_BITE.description": "造成 {Damage} 点伤害。",
-  "BIG_BITE.title": "大口咬击",
-  "LOYAL_GUARD.description": "获得 {Block} 点格挡。抽 {Cards} 张牌。",
-  "LOYAL_GUARD.title": "忠诚防守"
+  "BIGDOGMOD-RENDING_BITE.description": "给予 {BleedingPower} 层流血。",
+  "BIGDOGMOD-RENDING_BITE.title": "撕咬攻击",
+  "BIGDOGMOD-STOKE_WILDNESS.description": "获得 {Block} 点格挡。获得 {WildnessPower} 层野性。",
+  "BIGDOGMOD-STOKE_WILDNESS.title": "激发野性",
+  "RENDING_BITE.description": "给予 {BleedingPower} 层流血。",
+  "RENDING_BITE.title": "撕咬攻击",
+  "STOKE_WILDNESS.description": "获得 {Block} 点格挡。获得 {WildnessPower} 层野性。",
+  "STOKE_WILDNESS.title": "激发野性"
 }

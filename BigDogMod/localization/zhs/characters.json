@@ -2,7 +2,7 @@
   "BIGDOGMOD-BIG_DOG.cardsModifierDescription": "Big Dog 的卡牌现在会出现在奖励和商店中。",
   "BIGDOGMOD-BIG_DOG.cardsModifierTitle": "Big Dog 卡牌",
   "BIGDOGMOD-BIG_DOG.description": "一个暂时借用 Defect 素材的测试角色。",
-  "BIGDOGMOD-BIG_DOG.eventDeathPrevention": "这一局还没结束。",
+  "BIGDOGMOD-BIG_DOG.eventDeathPrevention": "这一局还没有结束。",
   "BIGDOGMOD-BIG_DOG.possessiveAdjective": "他的",
   "BIGDOGMOD-BIG_DOG.pronounObject": "他",
   "BIGDOGMOD-BIG_DOG.pronounPossessive": "他的",
@@ -10,6 +10,6 @@
   "BIGDOGMOD-BIG_DOG.title": "Big Dog",
   "BIGDOGMOD-BIG_DOG.titleObject": "Big Dog",
   "BIGDOGMOD-BIG_DOG.unlockText": "当前为测试角色，默认可用。",
-  "BIG_DOG.title": "Big Dog",
-  "BIG_DOG.description": "一个暂时借用 Defect 素材的测试角色。"
+  "BIG_DOG.description": "一个暂时借用 Defect 素材的测试角色。",
+  "BIG_DOG.title": "Big Dog"
 }

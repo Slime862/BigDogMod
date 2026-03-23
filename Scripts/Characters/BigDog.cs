@@ -43,10 +43,10 @@ public sealed class BigDog : PlaceholderCharacterModel
             ModelDb.Card<Dualcast>(),
             ModelDb.Card<BallLightning>(),
             ModelDb.Card<ChargeBattery>(),
-            ModelDb.Card<BigBite>(),
-            ModelDb.Card<BigBite>(),
-            ModelDb.Card<LoyalGuard>(),
-            ModelDb.Card<LoyalGuard>()
+            ModelDb.Card<RendingBite>(),
+            ModelDb.Card<RendingBite>(),
+            ModelDb.Card<StokeWildness>(),
+            ModelDb.Card<StokeWildness>()
         ];
 
     public override IReadOnlyList<RelicModel> StartingRelics =>

@@ -1,26 +1,30 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
+using BigDogMod.Scripts.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace BigDogMod.Scripts.Cards;
 
-public sealed class BigBite : CustomCardModel
+public sealed class RendingBite : CustomCardModel
 {
     protected override HashSet<CardTag> CanonicalTags => new() { CardTag.Strike };
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+        [HoverTipFactory.FromPower<BleedingPower>()];
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new DamageVar(8m, ValueProp.Move)];
+        [new PowerVar<BleedingPower>(2m)];
 
     public override string CustomPortraitPath => ModelDb.Card<StrikeDefect>().PortraitPath;
 
-    public BigBite()
+    public RendingBite()
         : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, autoAdd: false)
     {
     }
@@ -32,15 +36,12 @@ public sealed class BigBite : CustomCardModel
             return;
         }
 
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
-            .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
-            .Execute(choiceContext);
+        await CreatureCmd.TriggerAnim(base.Owner.Creature, "Attack", base.Owner.Character.AttackAnimDelay);
+        await PowerCmd.Apply<BleedingPower>(cardPlay.Target, base.DynamicVars["BleedingPower"].BaseValue, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(3m);
+        base.DynamicVars["BleedingPower"].UpgradeValueBy(1m);
     }
 }
