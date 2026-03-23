@@ -20,7 +20,7 @@ public sealed class RendingBite : CustomCardModel
         [HoverTipFactory.FromPower<BleedingPower>()];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new PowerVar<BleedingPower>(2m)];
+        [new PowerVar<BleedingPower>(1m)];
 
     public override string CustomPortraitPath => ModelDb.Card<StrikeDefect>().PortraitPath;
 

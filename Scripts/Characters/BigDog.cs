@@ -37,15 +37,15 @@ public sealed class BigDog : PlaceholderCharacterModel
 
     public override IEnumerable<CardModel> StartingDeck =>
         [
-            ModelDb.Card<Zap>(),
-            ModelDb.Card<Zap>(),
-            ModelDb.Card<Dualcast>(),
-            ModelDb.Card<Dualcast>(),
-            ModelDb.Card<BallLightning>(),
-            ModelDb.Card<ChargeBattery>(),
+            ModelDb.Card<StrikeDefect>(),
+            ModelDb.Card<StrikeDefect>(),
+            ModelDb.Card<StrikeDefect>(),
+            ModelDb.Card<StrikeDefect>(),
+            ModelDb.Card<DefendDefect>(),
+            ModelDb.Card<DefendDefect>(),
+            ModelDb.Card<DefendDefect>(),
+            ModelDb.Card<DefendDefect>(),
             ModelDb.Card<RendingBite>(),
-            ModelDb.Card<RendingBite>(),
-            ModelDb.Card<StokeWildness>(),
             ModelDb.Card<StokeWildness>()
         ];
 

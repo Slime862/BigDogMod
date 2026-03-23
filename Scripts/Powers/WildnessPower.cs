@@ -14,6 +14,8 @@ public sealed class WildnessPower : PowerModel
 
     public override PowerStackType StackType => PowerStackType.Counter;
 
+    public override bool AllowNegative => true;
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [HoverTipFactory.Static(StaticHoverTip.Block)];
 
@@ -24,7 +26,7 @@ public sealed class WildnessPower : PowerModel
             return 0m;
         }
 
-        if (!props.IsPoweredAttack())
+        if (!props.HasFlag(ValueProp.Move) || props.HasFlag(ValueProp.Unpowered))
         {
             return 0m;
         }
@@ -46,7 +48,7 @@ public sealed class WildnessPower : PowerModel
             return 0m;
         }
 
-        if (!props.IsPoweredCardOrMonsterMoveBlock())
+        if (!props.HasFlag(ValueProp.Move) || props.HasFlag(ValueProp.Unpowered))
         {
             return 0m;
         }
