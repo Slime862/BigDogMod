@@ -10,7 +10,7 @@ public static class BigDogPowerIconPathPatch
 {
     public static void Postfix(PowerModel __instance, ref string __result)
     {
-        if (__instance is WildnessPower)
+        if (__instance is WildnessPower or TemporaryWildnessPower)
         {
             __result = ModelDb.Power<StrengthPower>().IconPath;
         }
@@ -26,7 +26,7 @@ public static class BigDogPowerBigIconPathPatch
 {
     public static void Postfix(PowerModel __instance, ref string __result)
     {
-        if (__instance is WildnessPower)
+        if (__instance is WildnessPower or TemporaryWildnessPower)
         {
             __result = ModelDb.Power<StrengthPower>().ResolvedBigIconPath;
         }

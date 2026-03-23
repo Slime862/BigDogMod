@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -8,7 +9,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace BigDogMod.Scripts.Powers;
 
-public sealed class BleedingPower : PowerModel
+public sealed class BleedingPower : CustomPowerModel
 {
     public override PowerType Type => PowerType.Debuff;
 
@@ -35,7 +36,7 @@ public sealed class BleedingPower : PowerModel
 
         if (base.Owner.IsAlive)
         {
-            await PowerCmd.ModifyAmount(this, 2m, null, null);
+            await PowerCmd.ModifyAmount(this, 1m, null, null);
         }
     }
 }

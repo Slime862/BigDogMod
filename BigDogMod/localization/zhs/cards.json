@@ -1,10 +1,10 @@
 {
   "BIGDOGMOD-RENDING_BITE.description": "给予 {BleedingPower} 层流血。",
   "BIGDOGMOD-RENDING_BITE.title": "撕咬攻击",
-  "BIGDOGMOD-STOKE_WILDNESS.description": "获得 {Block} 点格挡。获得 {WildnessPower} 层野性。",
+  "BIGDOGMOD-STOKE_WILDNESS.description": "获得 {Block} 点格挡。获得 {TemporaryWildnessPower} 层临时野性。",
   "BIGDOGMOD-STOKE_WILDNESS.title": "激发野性",
   "RENDING_BITE.description": "给予 {BleedingPower} 层流血。",
   "RENDING_BITE.title": "撕咬攻击",
-  "STOKE_WILDNESS.description": "获得 {Block} 点格挡。获得 {WildnessPower} 层野性。",
+  "STOKE_WILDNESS.description": "获得 {Block} 点格挡。获得 {TemporaryWildnessPower} 层临时野性。",
   "STOKE_WILDNESS.title": "激发野性"
 }

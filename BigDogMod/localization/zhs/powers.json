@@ -1,10 +1,14 @@
 {
-  "BIGDOGMOD-BLEEDING_POWER.description": "在拥有者回合开始时，失去等同于流血层数的生命，然后流血 +2。",
+  "BIGDOGMOD-BLEEDING_POWER.description": "在拥有者回合开始时，失去等同于流血层数的生命，然后流血 +1。",
   "BIGDOGMOD-BLEEDING_POWER.title": "流血",
+  "BIGDOGMOD-TEMPORARY_WILDNESS_POWER.description": "本回合获得等量的野性。回合结束时，失去等量的野性。",
+  "BIGDOGMOD-TEMPORARY_WILDNESS_POWER.title": "临时野性",
   "BIGDOGMOD-WILDNESS_POWER.description": "每有 1 层野性，攻击牌的数值 +1，防御牌的格挡数值 -1。与力量和敏捷分开结算。",
   "BIGDOGMOD-WILDNESS_POWER.title": "野性",
-  "BLEEDING_POWER.description": "在拥有者回合开始时，失去等同于流血层数的生命，然后流血 +2。",
+  "BLEEDING_POWER.description": "在拥有者回合开始时，失去等同于流血层数的生命，然后流血 +1。",
   "BLEEDING_POWER.title": "流血",
+  "TEMPORARY_WILDNESS_POWER.description": "本回合获得等量的野性。回合结束时，失去等量的野性。",
+  "TEMPORARY_WILDNESS_POWER.title": "临时野性",
   "WILDNESS_POWER.description": "每有 1 层野性，攻击牌的数值 +1，防御牌的格挡数值 -1。与力量和敏捷分开结算。",
   "WILDNESS_POWER.title": "野性"
 }

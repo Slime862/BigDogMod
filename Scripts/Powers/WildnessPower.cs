@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -8,7 +9,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace BigDogMod.Scripts.Powers;
 
-public sealed class WildnessPower : PowerModel
+public sealed class WildnessPower : CustomPowerModel
 {
     public override PowerType Type => PowerType.Buff;
 
