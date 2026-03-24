@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using BigDogMod.Scripts.Cards;
 using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 using BigDogMod.Scripts.Powers;
 
 namespace BigDogMod.Scripts;
@@ -16,16 +17,16 @@ public static class Entry
 {
     public static void Init()
     {
-        ModHelper.AddModelToPool<DefectCardPool, StokeWildness>();
-        ModHelper.AddModelToPool<DefectCardPool, BigDogHowl>();
-        ModHelper.AddModelToPool<DefectCardPool, BigDogChew>();
-        ModHelper.AddModelToPool<DefectCardPool, RendingBite>();
-        ModHelper.AddModelToPool<DefectCardPool, BleedOut>();
-        ModHelper.AddModelToPool<DefectCardPool, BloodDrink>();
-        ModHelper.AddModelToPool<DefectCardPool, BloodlettingSlot>();
-        ModHelper.AddModelToPool<DefectCardPool, ForceAwaken>();
-        ModHelper.AddModelToPool<DefectCardPool, Hemophobia>();
-        ModHelper.AddModelToPool<DefectCardPool, VigilantHowl>();
+        ModHelper.AddModelToPool<BigDogCardPool, StokeWildness>();
+        ModHelper.AddModelToPool<BigDogCardPool, BigDogHowl>();
+        ModHelper.AddModelToPool<BigDogCardPool, RendingBite>();
+        ModHelper.AddModelToPool<BigDogCardPool, BleedOut>();
+        ModHelper.AddModelToPool<BigDogCardPool, BloodDrink>();
+        ModHelper.AddModelToPool<BigDogCardPool, BloodlettingSlot>();
+        ModHelper.AddModelToPool<BigDogCardPool, ForceAwaken>();
+        ModHelper.AddModelToPool<BigDogCardPool, Hemophobia>();
+        ModHelper.AddModelToPool<BigDogCardPool, VigilantHowl>();
+        ModHelper.AddModelToPool<TokenCardPool, BigDogChew>();
 
         var harmony = new Harmony("sts2.bigdog.mod");
         harmony.PatchAll();

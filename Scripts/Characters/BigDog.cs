@@ -1,15 +1,14 @@
 using System.Collections.Generic;
 using BaseLib.Abstracts;
+using BigDogMod.Scripts.Assets;
+using BigDogMod.Scripts.Cards;
+using BigDogMod.Scripts.Pools;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Cards;
-using MegaCrit.Sts2.Core.Models.PotionPools;
-using MegaCrit.Sts2.Core.Models.RelicPools;
 using MegaCrit.Sts2.Core.Models.Relics;
-using BigDogMod.Scripts.Cards;
 
 namespace BigDogMod.Scripts.Characters;
 
@@ -31,11 +30,30 @@ public sealed class BigDog : PlaceholderCharacterModel
 
     public override int BaseOrbSlotCount => 3;
 
-    public override CardPoolModel CardPool => ModelDb.CardPool<DefectCardPool>();
+    public override CardPoolModel CardPool => ModelDb.CardPool<BigDogCardPool>();
 
-    public override RelicPoolModel RelicPool => ModelDb.RelicPool<DefectRelicPool>();
+    public override RelicPoolModel RelicPool => ModelDb.RelicPool<BigDogRelicPool>();
 
-    public override PotionPoolModel PotionPool => ModelDb.PotionPool<DefectPotionPool>();
+    public override PotionPoolModel PotionPool => ModelDb.PotionPool<BigDogPotionPool>();
+
+    // Uncomment these one by one after the matching assets are ready.
+    // Until then, keep borrowing Defect assets through PlaceholderID = "defect".
+    // public override string CustomVisualPath => BigDogAssetPaths.CharacterVisualsScene;
+    // public override string CustomTrailPath => BigDogAssetPaths.CharacterTrailScene;
+    // public override string? CustomMapMarkerPath => BigDogAssetPaths.CharacterMapMarker;
+    // public override string CustomIconPath => BigDogAssetPaths.CharacterIconScene;
+    // public override string? CustomIconTexturePath => BigDogAssetPaths.CharacterTopPanelIcon;
+    // public override string CustomEnergyCounterPath => BigDogAssetPaths.CharacterEnergyCounterScene;
+    // public override string CustomRestSiteAnimPath => BigDogAssetPaths.CharacterRestSiteScene;
+    // public override string CustomMerchantAnimPath => BigDogAssetPaths.CharacterMerchantScene;
+    // public override string CustomArmPointingTexturePath => BigDogAssetPaths.HandPoint;
+    // public override string CustomArmRockTexturePath => BigDogAssetPaths.HandRock;
+    // public override string CustomArmPaperTexturePath => BigDogAssetPaths.HandPaper;
+    // public override string CustomArmScissorsTexturePath => BigDogAssetPaths.HandScissors;
+    // public override string CustomCharacterSelectBg => BigDogAssetPaths.CharacterSelectBgScene;
+    // public override string CustomCharacterSelectTransitionPath => BigDogAssetPaths.CharacterTransitionMaterial;
+    // public override string? CustomCharacterSelectIconPath => BigDogAssetPaths.CharacterSelectIcon;
+    // public override string? CustomCharacterSelectLockedIconPath => BigDogAssetPaths.CharacterSelectLockedIcon;
 
     public override IEnumerable<CardModel> StartingDeck =>
         [
