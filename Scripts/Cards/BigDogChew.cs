@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using BigDogMod.Scripts.Assets;
-using BigDogMod.Scripts.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -14,25 +14,26 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace BigDogMod.Scripts.Cards;
 
-public sealed class RendingBite : CustomCardModel
+public sealed class BigDogChew : CustomCardModel
 {
-    protected override HashSet<CardTag> CanonicalTags => new() { CardTag.Strike };
+    private decimal _currentDamage = 5m;
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        [CardKeyword.Retain, CardKeyword.Exhaust];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [
-            HoverTipFactory.FromPower<BleedingPower>()
+            HoverTipFactory.FromKeyword(CardKeyword.Retain),
+            HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
         ];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [
-            new DamageVar(1m, ValueProp.Move),
-            new PowerVar<BleedingPower>(1m)
-        ];
+        [new DamageVar(0m, ValueProp.Move)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("rending_bite");
+    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("big_dog_chew");
 
-    public RendingBite()
-        : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, autoAdd: false)
+    public BigDogChew()
+        : base(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy, autoAdd: false)
     {
     }
 
@@ -43,17 +44,28 @@ public sealed class RendingBite : CustomCardModel
             return;
         }
 
-        await CreatureCmd.TriggerAnim(base.Owner.Creature, "Attack", base.Owner.Character.AttackAnimDelay);
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue)
             .FromCard(this)
             .Targeting(cardPlay.Target)
+            //.WithHitFx("vfx/vfx_bite")
             .Execute(choiceContext);
-        await PowerCmd.Apply<BleedingPower>(cardPlay.Target, base.DynamicVars["BleedingPower"].BaseValue, base.Owner.Creature, this);
+    }
+
+
+    public void AddDamage(decimal amount)
+    {
+        base.DynamicVars.Damage.BaseValue += amount;
+        _currentDamage = base.DynamicVars.Damage.BaseValue;
     }
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Damage.UpgradeValueBy(1m);
-        base.DynamicVars["BleedingPower"].UpgradeValueBy(1m);
+        base.EnergyCost.UpgradeBy(-1);
+    }
+
+    protected override void AfterDowngraded()
+    {
+        base.AfterDowngraded();
+        base.DynamicVars.Damage.BaseValue = _currentDamage;
     }
 }

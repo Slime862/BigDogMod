@@ -19,6 +19,8 @@ public sealed class BigDog : PlaceholderCharacterModel
 
     public override Color NameColor => StsColors.blue;
 
+    public override Color EnergyLabelOutlineColor => new("163E64FF");
+
     public override CharacterGender Gender => CharacterGender.Masculine;
 
     protected override CharacterModel? UnlocksAfterRunAs => null;
@@ -45,8 +47,8 @@ public sealed class BigDog : PlaceholderCharacterModel
             ModelDb.Card<DefendDefect>(),
             ModelDb.Card<DefendDefect>(),
             ModelDb.Card<DefendDefect>(),
-            ModelDb.Card<RendingBite>(),
-            ModelDb.Card<StokeWildness>()
+            ModelDb.Card<StokeWildness>(),
+            ModelDb.Card<BigDogHowl>()
         ];
 
     public override IReadOnlyList<RelicModel> StartingRelics =>
@@ -55,8 +57,6 @@ public sealed class BigDog : PlaceholderCharacterModel
     public override float AttackAnimDelay => 0.15f;
 
     public override float CastAnimDelay => 0.25f;
-
-    public override Color EnergyLabelOutlineColor => new("163E64FF");
 
     public override Color DialogueColor => new("13446B");
 

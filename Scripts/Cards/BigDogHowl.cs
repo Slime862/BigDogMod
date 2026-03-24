@@ -2,7 +2,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using BigDogMod.Scripts.Assets;
-using BigDogMod.Scripts.Powers;
+using BigDogMod.Scripts.Commands;
+using BigDogMod.Scripts.HoverTips;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -14,25 +15,23 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace BigDogMod.Scripts.Cards;
 
-public sealed class RendingBite : CustomCardModel
+public sealed class BigDogHowl : CustomCardModel
 {
-    protected override HashSet<CardTag> CanonicalTags => new() { CardTag.Strike };
+    protected override HashSet<CardTag> CanonicalTags => new() { BigDogTags.Jiao };
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        [
-            HoverTipFactory.FromPower<BleedingPower>()
-        ];
+        BigDogHoverTips.FromWantChew(base.DynamicVars["WantChew"]);
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new DamageVar(1m, ValueProp.Move),
-            new PowerVar<BleedingPower>(1m)
+            new DamageVar(4m, ValueProp.Move),
+            new DynamicVar("WantChew", 5m)
         ];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("rending_bite");
+    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("big_dog_howl");
 
-    public RendingBite()
-        : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, autoAdd: false)
+    public BigDogHowl()
+        : base(0, CardType.Skill, CardRarity.Token, TargetType.AnyEnemy, autoAdd: false)
     {
     }
 
@@ -43,17 +42,16 @@ public sealed class RendingBite : CustomCardModel
             return;
         }
 
-        await CreatureCmd.TriggerAnim(base.Owner.Creature, "Attack", base.Owner.Character.AttackAnimDelay);
+        await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue)
             .FromCard(this)
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
-        await PowerCmd.Apply<BleedingPower>(cardPlay.Target, base.DynamicVars["BleedingPower"].BaseValue, base.Owner.Creature, this);
+
+        await WantChewCmd.WantChew(base.DynamicVars["WantChew"].BaseValue, base.Owner, this);
     }
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Damage.UpgradeValueBy(1m);
-        base.DynamicVars["BleedingPower"].UpgradeValueBy(1m);
     }
 }

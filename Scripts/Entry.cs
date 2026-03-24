@@ -17,6 +17,8 @@ public static class Entry
     public static void Init()
     {
         ModHelper.AddModelToPool<DefectCardPool, StokeWildness>();
+        ModHelper.AddModelToPool<DefectCardPool, BigDogHowl>();
+        ModHelper.AddModelToPool<DefectCardPool, BigDogChew>();
         ModHelper.AddModelToPool<DefectCardPool, RendingBite>();
 
         var harmony = new Harmony("sts2.bigdog.mod");
@@ -30,13 +32,15 @@ public static class Entry
     {
         Log.Info($"BigDog loc diag: character id = {ModelDb.GetId<BigDog>().Entry}");
         Log.Info($"BigDog loc diag: StokeWildness id = {ModelDb.GetId<StokeWildness>().Entry}");
+        Log.Info($"BigDog loc diag: BigDogHowl id = {ModelDb.GetId<BigDogHowl>().Entry}");
         Log.Info($"BigDog loc diag: RendingBite id = {ModelDb.GetId<RendingBite>().Entry}");
+        Log.Info($"BigDog loc diag: BigDogChew id = {ModelDb.GetId<BigDogChew>().Entry}");
         Log.Info($"BigDog loc diag: WildnessPower id = {ModelDb.GetId<WildnessPower>().Entry}");
         Log.Info($"BigDog loc diag: TemporaryWildnessPower id = {ModelDb.GetId<TemporaryWildnessPower>().Entry}");
         Log.Info($"BigDog loc diag: BleedingPower id = {ModelDb.GetId<BleedingPower>().Entry}");
 
         string[] languages = ["zhs", "eng"];
-        string[] files = ["characters.json", "cards.json", "powers.json"];
+        string[] files = ["characters.json", "cards.json", "powers.json", "static_hover_tips.json", "card_keywords.json"];
         foreach (string language in languages)
         {
             foreach (string file in files)

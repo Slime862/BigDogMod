@@ -1,10 +1,18 @@
 {
-  "BIGDOGMOD-RENDING_BITE.description": "Apply {BleedingPower} Bleeding.",
+  "BIGDOGMOD-BIG_DOG_CHEW.description": "Deal {Damage} damage. ",
+  "BIGDOGMOD-BIG_DOG_CHEW.title": "Big Dog Chew",
+  "BIGDOGMOD-BIG_DOG_HOWL.description": "Deal {Damage} damage. [gold]Want Chew[/gold] {WantChew}.",
+  "BIGDOGMOD-BIG_DOG_HOWL.title": "Big Dog Howl",
+  "BIGDOGMOD-RENDING_BITE.description": "Deal {Damage} damage. Apply {BleedingPower} [gold]Bleeding[/gold].",
   "BIGDOGMOD-RENDING_BITE.title": "Rending Bite",
-  "BIGDOGMOD-STOKE_WILDNESS.description": "Gain {Block} Block. Gain {WildnessPower} Wildness.",
+  "BIGDOGMOD-STOKE_WILDNESS.description": "Gain {Block} Block. Gain {TemporaryWildnessPower} [gold]Temporary Wildness[/gold].",
   "BIGDOGMOD-STOKE_WILDNESS.title": "Stoke Wildness",
-  "RENDING_BITE.description": "Apply {BleedingPower} Bleeding.",
+  "BIG_DOG_CHEW.description": "Deal {Damage} damage. ",
+  "BIG_DOG_CHEW.title": "Big Dog Chew",
+  "BIG_DOG_HOWL.description": "Deal {Damage} damage. [gold]Want Chew[/gold] {WantChew}.",
+  "BIG_DOG_HOWL.title": "Big Dog Howl",
+  "RENDING_BITE.description": "Deal {Damage} damage. Apply {BleedingPower} [gold]Bleeding[/gold].",
   "RENDING_BITE.title": "Rending Bite",
-  "STOKE_WILDNESS.description": "Gain {Block} Block. Gain {WildnessPower} Wildness.",
+  "STOKE_WILDNESS.description": "Gain {Block} Block. Gain {TemporaryWildnessPower} [gold]Temporary Wildness[/gold].",
   "STOKE_WILDNESS.title": "Stoke Wildness"
 }

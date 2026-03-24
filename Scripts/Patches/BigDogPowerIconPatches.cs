@@ -1,4 +1,5 @@
 using HarmonyLib;
+using BigDogMod.Scripts.Assets;
 using BigDogMod.Scripts.Powers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -12,11 +13,16 @@ public static class BigDogPowerIconPathPatch
     {
         if (__instance is WildnessPower or TemporaryWildnessPower)
         {
-            __result = ModelDb.Power<StrengthPower>().IconPath;
+            string fileName = __instance is TemporaryWildnessPower ? "temporary_wildness" : "wildness";
+            __result = BigDogAssetPaths.Exists(BigDogAssetPaths.PowerIcon(fileName))
+                ? BigDogAssetPaths.PowerIcon(fileName)
+                : ModelDb.Power<StrengthPower>().IconPath;
         }
         else if (__instance is BleedingPower)
         {
-            __result = ModelDb.Power<PoisonPower>().IconPath;
+            __result = BigDogAssetPaths.Exists(BigDogAssetPaths.PowerIcon("bleeding"))
+                ? BigDogAssetPaths.PowerIcon("bleeding")
+                : ModelDb.Power<PoisonPower>().IconPath;
         }
     }
 }
@@ -28,11 +34,16 @@ public static class BigDogPowerBigIconPathPatch
     {
         if (__instance is WildnessPower or TemporaryWildnessPower)
         {
-            __result = ModelDb.Power<StrengthPower>().ResolvedBigIconPath;
+            string fileName = __instance is TemporaryWildnessPower ? "temporary_wildness" : "wildness";
+            __result = BigDogAssetPaths.Exists(BigDogAssetPaths.PowerBetaIcon(fileName))
+                ? BigDogAssetPaths.PowerBetaIcon(fileName)
+                : ModelDb.Power<StrengthPower>().ResolvedBigIconPath;
         }
         else if (__instance is BleedingPower)
         {
-            __result = ModelDb.Power<PoisonPower>().ResolvedBigIconPath;
+            __result = BigDogAssetPaths.Exists(BigDogAssetPaths.PowerBetaIcon("bleeding"))
+                ? BigDogAssetPaths.PowerBetaIcon("bleeding")
+                : ModelDb.Power<PoisonPower>().ResolvedBigIconPath;
         }
     }
 }

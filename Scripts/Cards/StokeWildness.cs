@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
+using BigDogMod.Scripts.Assets;
 using BigDogMod.Scripts.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -29,10 +30,10 @@ public sealed class StokeWildness : CustomCardModel
             new PowerVar<TemporaryWildnessPower>(1m)
         ];
 
-    public override string CustomPortraitPath => ModelDb.Card<DefendDefect>().PortraitPath;
+    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("stoke_wildness");
 
     public StokeWildness()
-        : base(1, CardType.Skill, CardRarity.Common, TargetType.Self, autoAdd: false)
+        : base(1, CardType.Skill, CardRarity.Token, TargetType.Self, autoAdd: false)
     {
     }
 
@@ -44,6 +45,6 @@ public sealed class StokeWildness : CustomCardModel
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Block.UpgradeValueBy(3m);
+        base.EnergyCost.UpgradeBy(-1);
     }
 }

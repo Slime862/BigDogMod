@@ -1,10 +1,18 @@
 {
-  "BIGDOGMOD-RENDING_BITE.description": "给予 {BleedingPower} 层流血。",
+  "BIGDOGMOD-BIG_DOG_CHEW.description": "造成 {Damage} 点伤害。",
+  "BIGDOGMOD-BIG_DOG_CHEW.title": "大狗嚼",
+  "BIGDOGMOD-BIG_DOG_HOWL.description": "造成 {Damage} 点伤害。[gold]想嚼[/gold] {WantChew}。",
+  "BIGDOGMOD-BIG_DOG_HOWL.title": "大狗叫",
+  "BIGDOGMOD-RENDING_BITE.description": "造成 {Damage} 点伤害，给予 {BleedingPower} 层[gold]流血[/gold]。",
   "BIGDOGMOD-RENDING_BITE.title": "撕咬攻击",
-  "BIGDOGMOD-STOKE_WILDNESS.description": "获得 {Block} 点格挡。获得 {TemporaryWildnessPower} 层临时野性。",
+  "BIGDOGMOD-STOKE_WILDNESS.description": "获得 {Block} 点格挡。获得 {TemporaryWildnessPower} 层[gold]临时野性[/gold]。",
   "BIGDOGMOD-STOKE_WILDNESS.title": "激发野性",
-  "RENDING_BITE.description": "给予 {BleedingPower} 层流血。",
+  "BIG_DOG_CHEW.description": "造成 {Damage} 点伤害。",
+  "BIG_DOG_CHEW.title": "大狗嚼",
+  "BIG_DOG_HOWL.description": "造成 {Damage} 点伤害。[gold]想嚼[/gold] {WantChew}。",
+  "BIG_DOG_HOWL.title": "大狗叫",
+  "RENDING_BITE.description": "造成 {Damage} 点伤害，给予 {BleedingPower} 层[gold]流血[/gold]。",
   "RENDING_BITE.title": "撕咬攻击",
-  "STOKE_WILDNESS.description": "获得 {Block} 点格挡。获得 {TemporaryWildnessPower} 层临时野性。",
+  "STOKE_WILDNESS.description": "获得 {Block} 点格挡。获得 {TemporaryWildnessPower} 层[gold]临时野性[/gold]。",
   "STOKE_WILDNESS.title": "激发野性"
 }
