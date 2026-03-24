@@ -20,6 +20,12 @@ public static class Entry
         ModHelper.AddModelToPool<DefectCardPool, BigDogHowl>();
         ModHelper.AddModelToPool<DefectCardPool, BigDogChew>();
         ModHelper.AddModelToPool<DefectCardPool, RendingBite>();
+        ModHelper.AddModelToPool<DefectCardPool, BleedOut>();
+        ModHelper.AddModelToPool<DefectCardPool, BloodDrink>();
+        ModHelper.AddModelToPool<DefectCardPool, BloodlettingSlot>();
+        ModHelper.AddModelToPool<DefectCardPool, ForceAwaken>();
+        ModHelper.AddModelToPool<DefectCardPool, Hemophobia>();
+        ModHelper.AddModelToPool<DefectCardPool, VigilantHowl>();
 
         var harmony = new Harmony("sts2.bigdog.mod");
         harmony.PatchAll();

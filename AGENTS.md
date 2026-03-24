@@ -108,3 +108,8 @@
 - Use `CARD_CONFIG_TABLE.csv` as the single source of truth for future card changes.
 - Update the table first, then update code.
 - If code and table disagree, follow the table.
+
+# 卡牌配置读取规则
+- 如果卡名以中文名为准，如果卡牌ID为空，则先从卡名翻译过去，然后在根据卡牌描述来写卡牌逻辑。另外升级效果这一列是对升级效果的说明，升级后卡牌的描述不要错误地使用了这个列的文本。
+- 根据表生成卡牌时，表里少什么字段就帮我补充上什么字段。
+- 空行是我留出放其他卡牌的，别删掉了。

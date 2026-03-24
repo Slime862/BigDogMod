@@ -43,6 +43,18 @@ public static class BigDogCardPortraitPathPatch
             return false;
         }
 
+        if (__instance is BleedOut or BloodDrink or ForceAwaken or VigilantHowl)
+        {
+            __result = ModelDb.Card<DefendDefect>().PortraitPath;
+            return false;
+        }
+
+        if (__instance is BloodlettingSlot or Hemophobia)
+        {
+            __result = ModelDb.Card<Zap>().PortraitPath;
+            return false;
+        }
+
         return true;
     }
 }
@@ -81,6 +93,18 @@ public static class BigDogCardBetaPortraitPathPatch
             __result = BigDogAssetPaths.Exists(BigDogAssetPaths.CardBetaPortrait("stoke_wildness"))
                 ? BigDogAssetPaths.CardBetaPortrait("stoke_wildness")
                 : ModelDb.Card<DefendDefect>().BetaPortraitPath;
+            return false;
+        }
+
+        if (__instance is BleedOut or BloodDrink or ForceAwaken or VigilantHowl)
+        {
+            __result = ModelDb.Card<DefendDefect>().BetaPortraitPath;
+            return false;
+        }
+
+        if (__instance is BloodlettingSlot or Hemophobia)
+        {
+            __result = ModelDb.Card<Zap>().BetaPortraitPath;
             return false;
         }
 

@@ -24,6 +24,14 @@ public static class BigDogPowerIconPathPatch
                 ? BigDogAssetPaths.PowerIcon("bleeding")
                 : ModelDb.Power<PoisonPower>().IconPath;
         }
+        else if (__instance is BleedingBoostPower)
+        {
+            __result = ModelDb.Power<PoisonPower>().IconPath;
+        }
+        else if (__instance is BigDogChewPrepPower)
+        {
+            __result = ModelDb.Power<WeakPower>().IconPath;
+        }
     }
 }
 
@@ -44,6 +52,14 @@ public static class BigDogPowerBigIconPathPatch
             __result = BigDogAssetPaths.Exists(BigDogAssetPaths.PowerBetaIcon("bleeding"))
                 ? BigDogAssetPaths.PowerBetaIcon("bleeding")
                 : ModelDb.Power<PoisonPower>().ResolvedBigIconPath;
+        }
+        else if (__instance is BleedingBoostPower)
+        {
+            __result = ModelDb.Power<PoisonPower>().ResolvedBigIconPath;
+        }
+        else if (__instance is BigDogChewPrepPower)
+        {
+            __result = ModelDb.Power<WeakPower>().ResolvedBigIconPath;
         }
     }
 }

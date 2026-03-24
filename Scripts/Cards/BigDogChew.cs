@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using BigDogMod.Scripts.Assets;
+using BigDogMod.Scripts.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -49,6 +50,8 @@ public sealed class BigDogChew : CustomCardModel
             .Targeting(cardPlay.Target)
             //.WithHitFx("vfx/vfx_bite")
             .Execute(choiceContext);
+
+        await BigDogChewPrepCmd.Resolve(choiceContext, this, cardPlay.Target, base.Owner);
     }
 
 

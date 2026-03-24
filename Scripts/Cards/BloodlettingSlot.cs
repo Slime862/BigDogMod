@@ -1,0 +1,41 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using BaseLib.Abstracts;
+using BigDogMod.Scripts.Assets;
+using BigDogMod.Scripts.Powers;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Cards;
+
+namespace BigDogMod.Scripts.Cards;
+
+public sealed class BloodlettingSlot : CustomCardModel
+{
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        base.IsUpgraded ? [CardKeyword.Innate] : [];
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+        [HoverTipFactory.FromPower<BleedingBoostPower>()];
+
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+        [new PowerVar<BleedingBoostPower>(1m)];
+
+    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("bloodletting_slot");
+
+    public BloodlettingSlot()
+        : base(1, CardType.Power, CardRarity.Rare, TargetType.None, autoAdd: false)
+    {
+    }
+
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        await PowerCmd.Apply<BleedingBoostPower>(base.Owner.Creature, base.DynamicVars["BleedingBoostPower"].BaseValue, base.Owner.Creature, this);
+    }
+
+    protected override void OnUpgrade()
+    {
+    }
+}
