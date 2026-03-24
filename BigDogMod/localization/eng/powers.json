@@ -1,4 +1,4 @@
-{
+﻿{
   "BIGDOGMOD-BIG_DOG_CHEW_PREP_POWER.description": "The next [gold]Big Dog Chew[/gold] gains: {WeakText}{DrawText}",
   "BIGDOGMOD-BIG_DOG_CHEW_PREP_POWER.drawLine": "After being played, draw {Amount} cards. ",
   "BIGDOGMOD-BIG_DOG_CHEW_PREP_POWER.title": "Big Dog Exertion",
@@ -7,8 +7,6 @@
   "BIGDOGMOD-BLEEDING_BOOST_POWER.title": "Bloodletting Slot",
   "BIGDOGMOD-BLEEDING_POWER.description": "At the start of the owner's turn, lose HP equal to Bleeding, then gain 1 Bleeding.",
   "BIGDOGMOD-BLEEDING_POWER.title": "Bleeding",
-  "BIGDOGMOD-TEMPORARY_WILDNESS_POWER.description": "Gain this much Wildness this turn. At the end of the turn, lose that much Wildness.",
-  "BIGDOGMOD-TEMPORARY_WILDNESS_POWER.title": "Temporary Wildness",
   "BIGDOGMOD-WILDNESS_POWER.description": "Each stack gives Attack cards +1 value and Block cards -1 value. This is calculated separately from Strength and Dexterity.",
   "BIGDOGMOD-WILDNESS_POWER.title": "Wildness",
   "BIG_DOG_CHEW_PREP_POWER.description": "The next [gold]Big Dog Chew[/gold] gains: {WeakText}{DrawText}",
@@ -19,8 +17,6 @@
   "BLEEDING_BOOST_POWER.title": "Bloodletting Slot",
   "BLEEDING_POWER.description": "At the start of the owner's turn, lose HP equal to Bleeding, then gain 1 Bleeding.",
   "BLEEDING_POWER.title": "Bleeding",
-  "TEMPORARY_WILDNESS_POWER.description": "Gain this much Wildness this turn. At the end of the turn, lose that much Wildness.",
-  "TEMPORARY_WILDNESS_POWER.title": "Temporary Wildness",
   "WILDNESS_POWER.description": "Each stack gives Attack cards +1 value and Block cards -1 value. This is calculated separately from Strength and Dexterity.",
   "WILDNESS_POWER.title": "Wildness"
 }

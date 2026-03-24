@@ -6,31 +6,92 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace BigDogMod.Scripts.Patches;
 
-[HarmonyPatch(typeof(PowerModel), nameof(PowerModel.IconPath), MethodType.Getter)]
-public static class BigDogPowerIconPathPatch
+internal static class BigDogPowerIconHelper
+{
+    public static string? GetCustomIconPath(PowerModel power)
+    {
+        if (power is WildnessPower)
+        {
+            string custom = BigDogAssetPaths.PowerIcon("wildness_power");
+            return BigDogAssetPaths.Exists(custom) ? custom : ModelDb.Power<StrengthPower>().PackedIconPath;
+        }
+
+        if (power is BleedingPower)
+        {
+            string custom = BigDogAssetPaths.PowerIcon("bleeding_power");
+            return BigDogAssetPaths.Exists(custom) ? custom : ModelDb.Power<PoisonPower>().PackedIconPath;
+        }
+
+        if (power is BleedingBoostPower)
+        {
+            return ModelDb.Power<PoisonPower>().PackedIconPath;
+        }
+
+        if (power is BigDogChewPrepPower)
+        {
+            string custom = BigDogAssetPaths.PowerIcon("big_dog_chew_prep_power");
+            return BigDogAssetPaths.Exists(custom) ? custom : ModelDb.Power<WeakPower>().PackedIconPath;
+        }
+
+        return null;
+    }
+
+    public static string? GetCustomBigIconPath(PowerModel power)
+    {
+        if (power is WildnessPower)
+        {
+            string beta = BigDogAssetPaths.PowerBetaIcon("wildness_power");
+            if (BigDogAssetPaths.Exists(beta))
+            {
+                return beta;
+            }
+
+            string custom = BigDogAssetPaths.PowerIcon("wildness_power");
+            return BigDogAssetPaths.Exists(custom) ? custom : ModelDb.Power<StrengthPower>().ResolvedBigIconPath;
+        }
+
+        if (power is BleedingPower)
+        {
+            string beta = BigDogAssetPaths.PowerBetaIcon("bleeding_power");
+            if (BigDogAssetPaths.Exists(beta))
+            {
+                return beta;
+            }
+
+            string custom = BigDogAssetPaths.PowerIcon("bleeding_power");
+            return BigDogAssetPaths.Exists(custom) ? custom : ModelDb.Power<PoisonPower>().ResolvedBigIconPath;
+        }
+
+        if (power is BleedingBoostPower)
+        {
+            return ModelDb.Power<PoisonPower>().ResolvedBigIconPath;
+        }
+
+        if (power is BigDogChewPrepPower)
+        {
+            string beta = BigDogAssetPaths.PowerBetaIcon("big_dog_chew_prep_power");
+            if (BigDogAssetPaths.Exists(beta))
+            {
+                return beta;
+            }
+
+            string custom = BigDogAssetPaths.PowerIcon("big_dog_chew_prep_power");
+            return BigDogAssetPaths.Exists(custom) ? custom : ModelDb.Power<WeakPower>().ResolvedBigIconPath;
+        }
+
+        return null;
+    }
+}
+
+[HarmonyPatch(typeof(PowerModel), nameof(PowerModel.PackedIconPath), MethodType.Getter)]
+public static class BigDogPowerPackedIconPathPatch
 {
     public static void Postfix(PowerModel __instance, ref string __result)
     {
-        if (__instance is WildnessPower or TemporaryWildnessPower)
+        string? custom = BigDogPowerIconHelper.GetCustomIconPath(__instance);
+        if (custom != null)
         {
-            string fileName = __instance is TemporaryWildnessPower ? "temporary_wildness" : "wildness";
-            __result = BigDogAssetPaths.Exists(BigDogAssetPaths.PowerIcon(fileName))
-                ? BigDogAssetPaths.PowerIcon(fileName)
-                : ModelDb.Power<StrengthPower>().IconPath;
-        }
-        else if (__instance is BleedingPower)
-        {
-            __result = BigDogAssetPaths.Exists(BigDogAssetPaths.PowerIcon("bleeding"))
-                ? BigDogAssetPaths.PowerIcon("bleeding")
-                : ModelDb.Power<PoisonPower>().IconPath;
-        }
-        else if (__instance is BleedingBoostPower)
-        {
-            __result = ModelDb.Power<PoisonPower>().IconPath;
-        }
-        else if (__instance is BigDogChewPrepPower)
-        {
-            __result = ModelDb.Power<WeakPower>().IconPath;
+            __result = custom;
         }
     }
 }
@@ -40,26 +101,10 @@ public static class BigDogPowerBigIconPathPatch
 {
     public static void Postfix(PowerModel __instance, ref string __result)
     {
-        if (__instance is WildnessPower or TemporaryWildnessPower)
+        string? custom = BigDogPowerIconHelper.GetCustomBigIconPath(__instance);
+        if (custom != null)
         {
-            string fileName = __instance is TemporaryWildnessPower ? "temporary_wildness" : "wildness";
-            __result = BigDogAssetPaths.Exists(BigDogAssetPaths.PowerBetaIcon(fileName))
-                ? BigDogAssetPaths.PowerBetaIcon(fileName)
-                : ModelDb.Power<StrengthPower>().ResolvedBigIconPath;
-        }
-        else if (__instance is BleedingPower)
-        {
-            __result = BigDogAssetPaths.Exists(BigDogAssetPaths.PowerBetaIcon("bleeding"))
-                ? BigDogAssetPaths.PowerBetaIcon("bleeding")
-                : ModelDb.Power<PoisonPower>().ResolvedBigIconPath;
-        }
-        else if (__instance is BleedingBoostPower)
-        {
-            __result = ModelDb.Power<PoisonPower>().ResolvedBigIconPath;
-        }
-        else if (__instance is BigDogChewPrepPower)
-        {
-            __result = ModelDb.Power<WeakPower>().ResolvedBigIconPath;
+            __result = custom;
         }
     }
 }

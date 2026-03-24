@@ -21,13 +21,13 @@ public sealed class StokeWildness : CustomCardModel
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [
             HoverTipFactory.Static(StaticHoverTip.Block),
-            HoverTipFactory.FromPower<TemporaryWildnessPower>()
+            HoverTipFactory.FromPower<WildnessPower>()
         ];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new BlockVar(4m, ValueProp.Move),
-            new PowerVar<TemporaryWildnessPower>(1m)
+            new PowerVar<WildnessPower>(1m)
         ];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("stoke_wildness");
@@ -40,7 +40,9 @@ public sealed class StokeWildness : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
-        await PowerCmd.Apply<TemporaryWildnessPower>(base.Owner.Creature, base.DynamicVars["TemporaryWildnessPower"].BaseValue, base.Owner.Creature, this);
+        decimal amount = base.DynamicVars["WildnessPower"].BaseValue;
+        await PowerCmd.Apply<WildnessPower>(base.Owner.Creature, amount, base.Owner.Creature, this);
+        base.Owner.Creature.GetPower<WildnessPower>()?.AddTemporaryAmount(amount);
     }
 
     protected override void OnUpgrade()

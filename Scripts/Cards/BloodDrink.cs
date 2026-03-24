@@ -22,12 +22,6 @@ public sealed class BloodDrink : CustomCardModel
     {
         get
         {
-            Creature? currentTarget = base.CurrentTarget;
-            if (currentTarget != null)
-            {
-                return currentTarget.HasPower<BleedingPower>();
-            }
-
             return base.CombatState?.HittableEnemies.Any(enemy => enemy.HasPower<BleedingPower>()) ?? false;
         }
     }
@@ -47,28 +41,18 @@ public sealed class BloodDrink : CustomCardModel
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("blood_drink");
 
     public BloodDrink()
-        : base(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy, autoAdd: false)
+        : base(1, CardType.Skill, CardRarity.Common, TargetType.Self, autoAdd: false)
     {
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (cardPlay.Target == null)
-        {
-            return;
-        }
-
         await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
-
-        BleedingPower? bleeding = cardPlay.Target.GetPower<BleedingPower>();
-        int stacks = bleeding?.Amount ?? 0;
-        if (stacks <= 0)
+        int bleedingEnemies = base.CombatState?.HittableEnemies.Count(enemy => enemy.HasPower<BleedingPower>()) ?? 0;
+        if (bleedingEnemies > 0)
         {
-            return;
+            await CreatureCmd.GainBlock(base.Owner.Creature, bleedingEnemies * base.DynamicVars["BlockPerBleed"].BaseValue, ValueProp.Move, cardPlay);
         }
-
-        await PowerCmd.Remove(bleeding);
-        await CreatureCmd.GainBlock(base.Owner.Creature, stacks * base.DynamicVars["BlockPerBleed"].BaseValue, ValueProp.Move, cardPlay);
     }
 
     protected override void OnUpgrade()

@@ -43,7 +43,6 @@ public static class Entry
         Log.Info($"BigDog loc diag: RendingBite id = {ModelDb.GetId<RendingBite>().Entry}");
         Log.Info($"BigDog loc diag: BigDogChew id = {ModelDb.GetId<BigDogChew>().Entry}");
         Log.Info($"BigDog loc diag: WildnessPower id = {ModelDb.GetId<WildnessPower>().Entry}");
-        Log.Info($"BigDog loc diag: TemporaryWildnessPower id = {ModelDb.GetId<TemporaryWildnessPower>().Entry}");
         Log.Info($"BigDog loc diag: BleedingPower id = {ModelDb.GetId<BleedingPower>().Entry}");
 
         string[] languages = ["zhs", "eng"];
