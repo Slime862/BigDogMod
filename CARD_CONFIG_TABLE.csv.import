@@ -1,0 +1,15 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://sj8jwk2tbfts"
+valid=false
+
+[deps]
+
+source_file="res://CARD_CONFIG_TABLE.csv"
+
+[params]
+
+compress=true
+delimiter=0

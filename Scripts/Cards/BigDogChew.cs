@@ -16,7 +16,7 @@ namespace BigDogMod.Scripts.Cards;
 
 public sealed class BigDogChew : CustomCardModel
 {
-    private decimal _currentDamage = 5m;
+    private decimal _currentDamage = 0m;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
         [CardKeyword.Retain, CardKeyword.Exhaust];

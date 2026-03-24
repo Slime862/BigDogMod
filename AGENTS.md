@@ -103,4 +103,8 @@
 - 以后新增角色，默认先看 `CustomCharacterModel.cs` 和 `PlaceholderCharacterModel.cs`
 - 以后新增遗物，默认先看 `CustomRelicModel.cs`
 - 如果实现上出现“不知道 BaseLib 有没有现成入口”，先查 `ThirdParty/BaseLibSource/BaseLib-StS2/Abstracts/`
+## Card Config Source Of Truth
 
+- Use `CARD_CONFIG_TABLE.csv` as the single source of truth for future card changes.
+- Update the table first, then update code.
+- If code and table disagree, follow the table.
