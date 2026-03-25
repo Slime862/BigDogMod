@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Rooms;
 
 namespace BigDogMod.Scripts.Powers;
 
@@ -70,6 +71,13 @@ public sealed class BigDogChewPrepPower : CustomPowerModel
         _effects.Clear();
         Amount = 0;
         return snapshot;
+    }
+
+    public override Task AfterCombatEnd(CombatRoom room)
+    {
+        _effects.Clear();
+        Amount = 0;
+        return Task.CompletedTask;
     }
 
     private int GetAmount(BigDogChewPrepEffectType effectType)

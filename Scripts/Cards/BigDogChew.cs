@@ -11,14 +11,13 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
-using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace BigDogMod.Scripts.Cards;
 
 public sealed class BigDogChew : CustomCardModel
 {
-    private decimal _currentDamage = 0m;
+    private decimal _extraDamageFromWantChew;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
         [CardKeyword.Retain, CardKeyword.Exhaust];
@@ -59,8 +58,7 @@ public sealed class BigDogChew : CustomCardModel
     public void AddDamage(decimal amount)
     {
         base.DynamicVars.Damage.BaseValue += amount;
-        _currentDamage = base.DynamicVars.Damage.BaseValue;
-        NCard.FindOnTable(this)?.UpdateVisuals(Pile?.Type ?? PileType.None, CardPreviewMode.Normal);
+        _extraDamageFromWantChew += amount;
     }
 
     protected override void OnUpgrade()
@@ -71,6 +69,6 @@ public sealed class BigDogChew : CustomCardModel
     protected override void AfterDowngraded()
     {
         base.AfterDowngraded();
-        base.DynamicVars.Damage.BaseValue = _currentDamage;
+        base.DynamicVars.Damage.BaseValue += _extraDamageFromWantChew;
     }
 }
