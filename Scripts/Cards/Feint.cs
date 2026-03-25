@@ -14,8 +14,7 @@ namespace BigDogMod.Scripts.Cards;
 
 public sealed class Feint : CustomCardModel
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        base.IsUpgraded ? [] : [CardKeyword.Exhaust];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new DamageVar(7m, ValueProp.Move)];
@@ -49,5 +48,6 @@ public sealed class Feint : CustomCardModel
 
     protected override void OnUpgrade()
     {
+        RemoveKeyword(CardKeyword.Exhaust);
     }
 }

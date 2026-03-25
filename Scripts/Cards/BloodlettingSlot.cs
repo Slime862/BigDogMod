@@ -14,8 +14,7 @@ namespace BigDogMod.Scripts.Cards;
 
 public sealed class BloodlettingSlot : CustomCardModel
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        base.IsUpgraded ? [CardKeyword.Innate] : [];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [HoverTipFactory.FromPower<BleedingBoostPower>()];
@@ -37,5 +36,6 @@ public sealed class BloodlettingSlot : CustomCardModel
 
     protected override void OnUpgrade()
     {
+        AddKeyword(CardKeyword.Innate);
     }
 }

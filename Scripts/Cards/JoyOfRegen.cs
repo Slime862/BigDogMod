@@ -15,8 +15,7 @@ public sealed class JoyOfRegen : CustomCardModel
 {
     protected override bool ShouldGlowGoldInternal => base.Owner.Creature.HasPower<BleedingPower>();
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        base.IsUpgraded ? [CardKeyword.Exhaust, CardKeyword.Retain] : [CardKeyword.Exhaust];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [HoverTipFactory.FromPower<BleedingPower>()];
@@ -41,5 +40,6 @@ public sealed class JoyOfRegen : CustomCardModel
 
     protected override void OnUpgrade()
     {
+        AddKeyword(CardKeyword.Retain);
     }
 }

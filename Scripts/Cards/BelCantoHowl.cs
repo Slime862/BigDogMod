@@ -13,8 +13,7 @@ namespace BigDogMod.Scripts.Cards;
 
 public sealed class BelCantoHowl : CustomCardModel
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        base.IsUpgraded ? [CardKeyword.Innate] : [];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [];
 
     protected override HashSet<CardTag> CanonicalTags => new() { BigDogTags.Jiao };
 
@@ -35,5 +34,6 @@ public sealed class BelCantoHowl : CustomCardModel
 
     protected override void OnUpgrade()
     {
+        AddKeyword(CardKeyword.Innate);
     }
 }

@@ -32,7 +32,7 @@ public sealed class RendingBite : CustomCardModel
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("rending_bite");
 
     public RendingBite()
-        : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, autoAdd: false)
+        : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, autoAdd: false)
     {
     }
 

@@ -12,8 +12,7 @@ namespace BigDogMod.Scripts.Cards;
 
 public sealed class ChewAtWill : CustomCardModel
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        base.IsUpgraded ? [CardKeyword.Innate] : [];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("chew_at_will");
 
@@ -29,5 +28,6 @@ public sealed class ChewAtWill : CustomCardModel
 
     protected override void OnUpgrade()
     {
+        AddKeyword(CardKeyword.Innate);
     }
 }

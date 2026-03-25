@@ -13,8 +13,7 @@ namespace BigDogMod.Scripts.Cards;
 
 public sealed class HighSongForm : CustomCardModel
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        base.IsUpgraded ? [] : [CardKeyword.Ethereal];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Ethereal];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [HoverTipFactory.FromCard<BigDogChew>()];
@@ -33,5 +32,6 @@ public sealed class HighSongForm : CustomCardModel
 
     protected override void OnUpgrade()
     {
+        RemoveKeyword(CardKeyword.Ethereal);
     }
 }

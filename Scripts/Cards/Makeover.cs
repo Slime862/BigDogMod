@@ -13,8 +13,7 @@ namespace BigDogMod.Scripts.Cards;
 
 public sealed class Makeover : CustomCardModel
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        base.IsUpgraded ? [CardKeyword.Retain] : [];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [HoverTipFactory.FromPower<WildnessPower>()];
@@ -39,5 +38,6 @@ public sealed class Makeover : CustomCardModel
 
     protected override void OnUpgrade()
     {
+        AddKeyword(CardKeyword.Retain);
     }
 }

@@ -1,12 +1,12 @@
 using System.Threading.Tasks;
 using System.Linq;
 using BaseLib.Abstracts;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
+using MegaCrit.Sts2.Core.Combat;
 
 namespace BigDogMod.Scripts.Powers;
 
@@ -16,16 +16,16 @@ public sealed class BleedingPower : CustomPowerModel
 
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide endingSide)
     {
-        if (side != base.Owner.Side)
+        if (endingSide != base.Owner.Side || base.Owner.CombatState == null)
         {
             return;
         }
 
         await TriggerBleeding();
 
-        int extraTriggers = combatState.PlayerCreatures
+        int extraTriggers = base.Owner.CombatState.PlayerCreatures
             .Select(creature => creature.GetPower<EndlessBleedingPower>()?.Amount ?? 0)
             .Sum();
         for (int i = 0; i < extraTriggers && base.Owner.IsAlive; i++)

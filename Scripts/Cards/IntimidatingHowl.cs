@@ -17,8 +17,7 @@ namespace BigDogMod.Scripts.Cards;
 
 public sealed class IntimidatingHowl : CustomCardModel, IBigDogChewPrepSource
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        base.IsUpgraded ? [] : [CardKeyword.Exhaust];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
     protected override HashSet<CardTag> CanonicalTags => new() { BigDogTags.Jiao };
 
@@ -56,5 +55,6 @@ public sealed class IntimidatingHowl : CustomCardModel, IBigDogChewPrepSource
 
     protected override void OnUpgrade()
     {
+        RemoveKeyword(CardKeyword.Exhaust);
     }
 }
