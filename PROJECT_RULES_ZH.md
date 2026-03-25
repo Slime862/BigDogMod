@@ -26,3 +26,35 @@
 - 角色当前稳定方案是 `PlaceholderID = "defect"`
 - 替换素材时遵循“逐项替换、逐项测试”
 - 没有准备好的角色资源，不要提前接入角色类
+
+## 表驱动协作补充规则（2026-03-25）
+- 以后实现卡牌时，默认只“读取” `CARD_CONFIG_TABLE.csv`，不主动改写表中的卡名、基础效果、升级效果、稀有度、费用、目标、标签/关键词等字段。
+- 只有 `卡牌ID` 允许在缺失时由助手根据中文卡名生成稳定英文 ID；生成后再回写到表里。
+- 用户只需要指出“哪些行更新了”，助手再去表中读取这些行并实现逻辑。
+- 如果表与现有代码不一致：以表为准改代码，不反向改表。
+- 卡牌描述和升级描述默认根据表中前面的效果列来同步补全本地化文本；若表里已有现成描述，则优先按表里描述落地。
+- 若实现过程中发现表信息不足，先保持表原文不变，再单独向用户指出缺失项，不自行补写额外设计结论。
+
+## 大狗用力扩展规范（2026-03-25）
+- 所有“下次大狗嚼获得额外效果”的来源，都统一接入 `BigDogChewPrepPower` 体系。
+- 来源卡不要自己拼描述、自己存独立字段；只负责注册 `BigDogChewPrepEffect(Type, Amount)`。
+- 效果类型统一定义在 `Scripts/ChewPrep/BigDogChewPrepEffectType.cs`。
+- 枚举到描述 key 的映射统一写在 `Scripts/ChewPrep/BigDogChewPrepEffectTypeExtensions.cs`。
+- `BigDogChewPrepPower` 负责：
+  - 累积同类效果数量
+  - 只显示数量大于 0 的效果描述
+  - 生成 HoverTip
+  - 在消费时清空自身状态
+- `BigDogChewPrepCmd.Resolve(...)` 负责统一结算各效果；新增效果时，结算逻辑也只加在这里。
+- 本地化规则：
+  - 总描述使用 `BIG_DOG_CHEW_PREP_POWER.description`，并通过 `{EffectsText}` 占位插入当前有效效果文本
+  - 每个效果单独提供一条 `xxxLine`
+  - 例如：`weakLine`、`bleedingLine`、`drawLine`
+- 新增一种大狗用力效果时，按以下顺序修改：
+  1. 在 `BigDogChewPrepEffectType` 中新增枚举值
+  2. 在 `BigDogChewPrepEffectTypeExtensions` 中补 `LocLineKey()` 映射；如需要 HoverTip，也在这里补
+  3. 在 `BigDogChewPrepCmd.Resolve(...)` 中补充实际结算逻辑
+  4. 在 `powers.json` 中补 `xxxLine` 本地化
+  5. 让来源卡通过 `IBigDogChewPrepSource` 返回该效果
+- 如果某个效果当前数量为 0，则不显示它的描述，也不显示对应 tip。
+- 若以后出现“不适合等到下次大狗嚼统一结算”的效果，不要强行塞进这套体系，应单独讨论是否属于大狗用力机制。

@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace BigDogMod.Scripts.Cards;
 
-public sealed class Hemophobia : CustomCardModel
+public sealed class Cuteify : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [HoverTipFactory.FromPower<WildnessPower>()];
@@ -20,9 +20,9 @@ public sealed class Hemophobia : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new PowerVar<WildnessPower>(-2m)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("hemophobia");
+    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("cuteify");
 
-    public Hemophobia()
+    public Cuteify()
         : base(1, CardType.Power, CardRarity.Rare, TargetType.Self, autoAdd: false)
     {
     }

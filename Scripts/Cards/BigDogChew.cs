@@ -60,7 +60,6 @@ public sealed class BigDogChew : CustomCardModel
     {
         base.DynamicVars.Damage.BaseValue += amount;
         _currentDamage = base.DynamicVars.Damage.BaseValue;
-        UpdateDynamicVarPreview(CardPreviewMode.None, null, base.DynamicVars);
         NCard.FindOnTable(this)?.UpdateVisuals(Pile?.Type ?? PileType.None, CardPreviewMode.Normal);
     }
 

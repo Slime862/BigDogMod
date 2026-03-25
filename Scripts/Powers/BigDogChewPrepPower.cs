@@ -13,23 +13,20 @@ namespace BigDogMod.Scripts.Powers;
 
 public sealed class BigDogChewPrepPower : CustomPowerModel
 {
+    private readonly Dictionary<BigDogChewPrepEffectType, int> _effects = [];
+
     public override PowerType Type => PowerType.Buff;
 
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public int PendingWeak { get; private set; }
-
-    public int PendingDraw { get; private set; }
-
-    public bool HasAnyEffects => PendingWeak > 0 || PendingDraw > 0;
+    public bool HasAnyEffects => _effects.Values.Any(amount => amount > 0);
 
     public override LocString Description
     {
         get
         {
             LocString description = new("powers", base.Id.Entry + ".description");
-            description.Add("WeakText", PendingWeak > 0 ? BuildEffectText("weakLine", PendingWeak) : string.Empty);
-            description.Add("DrawText", PendingDraw > 0 ? BuildEffectText("drawLine", PendingDraw) : string.Empty);
+            description.Add("EffectsText", BuildEffectsText());
             return description;
         }
     }
@@ -39,10 +36,13 @@ public sealed class BigDogChewPrepPower : CustomPowerModel
         get
         {
             List<IHoverTip> tips = HoverTipFactory.FromCardWithCardHoverTips<BigDogChew>().ToList();
-
-            if (PendingWeak > 0)
+            foreach (BigDogChewPrepEffectType effectType in ActiveEffects().Select(effect => effect.Type))
             {
-                tips.Add(HoverTipFactory.FromPower<WeakPower>());
+                IHoverTip? tip = effectType.HoverTip();
+                if (tip != null)
+                {
+                    tips.Add(tip);
+                }
             }
 
             return tips;
@@ -53,38 +53,51 @@ public sealed class BigDogChewPrepPower : CustomPowerModel
     {
         foreach (BigDogChewPrepEffect effect in effects)
         {
-            switch (effect.Type)
+            if (effect.Amount <= 0)
             {
-                case BigDogChewPrepEffectType.Weak:
-                    PendingWeak += effect.Amount;
-                    break;
-                case BigDogChewPrepEffectType.Draw:
-                    PendingDraw += effect.Amount;
-                    break;
+                continue;
             }
+
+            _effects[effect.Type] = GetAmount(effect.Type) + effect.Amount;
         }
 
-        Amount = PendingWeak + PendingDraw;
+        Amount = _effects.Values.Sum();
     }
 
-    public BigDogChewPrepSnapshot ConsumeAll()
+    public IReadOnlyList<BigDogChewPrepEffect> ConsumeAll()
     {
-        BigDogChewPrepSnapshot snapshot = new(PendingWeak, PendingDraw);
-        PendingWeak = 0;
-        PendingDraw = 0;
+        List<BigDogChewPrepEffect> snapshot = ActiveEffects().ToList();
+        _effects.Clear();
         Amount = 0;
         return snapshot;
     }
 
-    private LocString BuildEffectLine(string key, int amount)
+    private int GetAmount(BigDogChewPrepEffectType effectType)
     {
-        LocString line = new("powers", base.Id.Entry + "." + key);
-        line.Add("Amount", amount);
+        return _effects.GetValueOrDefault(effectType);
+    }
+
+    private IEnumerable<BigDogChewPrepEffect> ActiveEffects()
+    {
+        return Enum.GetValues<BigDogChewPrepEffectType>()
+            .Select(type => new BigDogChewPrepEffect(type, GetAmount(type)))
+            .Where(effect => effect.Amount > 0);
+    }
+
+    private string BuildEffectsText()
+    {
+        return string.Concat(ActiveEffects().Select(BuildEffectText));
+    }
+
+    private LocString BuildEffectLine(BigDogChewPrepEffect effect)
+    {
+        LocString line = new("powers", base.Id.Entry + "." + effect.Type.LocLineKey());
+        line.Add("Amount", effect.Amount);
         return line;
     }
 
-    private string BuildEffectText(string key, int amount)
+    private string BuildEffectText(BigDogChewPrepEffect effect)
     {
-        return BuildEffectLine(key, amount).GetFormattedText();
+        return BuildEffectLine(effect).GetFormattedText();
     }
 }

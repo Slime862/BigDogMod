@@ -24,8 +24,12 @@ public static class Entry
         ModHelper.AddModelToPool<BigDogCardPool, BloodDrink>();
         ModHelper.AddModelToPool<BigDogCardPool, BloodlettingSlot>();
         ModHelper.AddModelToPool<BigDogCardPool, ForceAwaken>();
-        ModHelper.AddModelToPool<BigDogCardPool, Hemophobia>();
+        ModHelper.AddModelToPool<BigDogCardPool, Cuteify>();
         ModHelper.AddModelToPool<BigDogCardPool, VigilantHowl>();
+        ModHelper.AddModelToPool<BigDogCardPool, IntimidatingHowl>();
+        ModHelper.AddModelToPool<BigDogCardPool, BelCantoHowl>();
+        ModHelper.AddModelToPool<BigDogCardPool, PiercingScreech>();
+        ModHelper.AddModelToPool<BigDogCardPool, WarmUpVoice>();
         ModHelper.AddModelToPool<TokenCardPool, BigDogChew>();
 
         var harmony = new Harmony("sts2.bigdog.mod");

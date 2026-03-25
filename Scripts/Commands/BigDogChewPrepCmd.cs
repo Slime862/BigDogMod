@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace BigDogMod.Scripts.Commands;
 
@@ -50,16 +51,29 @@ public static class BigDogChewPrepCmd
             return;
         }
 
-        BigDogChewPrepSnapshot snapshot = power.ConsumeAll();
-
-        if (snapshot.Weak > 0 && target.IsAlive)
+        IReadOnlyList<BigDogChewPrepEffect> effects = power.ConsumeAll();
+        foreach (BigDogChewPrepEffect effect in effects)
         {
-            await PowerCmd.Apply<WeakPower>(target, snapshot.Weak, owner.Creature, targetCard);
-        }
+            if (effect.Amount <= 0)
+            {
+                continue;
+            }
 
-        if (snapshot.Draw > 0)
-        {
-            await CardPileCmd.Draw(choiceContext, snapshot.Draw, owner);
+            switch (effect.Type)
+            {
+                case BigDogChewPrepEffectType.Block:
+                    await CreatureCmd.GainBlock(owner.Creature, effect.Amount, ValueProp.Move, null);
+                    break;
+                case BigDogChewPrepEffectType.Weak when target.IsAlive:
+                    await PowerCmd.Apply<WeakPower>(target, effect.Amount, owner.Creature, targetCard);
+                    break;
+                case BigDogChewPrepEffectType.Bleeding when target.IsAlive:
+                    await PowerCmd.Apply<BleedingPower>(target, effect.Amount, owner.Creature, targetCard);
+                    break;
+                case BigDogChewPrepEffectType.Draw:
+                    await CardPileCmd.Draw(choiceContext, effect.Amount, owner);
+                    break;
+            }
         }
 
         await PowerCmd.Remove(power);

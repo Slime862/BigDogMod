@@ -1,38 +1,25 @@
-# BigDog 素材替换清单
+﻿# BigDog 绱犳潗鏇挎崲娓呭崟
 
-`BigDog` 现在仍然继承 `PlaceholderCharacterModel`，并继续借用 `defect` 的原版资源。
-
-这次已经做好的结构是：
-
-- 角色主类改为使用独立池：
+`BigDog` 鐜板湪浠嶇劧缁ф壙 `PlaceholderCharacterModel`锛屽苟缁х画鍊熺敤 `defect` 鐨勫師鐗堣祫婧愩€?
+杩欐宸茬粡鍋氬ソ鐨勭粨鏋勬槸锛?
+- 瑙掕壊涓荤被鏀逛负浣跨敤鐙珛姹狅細
   - `BigDogCardPool`
   - `BigDogRelicPool`
   - `BigDogPotionPool`
-- `BigDogCardPool` 现在装的是大狗自己的卡牌
-- `BigDogRelicPool`、`BigDogPotionPool` 目前只是“大狗自己的池类外壳”，内部临时复用猎人的内容
-- `BigDog.cs` 里已经把后续要替换的 `Custom*` 路径都写好了，但先注释掉了
+- `BigDogCardPool` 鐜板湪瑁呯殑鏄ぇ鐙楄嚜宸辩殑鍗＄墝
+- `BigDogRelicPool`銆乣BigDogPotionPool` 鐩墠鍙槸鈥滃ぇ鐙楄嚜宸辩殑姹犵被澶栧３鈥濓紝鍐呴儴涓存椂澶嶇敤鐚庝汉鐨勫唴瀹?- `BigDog.cs` 閲屽凡缁忔妸鍚庣画瑕佹浛鎹㈢殑 `Custom*` 璺緞閮藉啓濂戒簡锛屼絾鍏堟敞閲婃帀浜?
+杩欐牱浣犲悗闈㈡浛鎹㈣祫婧愭椂锛屽彧闇€瑕侊細
 
-这样你后面替换资源时，只需要：
+1. 鎶婄礌鏉愭斁鍒颁笅闈㈣繖浜涜矾寰?2. 鍥炲埌 [BigDog.cs](/d:/UsedToMakeMod/Mods/big-dog/Scripts/Characters/BigDog.cs) 閲岋紝鎶婂搴旈偅涓€琛屽彇娑堟敞閲?3. 閲嶆柊鏋勫缓骞跺鍑烘祴璇?
+## 褰撳墠鐙珛姹犺鏄?
+- 鍗＄墝姹犵被锛?  - [BigDogCardPool.cs](/d:/UsedToMakeMod/Mods/big-dog/Scripts/Pools/BigDogCardPool.cs)
+- 閬楃墿姹犵被锛?  - [BigDogRelicPool.cs](/d:/UsedToMakeMod/Mods/big-dog/Scripts/Pools/BigDogRelicPool.cs)
+  - 鐩墠鍐呴儴涓存椂浣跨敤 `SilentRelicPool`
+- 鑽按姹犵被锛?  - [BigDogPotionPool.cs](/d:/UsedToMakeMod/Mods/big-dog/Scripts/Pools/BigDogPotionPool.cs)
+  - 鐩墠鍐呴儴涓存椂浣跨敤 `SilentPotionPool`
 
-1. 把素材放到下面这些路径
-2. 回到 [BigDog.cs](/d:/UsedToMakeMod/Mods/big-dog/Scripts/Characters/BigDog.cs) 里，把对应那一行取消注释
-3. 重新构建并导出测试
-
-## 当前独立池说明
-
-- 卡牌池类：
-  - [BigDogCardPool.cs](/d:/UsedToMakeMod/Mods/big-dog/Scripts/Pools/BigDogCardPool.cs)
-- 遗物池类：
-  - [BigDogRelicPool.cs](/d:/UsedToMakeMod/Mods/big-dog/Scripts/Pools/BigDogRelicPool.cs)
-  - 目前内部临时使用 `SilentRelicPool`
-- 药水池类：
-  - [BigDogPotionPool.cs](/d:/UsedToMakeMod/Mods/big-dog/Scripts/Pools/BigDogPotionPool.cs)
-  - 目前内部临时使用 `SilentPotionPool`
-
-## 当前大狗卡牌池内容
-
-这些卡已经注册进 `BigDogCardPool`：
-
+## 褰撳墠澶х嫍鍗＄墝姹犲唴瀹?
+杩欎簺鍗″凡缁忔敞鍐岃繘 `BigDogCardPool`锛?
 - `StokeWildness`
 - `BigDogHowl`
 - `RendingBite`
@@ -40,79 +27,57 @@
 - `BloodDrink`
 - `BloodlettingSlot`
 - `ForceAwaken`
-- `Hemophobia`
+- `Cuteify`
 - `VigilantHowl`
 
-说明：
+璇存槑锛?
+- `BigDogChew` 浠嶇劧鏄鐢熺墝锛屼笉杩涙櫘閫氬崱姹?- 瀹冪幇鍦ㄦ寕鍦?`TokenCardPool`锛岀敤浜庢垬鏂椾腑鐢熸垚
 
-- `BigDogChew` 仍然是衍生牌，不进普通卡池
-- 它现在挂在 `TokenCardPool`，用于战斗中生成
-
-## 已预留但暂时注释的角色资源路径
-
-这些路径已经在 [BigDogAssetPaths.cs](/d:/UsedToMakeMod/Mods/big-dog/Scripts/Assets/BigDogAssetPaths.cs) 里写好，并且在 [BigDog.cs](/d:/UsedToMakeMod/Mods/big-dog/Scripts/Characters/BigDog.cs) 里留了对应的注释代码。
-
-### 角色选择界面
+## 宸查鐣欎絾鏆傛椂娉ㄩ噴鐨勮鑹茶祫婧愯矾寰?
+杩欎簺璺緞宸茬粡鍦?[BigDogAssetPaths.cs](/d:/UsedToMakeMod/Mods/big-dog/Scripts/Assets/BigDogAssetPaths.cs) 閲屽啓濂斤紝骞朵笖鍦?[BigDog.cs](/d:/UsedToMakeMod/Mods/big-dog/Scripts/Characters/BigDog.cs) 閲岀暀浜嗗搴旂殑娉ㄩ噴浠ｇ爜銆?
+### 瑙掕壊閫夋嫨鐣岄潰
 
 - `BigDogMod/assets/character/select/char_select_big_dog.png`
-  - 对应：
-  - `CustomCharacterSelectIconPath`
+  - 瀵瑰簲锛?  - `CustomCharacterSelectIconPath`
 - `BigDogMod/assets/character/select/char_select_big_dog_locked.png`
-  - 对应：
-  - `CustomCharacterSelectLockedIconPath`
+  - 瀵瑰簲锛?  - `CustomCharacterSelectLockedIconPath`
 - `BigDogMod/assets/character/scenes/char_select_bg_big_dog.tscn`
-  - 对应：
-  - `CustomCharacterSelectBg`
+  - 瀵瑰簲锛?  - `CustomCharacterSelectBg`
 - `BigDogMod/assets/materials/big_dog_transition_mat.tres`
-  - 对应：
-  - `CustomCharacterSelectTransitionPath`
+  - 瀵瑰簲锛?  - `CustomCharacterSelectTransitionPath`
 
-### 战斗与顶部 UI
+### 鎴樻枟涓庨《閮?UI
 
 - `BigDogMod/assets/character/scenes/big_dog_visuals.tscn`
-  - 对应：
-  - `CustomVisualPath`
+  - 瀵瑰簲锛?  - `CustomVisualPath`
 - `BigDogMod/assets/vfx/card_trail_big_dog.tscn`
-  - 对应：
-  - `CustomTrailPath`
+  - 瀵瑰簲锛?  - `CustomTrailPath`
 - `BigDogMod/assets/character/map/map_marker_big_dog.png`
-  - 对应：
-  - `CustomMapMarkerPath`
+  - 瀵瑰簲锛?  - `CustomMapMarkerPath`
 - `BigDogMod/assets/character/scenes/big_dog_icon.tscn`
-  - 对应：
-  - `CustomIconPath`
+  - 瀵瑰簲锛?  - `CustomIconPath`
 - `BigDogMod/assets/character/top_panel/character_icon_big_dog.png`
-  - 对应：
-  - `CustomIconTexturePath`
+  - 瀵瑰簲锛?  - `CustomIconTexturePath`
 - `BigDogMod/assets/character/scenes/big_dog_energy_counter.tscn`
-  - 对应：
-  - `CustomEnergyCounterPath`
+  - 瀵瑰簲锛?  - `CustomEnergyCounterPath`
 
-### 商人、篝火、多人手势
-
+### 鍟嗕汉銆佺瘽鐏€佸浜烘墜鍔?
 - `BigDogMod/assets/character/merchant/big_dog_merchant.tscn`
-  - 对应：
-  - `CustomMerchantAnimPath`
+  - 瀵瑰簲锛?  - `CustomMerchantAnimPath`
 - `BigDogMod/assets/character/rest_site/big_dog_rest_site.tscn`
-  - 对应：
-  - `CustomRestSiteAnimPath`
+  - 瀵瑰簲锛?  - `CustomRestSiteAnimPath`
 - `BigDogMod/assets/character/hands/multiplayer_hand_big_dog_point.png`
-  - 对应：
-  - `CustomArmPointingTexturePath`
+  - 瀵瑰簲锛?  - `CustomArmPointingTexturePath`
 - `BigDogMod/assets/character/hands/multiplayer_hand_big_dog_rock.png`
-  - 对应：
-  - `CustomArmRockTexturePath`
+  - 瀵瑰簲锛?  - `CustomArmRockTexturePath`
 - `BigDogMod/assets/character/hands/multiplayer_hand_big_dog_paper.png`
-  - 对应：
-  - `CustomArmPaperTexturePath`
+  - 瀵瑰簲锛?  - `CustomArmPaperTexturePath`
 - `BigDogMod/assets/character/hands/multiplayer_hand_big_dog_scissors.png`
-  - 对应：
-  - `CustomArmScissorsTexturePath`
+  - 瀵瑰簲锛?  - `CustomArmScissorsTexturePath`
 
-## 卡图路径
+## 鍗″浘璺緞
 
-这些路径现在已经被卡图兜底逻辑使用。你把图放进去后，会优先显示新图；没图时继续回退原版。
-
+杩欎簺璺緞鐜板湪宸茬粡琚崱鍥惧厹搴曢€昏緫浣跨敤銆備綘鎶婂浘鏀捐繘鍘诲悗锛屼細浼樺厛鏄剧ず鏂板浘锛涙病鍥炬椂缁х画鍥為€€鍘熺増銆?
 - `BigDogMod/assets/cards/stoke_wildness.png`
 - `BigDogMod/assets/cards/big_dog_howl.png`
 - `BigDogMod/assets/cards/rending_bite.png`
@@ -121,11 +86,10 @@
 - `BigDogMod/assets/cards/blood_drink.png`
 - `BigDogMod/assets/cards/bloodletting_slot.png`
 - `BigDogMod/assets/cards/force_awaken.png`
-- `BigDogMod/assets/cards/hemophobia.png`
+- `BigDogMod/assets/cards/Cuteify.png`
 - `BigDogMod/assets/cards/vigilant_howl.png`
 
-可选 Beta 卡图：
-
+鍙€?Beta 鍗″浘锛?
 - `BigDogMod/assets/cards/beta/stoke_wildness.png`
 - `BigDogMod/assets/cards/beta/big_dog_howl.png`
 - `BigDogMod/assets/cards/beta/rending_bite.png`
@@ -134,48 +98,41 @@
 - `BigDogMod/assets/cards/beta/blood_drink.png`
 - `BigDogMod/assets/cards/beta/bloodletting_slot.png`
 - `BigDogMod/assets/cards/beta/force_awaken.png`
-- `BigDogMod/assets/cards/beta/hemophobia.png`
+- `BigDogMod/assets/cards/beta/Cuteify.png`
 - `BigDogMod/assets/cards/beta/vigilant_howl.png`
 
-## Power 图标路径
+## Power 鍥炬爣璺緞
 
-这些路径现在已经被 Power 图标兜底逻辑使用。你把图放进去后，会优先显示新图；没图时继续回退原版。
-
+杩欎簺璺緞鐜板湪宸茬粡琚?Power 鍥炬爣鍏滃簳閫昏緫浣跨敤銆備綘鎶婂浘鏀捐繘鍘诲悗锛屼細浼樺厛鏄剧ず鏂板浘锛涙病鍥炬椂缁х画鍥為€€鍘熺増銆?
 - `BigDogMod/assets/powers/wildness.png`
 - `BigDogMod/assets/powers/temporary_wildness.png`
 - `BigDogMod/assets/powers/bleeding.png`
 - `BigDogMod/assets/powers/bleeding_boost.png`
 - `BigDogMod/assets/powers/big_dog_chew_prep_power.png`
 
-可选 Beta 图标：
-
+鍙€?Beta 鍥炬爣锛?
 - `BigDogMod/assets/powers/beta/wildness.png`
 - `BigDogMod/assets/powers/beta/temporary_wildness.png`
 - `BigDogMod/assets/powers/beta/bleeding.png`
 - `BigDogMod/assets/powers/beta/bleeding_boost.png`
 - `BigDogMod/assets/powers/beta/big_dog_chew_prep_power.png`
 
-## 推荐替换顺序
+## 鎺ㄨ崘鏇挎崲椤哄簭
 
-1. 先替换角色选择头像和背景
-2. 再替换战斗立绘与顶部图标
-3. 再替换卡图和 Power 图标
-4. 最后替换商人、篝火、地图标记、多人手势这些边缘资源
-
-## 什么时候取消注释
-
-建议一项一项来，不要一次全开。
-
-- 角色选择头像做好了：
-  - 取消 `CustomCharacterSelectIconPath`
-  - 取消 `CustomCharacterSelectLockedIconPath`
-- 角色选择背景做好了：
-  - 取消 `CustomCharacterSelectBg`
-  - 取消 `CustomCharacterSelectTransitionPath`
-- 战斗立绘做好了：
-  - 取消 `CustomVisualPath`
-- 顶部图标和能量面板做好了：
-  - 取消 `CustomIconPath`
-  - 取消 `CustomIconTexturePath`
-  - 取消 `CustomEnergyCounterPath`
-- 其余路径做好后再分别取消对应注释
+1. 鍏堟浛鎹㈣鑹查€夋嫨澶村儚鍜岃儗鏅?2. 鍐嶆浛鎹㈡垬鏂楃珛缁樹笌椤堕儴鍥炬爣
+3. 鍐嶆浛鎹㈠崱鍥惧拰 Power 鍥炬爣
+4. 鏈€鍚庢浛鎹㈠晢浜恒€佺瘽鐏€佸湴鍥炬爣璁般€佸浜烘墜鍔胯繖浜涜竟缂樿祫婧?
+## 浠€涔堟椂鍊欏彇娑堟敞閲?
+寤鸿涓€椤逛竴椤规潵锛屼笉瑕佷竴娆″叏寮€銆?
+- 瑙掕壊閫夋嫨澶村儚鍋氬ソ浜嗭細
+  - 鍙栨秷 `CustomCharacterSelectIconPath`
+  - 鍙栨秷 `CustomCharacterSelectLockedIconPath`
+- 瑙掕壊閫夋嫨鑳屾櫙鍋氬ソ浜嗭細
+  - 鍙栨秷 `CustomCharacterSelectBg`
+  - 鍙栨秷 `CustomCharacterSelectTransitionPath`
+- 鎴樻枟绔嬬粯鍋氬ソ浜嗭細
+  - 鍙栨秷 `CustomVisualPath`
+- 椤堕儴鍥炬爣鍜岃兘閲忛潰鏉垮仛濂戒簡锛?  - 鍙栨秷 `CustomIconPath`
+  - 鍙栨秷 `CustomIconTexturePath`
+  - 鍙栨秷 `CustomEnergyCounterPath`
+- 鍏朵綑璺緞鍋氬ソ鍚庡啀鍒嗗埆鍙栨秷瀵瑰簲娉ㄩ噴
