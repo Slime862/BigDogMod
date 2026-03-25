@@ -12,6 +12,7 @@ public static class BigDogChewPrepEffectTypeExtensions
         {
             BigDogChewPrepEffectType.Block => "blockLine",
             BigDogChewPrepEffectType.Weak => "weakLine",
+            BigDogChewPrepEffectType.Vulnerable => "vulnerableLine",
             BigDogChewPrepEffectType.Bleeding => "bleedingLine",
             BigDogChewPrepEffectType.Draw => "drawLine",
             _ => effectType.ToString().ToLowerInvariant() + "Line"
@@ -24,6 +25,7 @@ public static class BigDogChewPrepEffectTypeExtensions
         {
             BigDogChewPrepEffectType.Block => HoverTipFactory.Static(StaticHoverTip.Block),
             BigDogChewPrepEffectType.Weak => HoverTipFactory.FromPower<WeakPower>(),
+            BigDogChewPrepEffectType.Vulnerable => HoverTipFactory.FromPower<VulnerablePower>(),
             BigDogChewPrepEffectType.Bleeding => HoverTipFactory.FromPower<BleedingPower>(),
             _ => null
         };

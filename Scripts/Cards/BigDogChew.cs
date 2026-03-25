@@ -20,13 +20,10 @@ public sealed class BigDogChew : CustomCardModel
     private decimal _extraDamageFromWantChew;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        [CardKeyword.Retain, CardKeyword.Exhaust];
+        [CardKeyword.Exhaust];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        [
-            HoverTipFactory.FromKeyword(CardKeyword.Retain),
-            HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
-        ];
+        [HoverTipFactory.FromKeyword(CardKeyword.Exhaust)];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new DamageVar(0m, ValueProp.Move)];

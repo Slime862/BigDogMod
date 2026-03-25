@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using BigDogMod.Scripts.Assets;
-using BigDogMod.Scripts.Powers;
-using MegaCrit.Sts2.Core.Commands;
+using BigDogMod.Scripts.Commands;
+using BigDogMod.Scripts.HoverTips;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -12,28 +12,28 @@ using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace BigDogMod.Scripts.Cards;
 
-public sealed class Cuteify : CustomCardModel
+public sealed class AllOutForce : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        [HoverTipFactory.FromPower<WildnessPower>()];
+        BigDogHoverTips.FromWantChew(base.DynamicVars["WantChew"]);
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new PowerVar<WildnessPower>(-2m)];
+        [new DynamicVar("WantChew", 20m)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("cuteify");
+    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("all_out_force");
 
-    public Cuteify()
-        : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
+    public AllOutForce()
+        : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self, autoAdd: false)
     {
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<WildnessPower>(base.Owner.Creature, base.DynamicVars["WildnessPower"].BaseValue, base.Owner.Creature, this);
+        await WantChewCmd.WantChew(base.DynamicVars["WantChew"].BaseValue, base.Owner, this);
     }
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars["WildnessPower"].UpgradeValueBy(-1m);
+        base.DynamicVars["WantChew"].UpgradeValueBy(10m);
     }
 }

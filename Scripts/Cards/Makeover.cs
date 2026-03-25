@@ -7,33 +7,37 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace BigDogMod.Scripts.Cards;
 
-public sealed class Cuteify : CustomCardModel
+public sealed class Makeover : CustomCardModel
 {
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        base.IsUpgraded ? [CardKeyword.Retain] : [];
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [HoverTipFactory.FromPower<WildnessPower>()];
 
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new PowerVar<WildnessPower>(-2m)];
+    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("makeover");
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("cuteify");
-
-    public Cuteify()
-        : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
+    public Makeover()
+        : base(0, CardType.Skill, CardRarity.Common, TargetType.Self, autoAdd: false)
     {
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<WildnessPower>(base.Owner.Creature, base.DynamicVars["WildnessPower"].BaseValue, base.Owner.Creature, this);
+        WildnessPower? power = base.Owner.Creature.GetPower<WildnessPower>();
+        if (power == null || power.Amount == 0)
+        {
+            return;
+        }
+
+        await PowerCmd.ModifyAmount(power, -power.Amount, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars["WildnessPower"].UpgradeValueBy(-1m);
     }
 }

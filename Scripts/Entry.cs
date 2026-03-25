@@ -30,6 +30,22 @@ public static class Entry
         ModHelper.AddModelToPool<BigDogCardPool, BelCantoHowl>();
         ModHelper.AddModelToPool<BigDogCardPool, PiercingScreech>();
         ModHelper.AddModelToPool<BigDogCardPool, WarmUpVoice>();
+        ModHelper.AddModelToPool<BigDogCardPool, SustainedCharge>();
+        ModHelper.AddModelToPool<BigDogCardPool, AllOutForce>();
+        ModHelper.AddModelToPool<BigDogCardPool, FocusedForce>();
+        ModHelper.AddModelToPool<BigDogCardPool, HighSongForm>();
+        ModHelper.AddModelToPool<BigDogCardPool, DauntingHowl>();
+        ModHelper.AddModelToPool<BigDogCardPool, Feint>();
+        ModHelper.AddModelToPool<BigDogCardPool, PanicScamper>();
+        ModHelper.AddModelToPool<BigDogCardPool, FriendlyHowlFlow>();
+        ModHelper.AddModelToPool<BigDogCardPool, AdmireVictory>();
+        ModHelper.AddModelToPool<BigDogCardPool, Bloodthirst>();
+        ModHelper.AddModelToPool<BigDogCardPool, Prelude>();
+        ModHelper.AddModelToPool<BigDogCardPool, TailWag>();
+        ModHelper.AddModelToPool<BigDogCardPool, Makeover>();
+        ModHelper.AddModelToPool<BigDogCardPool, FlurryScratch>();
+        ModHelper.AddModelToPool<BigDogCardPool, Forget>();
+        ModHelper.AddModelToPool<BigDogCardPool, LickWounds>();
         ModHelper.AddModelToPool<TokenCardPool, BigDogChew>();
 
         var harmony = new Harmony("sts2.bigdog.mod");

@@ -43,15 +43,23 @@ public static class BigDogCardPortraitPathPatch
             return false;
         }
 
-        if (__instance is BleedOut or BloodDrink or ForceAwaken or VigilantHowl or IntimidatingHowl or PiercingScreech or WarmUpVoice)
+        if (__instance is BleedOut or BloodDrink or ForceAwaken or VigilantHowl or IntimidatingHowl or PiercingScreech or WarmUpVoice
+            or SustainedCharge or AllOutForce or FocusedForce or DauntingHowl or PanicScamper or FriendlyHowlFlow
+            or AdmireVictory or Prelude or TailWag or Forget or LickWounds)
         {
             __result = ModelDb.Card<DefendDefect>().PortraitPath;
             return false;
         }
 
-        if (__instance is BloodlettingSlot or Cuteify or BelCantoHowl)
+        if (__instance is BloodlettingSlot or Cuteify or BelCantoHowl or HighSongForm or Makeover)
         {
             __result = ModelDb.Card<Zap>().PortraitPath;
+            return false;
+        }
+
+        if (__instance is Feint or Bloodthirst or FlurryScratch)
+        {
+            __result = ModelDb.Card<StrikeDefect>().PortraitPath;
             return false;
         }
 
@@ -96,15 +104,23 @@ public static class BigDogCardBetaPortraitPathPatch
             return false;
         }
 
-        if (__instance is BleedOut or BloodDrink or ForceAwaken or VigilantHowl or IntimidatingHowl or PiercingScreech or WarmUpVoice)
+        if (__instance is BleedOut or BloodDrink or ForceAwaken or VigilantHowl or IntimidatingHowl or PiercingScreech or WarmUpVoice
+            or SustainedCharge or AllOutForce or FocusedForce or DauntingHowl or PanicScamper or FriendlyHowlFlow
+            or AdmireVictory or Prelude or TailWag or Forget or LickWounds)
         {
             __result = ModelDb.Card<DefendDefect>().BetaPortraitPath;
             return false;
         }
 
-        if (__instance is BloodlettingSlot or Cuteify or BelCantoHowl)
+        if (__instance is BloodlettingSlot or Cuteify or BelCantoHowl or HighSongForm or Makeover)
         {
             __result = ModelDb.Card<Zap>().BetaPortraitPath;
+            return false;
+        }
+
+        if (__instance is Feint or Bloodthirst or FlurryScratch)
+        {
+            __result = ModelDb.Card<StrikeDefect>().BetaPortraitPath;
             return false;
         }
 

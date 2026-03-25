@@ -32,6 +32,21 @@ internal static class BigDogPowerIconHelper
             return ModelDb.Power<EchoFormPower>().PackedIconPath;
         }
 
+        if (power is SustainedChargePower)
+        {
+            return ModelDb.Power<InfiniteBladesPower>().PackedIconPath;
+        }
+
+        if (power is HighSongFormPower)
+        {
+            return ModelDb.Power<CorruptionPower>().PackedIconPath;
+        }
+
+        if (power is PreludePower)
+        {
+            return ModelDb.Power<BufferPower>().PackedIconPath;
+        }
+
         if (power is BigDogChewPrepPower)
         {
             string custom = BigDogAssetPaths.PowerIcon("big_dog_chew_prep_power");
@@ -75,6 +90,21 @@ internal static class BigDogPowerIconHelper
         if (power is BelCantoHowlPower)
         {
             return ModelDb.Power<EchoFormPower>().ResolvedBigIconPath;
+        }
+
+        if (power is SustainedChargePower)
+        {
+            return ModelDb.Power<InfiniteBladesPower>().ResolvedBigIconPath;
+        }
+
+        if (power is HighSongFormPower)
+        {
+            return ModelDb.Power<CorruptionPower>().ResolvedBigIconPath;
+        }
+
+        if (power is PreludePower)
+        {
+            return ModelDb.Power<BufferPower>().ResolvedBigIconPath;
         }
 
         if (power is BigDogChewPrepPower)

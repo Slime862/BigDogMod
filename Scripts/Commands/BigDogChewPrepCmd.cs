@@ -67,6 +67,9 @@ public static class BigDogChewPrepCmd
                 case BigDogChewPrepEffectType.Weak when target.IsAlive:
                     await PowerCmd.Apply<WeakPower>(target, effect.Amount, owner.Creature, targetCard);
                     break;
+                case BigDogChewPrepEffectType.Vulnerable when target.IsAlive:
+                    await PowerCmd.Apply<VulnerablePower>(target, effect.Amount, owner.Creature, targetCard);
+                    break;
                 case BigDogChewPrepEffectType.Bleeding when target.IsAlive:
                     await PowerCmd.Apply<BleedingPower>(target, effect.Amount, owner.Creature, targetCard);
                     break;
