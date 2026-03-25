@@ -10,9 +10,9 @@ namespace BigDogMod.Scripts.Pools;
 
 public sealed class BigDogPotionPool : CustomPotionPoolModel
 {
-    public override string EnergyColorName => "defect";
+    public override string EnergyColorName => "silent";
 
-    public override Color LabOutlineColor => StsColors.blue;
+    public override Color LabOutlineColor => StsColors.green;
 
     public override string? BigEnergyIconPath => null;
 

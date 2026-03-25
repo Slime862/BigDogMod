@@ -42,13 +42,17 @@ public sealed class BigDogHowl : CustomCardModel
             return;
         }
 
+        decimal rawWantChew = base.DynamicVars["WantChew"].BaseValue;
+        decimal effectiveWantChew = WantChewModifiers.GetEffectiveWantChewAmount(this, rawWantChew);
+        decimal damage = base.DynamicVars.Damage.BaseValue + WantChewModifiers.GetAttackDamageBonus(this, rawWantChew);
+
         await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
-        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue)
+        await DamageCmd.Attack(damage)
             .FromCard(this)
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
 
-        await WantChewCmd.WantChew(base.DynamicVars["WantChew"].BaseValue, base.Owner, this);
+        await WantChewCmd.WantChew(effectiveWantChew, base.Owner, this);
     }
 
     protected override void OnUpgrade()

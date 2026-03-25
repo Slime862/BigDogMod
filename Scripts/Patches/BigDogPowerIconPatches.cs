@@ -47,6 +47,31 @@ internal static class BigDogPowerIconHelper
             return ModelDb.Power<BufferPower>().PackedIconPath;
         }
 
+        if (power is DogSagePower)
+        {
+            return ModelDb.Power<InfiniteBladesPower>().PackedIconPath;
+        }
+
+        if (power is BerserkerDogPower)
+        {
+            return ModelDb.Power<RitualPower>().PackedIconPath;
+        }
+
+        if (power is ChewAtWillPower)
+        {
+            return ModelDb.Power<DoubleDamagePower>().PackedIconPath;
+        }
+
+        if (power is CowardDogPower)
+        {
+            return ModelDb.Power<WeakPower>().PackedIconPath;
+        }
+
+        if (power is EndlessBleedingPower)
+        {
+            return ModelDb.Power<PoisonPower>().PackedIconPath;
+        }
+
         if (power is BigDogChewPrepPower)
         {
             string custom = BigDogAssetPaths.PowerIcon("big_dog_chew_prep_power");
@@ -105,6 +130,31 @@ internal static class BigDogPowerIconHelper
         if (power is PreludePower)
         {
             return ModelDb.Power<BufferPower>().ResolvedBigIconPath;
+        }
+
+        if (power is DogSagePower)
+        {
+            return ModelDb.Power<InfiniteBladesPower>().ResolvedBigIconPath;
+        }
+
+        if (power is BerserkerDogPower)
+        {
+            return ModelDb.Power<RitualPower>().ResolvedBigIconPath;
+        }
+
+        if (power is ChewAtWillPower)
+        {
+            return ModelDb.Power<DoubleDamagePower>().ResolvedBigIconPath;
+        }
+
+        if (power is CowardDogPower)
+        {
+            return ModelDb.Power<WeakPower>().ResolvedBigIconPath;
+        }
+
+        if (power is EndlessBleedingPower)
+        {
+            return ModelDb.Power<PoisonPower>().ResolvedBigIconPath;
         }
 
         if (power is BigDogChewPrepPower)

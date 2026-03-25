@@ -22,7 +22,7 @@ public sealed class FriendlyHowlFlow : CustomCardModel, IBigDogChewPrepSource
         [HoverTipFactory.FromPower<BigDogChewPrepPower>()];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new CardsVar(2)];
+        [new CardsVar(1)];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("friendly_howl_flow");
 

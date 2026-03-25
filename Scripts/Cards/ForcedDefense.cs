@@ -2,49 +2,43 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using BigDogMod.Scripts.Assets;
-using BigDogMod.Scripts.Commands;
 using BigDogMod.Scripts.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace BigDogMod.Scripts.Cards;
 
-public sealed class Prelude : CustomCardModel
+public sealed class ForcedDefense : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        [
-            HoverTipFactory.Static(StaticHoverTip.Block),
-            HoverTipFactory.FromPower<PreludePower>()
-        ];
+        [HoverTipFactory.FromPower<BleedingPower>()];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new BlockVar(4m, ValueProp.Move),
-            new DynamicVar("WantChew", 5m)
+            new PowerVar<BleedingPower>(3m),
+            new BlockVar(9m, ValueProp.Move)
         ];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("prelude");
+    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("forced_defense");
 
-    public Prelude()
-        : base(1, CardType.Skill, CardRarity.Common, TargetType.Self, autoAdd: false)
+    public ForcedDefense()
+        : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
     {
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        await PowerCmd.Apply<BleedingPower>(base.Owner.Creature, base.DynamicVars["BleedingPower"].BaseValue, base.Owner.Creature, this);
         await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
-        await PowerCmd.Apply<PreludePower>(base.Owner.Creature, WantChewModifiers.GetEffectiveWantChewAmount(this, base.DynamicVars["WantChew"].BaseValue), base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Block.UpgradeValueBy(3m);
-        base.DynamicVars["WantChew"].UpgradeValueBy(2m);
+        base.DynamicVars.Block.UpgradeValueBy(6m);
     }
 }

@@ -2,8 +2,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using BigDogMod.Scripts.Assets;
-using BigDogMod.Scripts.Commands;
-using BigDogMod.Scripts.HoverTips;
 using BigDogMod.Scripts.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -14,28 +12,29 @@ using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace BigDogMod.Scripts.Cards;
 
-public sealed class SustainedCharge : CustomCardModel
+public sealed class CowardDog : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        BigDogHoverTips.FromWantChew(base.DynamicVars["WantChew"]);
+        [HoverTipFactory.FromPower<WildnessPower>()];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new DynamicVar("WantChew", 4m)];
+        [new PowerVar<WildnessPower>(-3m)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("sustained_charge");
+    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("coward_dog");
 
-    public SustainedCharge()
+    public CowardDog()
         : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
     {
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<SustainedChargePower>(base.Owner.Creature, WantChewModifiers.GetEffectiveWantChewAmount(this, base.DynamicVars["WantChew"].BaseValue), base.Owner.Creature, this);
+        await PowerCmd.Apply<WildnessPower>(base.Owner.Creature, base.DynamicVars["WildnessPower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<CowardDogPower>(base.Owner.Creature, 1m, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars["WantChew"].UpgradeValueBy(2m);
+        base.DynamicVars["WildnessPower"].UpgradeValueBy(-1m);
     }
 }

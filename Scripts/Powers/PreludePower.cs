@@ -46,7 +46,8 @@ public sealed class PreludePower : CustomPowerModel
         }
 
         Flash();
-        await WantChewCmd.WantChew(Amount, player, this);
+        decimal amount = (base.Owner.HasPower<ChewAtWillPower>() || base.Owner.HasPower<CowardDogPower>()) ? 0m : Amount;
+        await WantChewCmd.WantChew(amount, player, this);
         _remainingTurns--;
         if (_remainingTurns <= 0)
         {

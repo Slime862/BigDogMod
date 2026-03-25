@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using System.Linq;
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -23,6 +24,14 @@ public sealed class BleedingPower : CustomPowerModel
         }
 
         await TriggerBleeding();
+
+        int extraTriggers = combatState.PlayerCreatures
+            .Select(creature => creature.GetPower<EndlessBleedingPower>()?.Amount ?? 0)
+            .Sum();
+        for (int i = 0; i < extraTriggers && base.Owner.IsAlive; i++)
+        {
+            await TriggerBleeding();
+        }
     }
 
     public async Task TriggerBleeding()

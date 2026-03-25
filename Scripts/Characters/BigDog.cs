@@ -14,11 +14,11 @@ namespace BigDogMod.Scripts.Characters;
 
 public sealed class BigDog : PlaceholderCharacterModel
 {
-    public override string PlaceholderID => "defect";
+    public override string PlaceholderID => "silent";
 
-    public override Color NameColor => StsColors.blue;
+    public override Color NameColor => StsColors.green;
 
-    public override Color EnergyLabelOutlineColor => new("163E64FF");
+    public override Color EnergyLabelOutlineColor => new("004f04FF");
 
     public override CharacterGender Gender => CharacterGender.Masculine;
 
@@ -28,7 +28,7 @@ public sealed class BigDog : PlaceholderCharacterModel
 
     public override int StartingGold => 99;
 
-    public override int BaseOrbSlotCount => 3;
+    public override int BaseOrbSlotCount => 0;
 
     public override CardPoolModel CardPool => ModelDb.CardPool<BigDogCardPool>();
 
@@ -37,7 +37,7 @@ public sealed class BigDog : PlaceholderCharacterModel
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<BigDogPotionPool>();
 
     // Uncomment these one by one after the matching assets are ready.
-    // Until then, keep borrowing Defect assets through PlaceholderID = "defect".
+    // Until then, keep borrowing Silent assets through PlaceholderID = "silent".
     // public override string CustomVisualPath => BigDogAssetPaths.CharacterVisualsScene;
     // public override string CustomTrailPath => BigDogAssetPaths.CharacterTrailScene;
     // public override string? CustomMapMarkerPath => BigDogAssetPaths.CharacterMapMarker;
@@ -57,32 +57,32 @@ public sealed class BigDog : PlaceholderCharacterModel
 
     public override IEnumerable<CardModel> StartingDeck =>
         [
-            ModelDb.Card<StrikeDefect>(),
-            ModelDb.Card<StrikeDefect>(),
-            ModelDb.Card<StrikeDefect>(),
-            ModelDb.Card<StrikeDefect>(),
-            ModelDb.Card<DefendDefect>(),
-            ModelDb.Card<DefendDefect>(),
-            ModelDb.Card<DefendDefect>(),
-            ModelDb.Card<DefendDefect>(),
+            ModelDb.Card<StrikeSilent>(),
+            ModelDb.Card<StrikeSilent>(),
+            ModelDb.Card<StrikeSilent>(),
+            ModelDb.Card<StrikeSilent>(),
+            ModelDb.Card<DefendSilent>(),
+            ModelDb.Card<DefendSilent>(),
+            ModelDb.Card<DefendSilent>(),
+            ModelDb.Card<DefendSilent>(),
             ModelDb.Card<StokeWildness>(),
             ModelDb.Card<BigDogHowl>()
         ];
 
     public override IReadOnlyList<RelicModel> StartingRelics =>
-        [ModelDb.Relic<CrackedCore>()];
+        [ModelDb.Relic<RingOfTheSnake>()];
 
     public override float AttackAnimDelay => 0.15f;
 
     public override float CastAnimDelay => 0.25f;
 
-    public override Color DialogueColor => new("13446B");
+    public override Color DialogueColor => new("284719");
 
-    public override Color MapDrawingColor => new("0D638C");
+    public override Color MapDrawingColor => new("2F6729");
 
-    public override Color RemoteTargetingLineColor => new("70B6EDFF");
+    public override Color RemoteTargetingLineColor => new("2EBD5EFF");
 
-    public override Color RemoteTargetingLineOutline => new("163E64FF");
+    public override Color RemoteTargetingLineOutline => new("004f04FF");
 
     public override string CharacterTransitionSfx => "event:/sfx/ui/wipe_ironclad";
 
