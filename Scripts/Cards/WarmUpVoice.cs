@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using BigDogMod.Scripts.Assets;
 using BigDogMod.Scripts.Commands;
+using BigDogMod.Scripts.DynamicVars;
 using BigDogMod.Scripts.HoverTips;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -21,7 +22,7 @@ public sealed class WarmUpVoice : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new CardsVar(1),
-            new DynamicVar("WantChew", 6m)
+            new WantChewVar(6m)
         ];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("warm_up_voice");

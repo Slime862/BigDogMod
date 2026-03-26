@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using BigDogMod.Scripts.Assets;
 using BigDogMod.Scripts.Commands;
+using BigDogMod.Scripts.DynamicVars;
 using BigDogMod.Scripts.HoverTips;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -18,7 +19,7 @@ public sealed class AllOutForce : CustomCardModel
         BigDogHoverTips.FromWantChew(base.DynamicVars["WantChew"]);
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new DynamicVar("WantChew", 20m)];
+        [new WantChewVar(20m)];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("all_out_force");
 

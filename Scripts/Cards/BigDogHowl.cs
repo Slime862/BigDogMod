@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using BigDogMod.Scripts.Assets;
 using BigDogMod.Scripts.Commands;
+using BigDogMod.Scripts.DynamicVars;
 using BigDogMod.Scripts.HoverTips;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -25,7 +26,7 @@ public sealed class BigDogHowl : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new DamageVar(6m, ValueProp.Move),
-            new DynamicVar("WantChew", 6m)
+            new WantChewVar(6m)
         ];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("big_dog_howl");
@@ -44,10 +45,9 @@ public sealed class BigDogHowl : CustomCardModel
 
         decimal rawWantChew = base.DynamicVars["WantChew"].BaseValue;
         decimal effectiveWantChew = WantChewModifiers.GetEffectiveWantChewAmount(this, rawWantChew);
-        decimal damage = base.DynamicVars.Damage.BaseValue + WantChewModifiers.GetAttackDamageBonus(this, rawWantChew);
 
         await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
-        await DamageCmd.Attack(damage)
+        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue)
             .FromCard(this)
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);

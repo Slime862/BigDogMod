@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using BigDogMod.Scripts.Assets;
 using BigDogMod.Scripts.Commands;
+using BigDogMod.Scripts.DynamicVars;
 using BigDogMod.Scripts.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -26,7 +27,7 @@ public sealed class Prelude : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new BlockVar(4m, ValueProp.Move),
-            new DynamicVar("WantChew", 5m)
+            new WantChewVar(5m)
         ];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("prelude");

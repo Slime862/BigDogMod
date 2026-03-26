@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using BigDogMod.Scripts.Assets;
 using BigDogMod.Scripts.Commands;
+using BigDogMod.Scripts.DynamicVars;
 using BigDogMod.Scripts.HoverTips;
 using BigDogMod.Scripts.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -20,7 +21,7 @@ public sealed class SustainedCharge : CustomCardModel
         BigDogHoverTips.FromWantChew(base.DynamicVars["WantChew"]);
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new DynamicVar("WantChew", 4m)];
+        [new WantChewVar(4m)];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("sustained_charge");
 
