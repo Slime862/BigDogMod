@@ -16,7 +16,8 @@ public static class WantChewModifiers
             return 0m;
         }
 
-        if (card.Owner.Creature.HasPower<ChewAtWillPower>() || card.Owner.Creature.HasPower<CowardDogPower>())
+        if (card.Owner.Creature.HasPower<ChewAtWillPower>() || 
+        (card.Owner.Creature.HasPower<CowardDogPower>()&&card.Type == CardType.Attack))
         {
             return 0m;
         }

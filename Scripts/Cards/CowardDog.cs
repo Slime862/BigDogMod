@@ -18,7 +18,7 @@ public sealed class CowardDog : CustomCardModel
         [HoverTipFactory.FromPower<WildnessPower>()];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new PowerVar<WildnessPower>(-3m)];
+        [new PowerVar<WildnessPower>(-4m)];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("coward_dog");
 

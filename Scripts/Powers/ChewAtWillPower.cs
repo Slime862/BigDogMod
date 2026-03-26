@@ -23,7 +23,7 @@ public sealed class ChewAtWillPower : CustomPowerModel
             return 0m;
         }
 
-        if (!cardSource.DynamicVars.TryGetValue("WantChew", out DynamicVar wantChewVar))
+        if (!cardSource.DynamicVars.TryGetValue("WantChew", out DynamicVar? wantChewVar))
         {
             return 0m;
         }
@@ -38,13 +38,19 @@ public sealed class ChewAtWillPower : CustomPowerModel
 
     public override Task AfterApplied(Creature? applier, CardModel? cardSource)
     {
-        WantChewModifiers.RefreshWantChewCards(base.Owner.Player);
+        if (base.Owner.Player != null)
+        {
+            WantChewModifiers.RefreshWantChewCards(base.Owner.Player);
+        }
         return Task.CompletedTask;
     }
 
     public override Task AfterRemoved(Creature oldOwner)
     {
-        WantChewModifiers.RefreshWantChewCards(oldOwner.Player);
+        if (oldOwner.Player != null)
+        {
+            WantChewModifiers.RefreshWantChewCards(oldOwner.Player);
+        }
         return Task.CompletedTask;
     }
 }
