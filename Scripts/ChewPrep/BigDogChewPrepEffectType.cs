@@ -6,5 +6,6 @@ public enum BigDogChewPrepEffectType
     Weak,
     Vulnerable,
     Bleeding,
-    Draw
+    Draw,
+    Energy
 }

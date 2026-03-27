@@ -9,35 +9,33 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace BigDogMod.Scripts.Cards;
 
-public sealed class BerserkerDog : CustomCardModel
+public sealed class HoldOn : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        [HoverTipFactory.FromPower<BleedingPower>()];
+        [HoverTipFactory.Static(StaticHoverTip.Block)];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [
-            new PowerVar<BleedingPower>(1m),
-            new EnergyVar(1)
-        ];
+        [new BlockVar(7m, ValueProp.Move)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("berserker_dog");
+    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("hold_on");
 
-    public BerserkerDog()
-        : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
+    public HoldOn()
+        : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
     {
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        BerserkerDogPower? power = await PowerCmd.Apply<BerserkerDogPower>(base.Owner.Creature, base.DynamicVars["BleedingPower"].BaseValue, base.Owner.Creature, this);
-        power?.SetEnergyPerTurn(base.DynamicVars.Energy.IntValue);
+        await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
+        await PowerCmd.Apply<BleedingGuardPower>(base.Owner.Creature, 1m, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Energy.UpgradeValueBy(1m);
+        base.DynamicVars.Block.UpgradeValueBy(3m);
     }
 }

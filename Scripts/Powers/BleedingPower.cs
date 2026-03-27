@@ -54,7 +54,21 @@ public sealed class BleedingPower : CustomPowerModel
             return base.Owner.IsAlive;
         }
 
-        await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), base.Owner, base.Amount, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
+        if (base.Owner.HasPower<BleedingGuardPower>())
+        {
+            if (base.Owner.IsAlive)
+            {
+                await PowerCmd.ModifyAmount(this, 1m, null, null);
+            }
+
+            return base.Owner.IsAlive;
+        }
+
+        ValueProp props = base.Owner.HasPower<PetrifiedSkinPower>()
+            ? ValueProp.Unpowered
+            : ValueProp.Unblockable | ValueProp.Unpowered;
+
+        await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), base.Owner, base.Amount, props, null, null);
 
         if (base.Owner.IsAlive)
         {

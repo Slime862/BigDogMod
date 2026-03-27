@@ -22,6 +22,8 @@ public sealed class BigDogChewPrepPower : CustomPowerModel
 
     public bool HasAnyEffects => _effects.Values.Any(amount => amount > 0);
 
+    public int ActiveEffectTypeCount => _effects.Count(pair => pair.Value > 0);
+
     public override LocString Description
     {
         get

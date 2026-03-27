@@ -19,7 +19,7 @@ public sealed class BleedOut : CustomCardModel
         [HoverTipFactory.FromPower<BleedingPower>()];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new PowerVar<BleedingPower>(2m)];
+        [new PowerVar<BleedingPower>(5m)];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("bleed_out");
 

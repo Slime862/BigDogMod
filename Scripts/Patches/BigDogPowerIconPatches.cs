@@ -52,6 +52,16 @@ internal static class BigDogPowerIconHelper
             return ModelDb.Power<InfiniteBladesPower>().PackedIconPath;
         }
 
+        if (power is PetrifiedSkinPower)
+        {
+            return ModelDb.Power<PlatingPower>().PackedIconPath;
+        }
+
+        if (power is BleedingGuardPower)
+        {
+            return ModelDb.Power<BufferPower>().PackedIconPath;
+        }
+
         if (power is BerserkerDogPower)
         {
             return ModelDb.Power<RitualPower>().PackedIconPath;
@@ -135,6 +145,16 @@ internal static class BigDogPowerIconHelper
         if (power is DogSagePower)
         {
             return ModelDb.Power<InfiniteBladesPower>().ResolvedBigIconPath;
+        }
+
+        if (power is PetrifiedSkinPower)
+        {
+            return ModelDb.Power<PlatingPower>().ResolvedBigIconPath;
+        }
+
+        if (power is BleedingGuardPower)
+        {
+            return ModelDb.Power<BufferPower>().ResolvedBigIconPath;
         }
 
         if (power is BerserkerDogPower)

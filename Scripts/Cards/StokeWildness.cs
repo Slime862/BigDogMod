@@ -26,7 +26,7 @@ public sealed class StokeWildness : CustomCardModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new BlockVar(4m, ValueProp.Move),
+            new BlockVar(7m, ValueProp.Move),
             new PowerVar<WildnessPower>(1m)
         ];
 

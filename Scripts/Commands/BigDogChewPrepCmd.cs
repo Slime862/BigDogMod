@@ -76,6 +76,9 @@ public static class BigDogChewPrepCmd
                 case BigDogChewPrepEffectType.Draw:
                     await CardPileCmd.Draw(choiceContext, effect.Amount, owner);
                     break;
+                case BigDogChewPrepEffectType.Energy:
+                    await PlayerCmd.GainEnergy(effect.Amount, owner);
+                    break;
             }
         }
 

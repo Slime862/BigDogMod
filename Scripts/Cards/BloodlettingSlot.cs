@@ -20,7 +20,7 @@ public sealed class BloodlettingSlot : CustomCardModel
         [HoverTipFactory.FromPower<BleedingBoostPower>()];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new PowerVar<BleedingBoostPower>(1m)];
+        [new PowerVar<BleedingBoostPower>(2m)];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("bloodletting_slot");
 

@@ -15,6 +15,7 @@ public static class BigDogChewPrepEffectTypeExtensions
             BigDogChewPrepEffectType.Vulnerable => "vulnerableLine",
             BigDogChewPrepEffectType.Bleeding => "bleedingLine",
             BigDogChewPrepEffectType.Draw => "drawLine",
+            BigDogChewPrepEffectType.Energy => "energyLine",
             _ => effectType.ToString().ToLowerInvariant() + "Line"
         };
     }
