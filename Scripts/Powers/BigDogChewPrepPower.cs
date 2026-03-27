@@ -62,7 +62,7 @@ public sealed class BigDogChewPrepPower : CustomPowerModel
             _effects[effect.Type] = GetAmount(effect.Type) + effect.Amount;
         }
 
-        Amount = _effects.Values.Sum();
+        //Amount = _effects.Values.Sum();
     }
 
     public IReadOnlyList<BigDogChewPrepEffect> ConsumeAll()

@@ -45,7 +45,7 @@
   "BIGDOGMOD-DOG_SAGE_POWER.title": "狗中贤者",
   "BIGDOGMOD-BERSERKER_DOG_POWER.description": "每回合结束时获得{Amount}层[gold]流血[/gold]。每个回合开始时获得1点能量。",
   "BIGDOGMOD-BERSERKER_DOG_POWER.title": "狂战士狗",
-  "BIGDOGMOD-CHEW_AT_WILL_POWER.description": "所有具有[gold]想嚼[/gold]的攻击牌，其想嚼变为0，且伤害增加原本想嚼的数值。",
+  "BIGDOGMOD-CHEW_AT_WILL_POWER.description": "抽到[gold]大狗嚼[/gold]时，自动打出。",
   "BIGDOGMOD-CHEW_AT_WILL_POWER.title": "想嚼就嚼",
   "BIGDOGMOD-COWARD_DOG_POWER.description": "所有具有[gold]想嚼[/gold]的牌，其想嚼变为0。",
   "BIGDOGMOD-COWARD_DOG_POWER.title": "胆小狗",
@@ -55,10 +55,11 @@
   "DOG_SAGE_POWER.title": "狗中贤者",
   "BERSERKER_DOG_POWER.description": "每回合结束时获得{Amount}层[gold]流血[/gold]。每个回合开始时获得1点能量。",
   "BERSERKER_DOG_POWER.title": "狂战士狗",
-  "CHEW_AT_WILL_POWER.description": "所有具有[gold]想嚼[/gold]的攻击牌，其想嚼变为0，且伤害增加原本想嚼的数值。",
+  "CHEW_AT_WILL_POWER.description": "抽到[gold]大狗嚼[/gold]时，自动打出。",
   "CHEW_AT_WILL_POWER.title": "想嚼就嚼",
   "COWARD_DOG_POWER.description": "所有具有[gold]想嚼[/gold]的牌，其想嚼变为0。",
   "COWARD_DOG_POWER.title": "胆小狗",
   "ENDLESS_BLEEDING_POWER.description": "你的[gold]流血[/gold]会额外触发{Amount}次。",
   "ENDLESS_BLEEDING_POWER.title": "血流不止"
 }
+

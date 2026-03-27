@@ -1,4 +1,4 @@
-using BigDogMod.Scripts.Powers;
+﻿using BigDogMod.Scripts.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
@@ -16,8 +16,7 @@ public static class WantChewModifiers
             return 0m;
         }
 
-        if (card.Owner.Creature.HasPower<ChewAtWillPower>() || 
-        (card.Owner.Creature.HasPower<CowardDogPower>()&&card.Type == CardType.Attack))
+        if (card.Owner.Creature.HasPower<CowardDogPower>() && card.Type == CardType.Attack)
         {
             return 0m;
         }
@@ -32,7 +31,7 @@ public static class WantChewModifiers
             return 0m;
         }
 
-        return card.Owner.Creature.HasPower<ChewAtWillPower>() ? baseWantChew : 0m;
+        return 0m;
     }
 
     public static void RefreshWantChewCards(Player player)

@@ -17,7 +17,12 @@ public sealed class BleedingBoostPower : CustomPowerModel
 
     public override decimal ModifyPowerAmountGiven(PowerModel power, Creature giver, decimal amount, Creature? target, CardModel? cardSource)
     {
-        if (giver != base.Owner || power is not BleedingPower || amount <= 0)
+        if (giver != base.Owner || power is not BleedingPower || amount <= 0 || target == null)
+        {
+            return amount;
+        }
+
+        if (target.Side == giver.Side)
         {
             return amount;
         }

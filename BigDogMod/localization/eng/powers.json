@@ -45,7 +45,7 @@
   "BIGDOGMOD-DOG_SAGE_POWER.title": "Dog Sage",
   "BIGDOGMOD-BERSERKER_DOG_POWER.description": "At the end of each turn, gain {Amount} [gold]Bleeding[/gold]. At the start of each turn, gain 1 Energy.",
   "BIGDOGMOD-BERSERKER_DOG_POWER.title": "Berserker Dog",
-  "BIGDOGMOD-CHEW_AT_WILL_POWER.description": "All attacking cards with [gold]Want Chew[/gold] set their Want Chew to 0 and gain damage equal to that amount.",
+  "BIGDOGMOD-CHEW_AT_WILL_POWER.description": "Whenever you draw [gold]Big Dog Chew[/gold], play it automatically.",
   "BIGDOGMOD-CHEW_AT_WILL_POWER.title": "Chew at Will",
   "BIGDOGMOD-COWARD_DOG_POWER.description": "All cards with [gold]Want Chew[/gold] set their Want Chew to 0.",
   "BIGDOGMOD-COWARD_DOG_POWER.title": "Coward Dog",
@@ -55,10 +55,11 @@
   "DOG_SAGE_POWER.title": "Dog Sage",
   "BERSERKER_DOG_POWER.description": "At the end of each turn, gain {Amount} [gold]Bleeding[/gold]. At the start of each turn, gain 1 Energy.",
   "BERSERKER_DOG_POWER.title": "Berserker Dog",
-  "CHEW_AT_WILL_POWER.description": "All attacking cards with [gold]Want Chew[/gold] set their Want Chew to 0 and gain damage equal to that amount.",
+  "CHEW_AT_WILL_POWER.description": "Whenever you draw [gold]Big Dog Chew[/gold], play it automatically.",
   "CHEW_AT_WILL_POWER.title": "Chew at Will",
   "COWARD_DOG_POWER.description": "All cards with [gold]Want Chew[/gold] set their Want Chew to 0.",
   "COWARD_DOG_POWER.title": "Coward Dog",
   "ENDLESS_BLEEDING_POWER.description": "Your [gold]Bleeding[/gold] triggers {Amount} extra time(s).",
   "ENDLESS_BLEEDING_POWER.title": "Bleeding Without End"
 }
+

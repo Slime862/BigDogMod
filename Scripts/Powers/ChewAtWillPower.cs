@@ -1,12 +1,12 @@
+﻿using System.Linq;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
-using BigDogMod.Scripts.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
+using BigDogMod.Scripts.Cards;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace BigDogMod.Scripts.Powers;
 
@@ -16,41 +16,19 @@ public sealed class ChewAtWillPower : CustomPowerModel
 
     public override PowerStackType StackType => PowerStackType.Single;
 
-    public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
+    public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
     {
-        if (base.Owner != dealer || cardSource == null || cardSource.Type != CardType.Attack)
+        if (card.Owner != base.Owner.Player || card is not BigDogChew || card.CombatState == null)
         {
-            return 0m;
+            return;
         }
 
-        if (!cardSource.DynamicVars.TryGetValue("WantChew", out DynamicVar? wantChewVar))
+        if (!card.CombatState.HittableEnemies.Any())
         {
-            return 0m;
+            return;
         }
 
-        if (!props.HasFlag(ValueProp.Move) || props.HasFlag(ValueProp.Unpowered))
-        {
-            return 0m;
-        }
-
-        return wantChewVar.BaseValue;
-    }
-
-    public override Task AfterApplied(Creature? applier, CardModel? cardSource)
-    {
-        if (base.Owner.Player != null)
-        {
-            WantChewModifiers.RefreshWantChewCards(base.Owner.Player);
-        }
-        return Task.CompletedTask;
-    }
-
-    public override Task AfterRemoved(Creature oldOwner)
-    {
-        if (oldOwner.Player != null)
-        {
-            WantChewModifiers.RefreshWantChewCards(oldOwner.Player);
-        }
-        return Task.CompletedTask;
+        Flash();
+        await CardCmd.AutoPlay(choiceContext, card, null);
     }
 }
