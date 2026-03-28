@@ -11,6 +11,22 @@ public static class BigDogCardPortraitPathPatch
 {
     public static bool Prefix(CardModel __instance, ref string __result)
     {
+        if (__instance is StrikeBigDog)
+        {
+            __result = BigDogAssetPaths.Exists(BigDogAssetPaths.CardPortrait("strike_big_dog"))
+                ? BigDogAssetPaths.CardPortrait("strike_big_dog")
+                : ModelDb.Card<StrikeSilent>().PortraitPath;
+            return false;
+        }
+
+        if (__instance is DefendBigDog)
+        {
+            __result = BigDogAssetPaths.Exists(BigDogAssetPaths.CardPortrait("defend_big_dog"))
+                ? BigDogAssetPaths.CardPortrait("defend_big_dog")
+                : ModelDb.Card<DefendSilent>().PortraitPath;
+            return false;
+        }
+
         if (__instance is RendingBite)
         {
             __result = BigDogAssetPaths.Exists(BigDogAssetPaths.CardPortrait("rending_bite"))
@@ -74,6 +90,22 @@ public static class BigDogCardBetaPortraitPathPatch
 {
     public static bool Prefix(CardModel __instance, ref string __result)
     {
+        if (__instance is StrikeBigDog)
+        {
+            __result = BigDogAssetPaths.Exists(BigDogAssetPaths.CardBetaPortrait("strike_big_dog"))
+                ? BigDogAssetPaths.CardBetaPortrait("strike_big_dog")
+                : ModelDb.Card<StrikeSilent>().BetaPortraitPath;
+            return false;
+        }
+
+        if (__instance is DefendBigDog)
+        {
+            __result = BigDogAssetPaths.Exists(BigDogAssetPaths.CardBetaPortrait("defend_big_dog"))
+                ? BigDogAssetPaths.CardBetaPortrait("defend_big_dog")
+                : ModelDb.Card<DefendSilent>().BetaPortraitPath;
+            return false;
+        }
+
         if (__instance is RendingBite)
         {
             __result = BigDogAssetPaths.Exists(BigDogAssetPaths.CardBetaPortrait("rending_bite"))

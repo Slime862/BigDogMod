@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using BigDogMod.Scripts.Assets;
 using BigDogMod.Scripts.Commands;
+using BigDogMod.Scripts.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -24,7 +25,7 @@ public sealed class BigDogChew : CustomCardModel
         [HoverTipFactory.FromKeyword(CardKeyword.Retain), HoverTipFactory.FromKeyword(CardKeyword.Exhaust)];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new DamageVar(4m, ValueProp.Move)];
+        [new DamageVar(1m, ValueProp.Move)];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("big_dog_chew");
 
@@ -64,6 +65,9 @@ public sealed class BigDogChew : CustomCardModel
     protected override void AfterDowngraded()
     {
         base.AfterDowngraded();
-        base.DynamicVars.Damage.BaseValue += _extraDamageFromWantChew;
+        if (base.Owner.Creature.GetPower<HighSongFormPower>() != null)
+        {
+            base.DynamicVars.Damage.BaseValue += _extraDamageFromWantChew;
+        }
     }
 }

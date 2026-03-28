@@ -17,6 +17,8 @@ public static class Entry
     {
         ModHelper.AddModelToPool<BigDogCardPool, StokeWildness>();
         ModHelper.AddModelToPool<BigDogCardPool, BigDogHowl>();
+        ModHelper.AddModelToPool<BigDogCardPool, StrikeBigDog>();
+        ModHelper.AddModelToPool<BigDogCardPool, DefendBigDog>();
         ModHelper.AddModelToPool<BigDogCardPool, RendingBite>();
         ModHelper.AddModelToPool<BigDogCardPool, BleedOut>();
         ModHelper.AddModelToPool<BigDogCardPool, BloodDrink>();

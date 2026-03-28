@@ -20,7 +20,7 @@ public sealed class ForcedDefense : CustomCardModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new PowerVar<BleedingPower>(3m),
+            new PowerVar<BleedingPower>(2m),
             new BlockVar(9m, ValueProp.Move)
         ];
 

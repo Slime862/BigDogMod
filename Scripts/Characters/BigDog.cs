@@ -8,7 +8,6 @@ using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Relics;
 
 namespace BigDogMod.Scripts.Characters;
@@ -58,14 +57,14 @@ public sealed class BigDog : PlaceholderCharacterModel
 
     public override IEnumerable<CardModel> StartingDeck =>
         [
-            ModelDb.Card<StrikeSilent>(),
-            ModelDb.Card<StrikeSilent>(),
-            ModelDb.Card<StrikeSilent>(),
-            ModelDb.Card<StrikeSilent>(),
-            ModelDb.Card<DefendSilent>(),
-            ModelDb.Card<DefendSilent>(),
-            ModelDb.Card<DefendSilent>(),
-            ModelDb.Card<DefendSilent>(),
+            ModelDb.Card<StrikeBigDog>(),
+            ModelDb.Card<StrikeBigDog>(),
+            ModelDb.Card<StrikeBigDog>(),
+            ModelDb.Card<StrikeBigDog>(),
+            ModelDb.Card<DefendBigDog>(),
+            ModelDb.Card<DefendBigDog>(),
+            ModelDb.Card<DefendBigDog>(),
+            ModelDb.Card<DefendBigDog>(),
             ModelDb.Card<StokeWildness>(),
             ModelDb.Card<BigDogHowl>()
         ];
