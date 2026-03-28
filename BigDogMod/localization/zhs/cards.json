@@ -147,7 +147,7 @@
   "BIGDOGMOD-FEARLESS_BEAST.title": "野兽不惧流血",
   "BIGDOGMOD-MIGHTY_BLOW.description": "造成{Damage:diff()}点伤害。给予{BleedingPower:diff()}层[gold]流血[/gold]。获得{StrengthPower:diff()}点力量。",
   "BIGDOGMOD-MIGHTY_BLOW.title": "大力一击",
-  "BIGDOGMOD-FULLY_PREPARED.description": "[gold]想嚼[/gold]{WantChew:diff()}。如果当前有3种以上不同类型的大狗用力，将[gold]大狗嚼[/gold]加入手牌。",
+  "BIGDOGMOD-FULLY_PREPARED.description": "只有当前有3种以上不同类型的大狗用力时，才能打出。[gold]想嚼[/gold]{WantChew:diff()}。打出后返回手牌。",
   "BIGDOGMOD-FULLY_PREPARED.title": "准备完全",
   "BIGDOGMOD-FRENZIED_GROWTH.description": "回复等同于自身[gold]流血[/gold]层数的生命值。移除自己的全部[gold]流血[/gold]。",
   "BIGDOGMOD-FRENZIED_GROWTH.title": "疯狂增生",
@@ -179,7 +179,7 @@
   "FEARLESS_BEAST.title": "野兽不惧流血",
   "MIGHTY_BLOW.description": "造成{Damage:diff()}点伤害。给予{BleedingPower:diff()}层[gold]流血[/gold]。获得{StrengthPower:diff()}点力量。",
   "MIGHTY_BLOW.title": "大力一击",
-  "FULLY_PREPARED.description": "[gold]想嚼[/gold]{WantChew:diff()}。如果当前有3种以上不同类型的大狗用力，将[gold]大狗嚼[/gold]加入手牌。",
+  "FULLY_PREPARED.description": "只有当前有3种以上不同类型的大狗用力时，才能打出。[gold]想嚼[/gold]{WantChew:diff()}。打出后返回手牌。",
   "FULLY_PREPARED.title": "准备完全",
   "FRENZIED_GROWTH.description": "回复等同于自身[gold]流血[/gold]层数的生命值。移除自己的全部[gold]流血[/gold]。",
   "FRENZIED_GROWTH.title": "疯狂增生"
