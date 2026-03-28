@@ -18,7 +18,7 @@ public sealed class Cuteify : CustomCardModel
         [HoverTipFactory.FromPower<WildnessPower>()];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new PowerVar<WildnessPower>(-2m)];
+        [new PowerVar<WildnessPower>(-3m)];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("cuteify");
 

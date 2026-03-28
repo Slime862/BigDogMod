@@ -21,7 +21,7 @@ public sealed class SustainedCharge : CustomCardModel
         BigDogHoverTips.FromWantChew(base.DynamicVars["WantChew"]);
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new WantChewVar(4m)];
+        [new WantChewVar(7m)];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("sustained_charge");
 
@@ -37,6 +37,6 @@ public sealed class SustainedCharge : CustomCardModel
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars["WantChew"].UpgradeValueBy(2m);
+        base.DynamicVars["WantChew"].UpgradeValueBy(5m);
     }
 }

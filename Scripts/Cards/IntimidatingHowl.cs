@@ -28,7 +28,7 @@ public sealed class IntimidatingHowl : CustomCardModel, IBigDogChewPrepSource
         ];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new PowerVar<WeakPower>(1m)];
+        [new PowerVar<WeakPower>(2m)];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("intimidating_howl");
 
