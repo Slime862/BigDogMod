@@ -5,11 +5,9 @@ using BigDogMod.Scripts.Assets;
 using BigDogMod.Scripts.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -20,13 +18,13 @@ public sealed class BigDogChew : CustomCardModel
     private decimal _extraDamageFromWantChew;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        [CardKeyword.Exhaust];
+        [CardKeyword.Retain, CardKeyword.Exhaust];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        [HoverTipFactory.FromKeyword(CardKeyword.Exhaust)];
+        [HoverTipFactory.FromKeyword(CardKeyword.Retain), HoverTipFactory.FromKeyword(CardKeyword.Exhaust)];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new DamageVar(0m, ValueProp.Move)];
+        [new DamageVar(4m, ValueProp.Move)];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("big_dog_chew");
 

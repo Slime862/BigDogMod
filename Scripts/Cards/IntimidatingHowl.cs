@@ -39,7 +39,7 @@ public sealed class IntimidatingHowl : CustomCardModel, IBigDogChewPrepSource
 
     public IEnumerable<BigDogChewPrepEffect> GetBigDogChewPrepEffects()
     {
-        yield return new BigDogChewPrepEffect(BigDogChewPrepEffectType.Weak, base.DynamicVars["WeakPower"].IntValue);
+        yield return new BigDogChewPrepEffect(BigDogChewPrepEffectType.Weak, base.DynamicVars["WeakPower"].IntValue, true);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

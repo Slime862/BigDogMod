@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using BigDogMod.Scripts.Assets;
-using BigDogMod.Scripts.Cards;
 using BigDogMod.Scripts.Commands;
 using BigDogMod.Scripts.DynamicVars;
 using BigDogMod.Scripts.HoverTips;
@@ -12,12 +11,13 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
-using System.Linq;
 
 namespace BigDogMod.Scripts.Cards;
 
 public sealed class FullyPrepared : CustomCardModel
 {
+    protected override bool IsPlayable => (base.Owner.Creature.GetPower<BigDogChewPrepPower>()?.ActiveEffectTypeCount ?? 0) >= 3;
+
     protected override bool ShouldGlowGoldInternal =>
         base.Owner.Creature.GetPower<BigDogChewPrepPower>()?.ActiveEffectTypeCount >= 3;
 
@@ -30,28 +30,25 @@ public sealed class FullyPrepared : CustomCardModel
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("fully_prepared");
 
     public FullyPrepared()
-        : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self, autoAdd: false)
+        : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self, autoAdd: false)
     {
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await WantChewCmd.WantChew(WantChewModifiers.GetEffectiveWantChewAmount(this, base.DynamicVars["WantChew"].BaseValue), base.Owner, this);
-
         if ((base.Owner.Creature.GetPower<BigDogChewPrepPower>()?.ActiveEffectTypeCount ?? 0) >= 3)
         {
+            await WantChewCmd.WantChew(WantChewModifiers.GetEffectiveWantChewAmount(this, base.DynamicVars["WantChew"].BaseValue), base.Owner, this);
             BigDogChew? chew = PileType.Draw.GetPile(base.Owner).Cards.OfType<BigDogChew>().FirstOrDefault()
                 ?? PileType.Discard.GetPile(base.Owner).Cards.OfType<BigDogChew>().FirstOrDefault();
             if (chew != null)
             {
                 await CardPileCmd.Add(chew, PileType.Hand);
             }
-            else
-            {
-                await WantChewCmd.WantChew(0m, base.Owner, this);
-            }
         }
     }
+
+    
 
     protected override void OnUpgrade()
     {

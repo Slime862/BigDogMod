@@ -36,7 +36,7 @@ public sealed class PiercingScreech : CustomCardModel, IBigDogChewPrepSource
 
     public IEnumerable<BigDogChewPrepEffect> GetBigDogChewPrepEffects()
     {
-        yield return new BigDogChewPrepEffect(BigDogChewPrepEffectType.Bleeding, base.DynamicVars["BleedingPower"].IntValue);
+        yield return new BigDogChewPrepEffect(BigDogChewPrepEffectType.Bleeding, base.DynamicVars["BleedingPower"].IntValue, true);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

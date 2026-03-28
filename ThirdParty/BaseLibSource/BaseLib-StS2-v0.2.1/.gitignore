@@ -1,0 +1,14 @@
+.godot/
+/android/
+.git/
+.idea/
+.vs/
+publish/
+bin/
+build/BaseLib.pck
+.editorconfig
+*.uid
+*.user
+*.import
+.vscode/*
+/.dotnet

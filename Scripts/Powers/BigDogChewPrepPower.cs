@@ -14,7 +14,7 @@ namespace BigDogMod.Scripts.Powers;
 
 public sealed class BigDogChewPrepPower : CustomPowerModel
 {
-    private readonly Dictionary<BigDogChewPrepEffectType, int> _effects = [];
+    private readonly Dictionary<BigDogChewPrepEffect, int> _effects = [];
 
     public override PowerType Type => PowerType.Buff;
 
@@ -22,7 +22,11 @@ public sealed class BigDogChewPrepPower : CustomPowerModel
 
     public bool HasAnyEffects => _effects.Values.Any(amount => amount > 0);
 
-    public int ActiveEffectTypeCount => _effects.Count(pair => pair.Value > 0);
+    public int ActiveEffectTypeCount => _effects
+        .Where(pair => pair.Value > 0)
+        .Select(pair => pair.Key.Type)
+        .Distinct()
+        .Count();
 
     public override LocString Description
     {
@@ -61,7 +65,8 @@ public sealed class BigDogChewPrepPower : CustomPowerModel
                 continue;
             }
 
-            _effects[effect.Type] = GetAmount(effect.Type) + effect.Amount;
+            BigDogChewPrepEffect key = effect with { Amount = 0 };
+            _effects[key] = GetAmount(key) + effect.Amount;
         }
 
         //Amount = _effects.Values.Sum();
@@ -71,27 +76,27 @@ public sealed class BigDogChewPrepPower : CustomPowerModel
     {
         List<BigDogChewPrepEffect> snapshot = ActiveEffects().ToList();
         _effects.Clear();
-        Amount = 0;
         return snapshot;
     }
 
     public override Task AfterCombatEnd(CombatRoom room)
     {
         _effects.Clear();
-        Amount = 0;
         return Task.CompletedTask;
     }
 
-    private int GetAmount(BigDogChewPrepEffectType effectType)
+    private int GetAmount(BigDogChewPrepEffect effect)
     {
-        return _effects.GetValueOrDefault(effectType);
+        return _effects.GetValueOrDefault(effect);
     }
 
     private IEnumerable<BigDogChewPrepEffect> ActiveEffects()
     {
-        return Enum.GetValues<BigDogChewPrepEffectType>()
-            .Select(type => new BigDogChewPrepEffect(type, GetAmount(type)))
-            .Where(effect => effect.Amount > 0);
+        return _effects
+            .Where(pair => pair.Value > 0)
+            .Select(pair => pair.Key with { Amount = pair.Value })
+            .OrderBy(effect => effect.Type)
+            .ThenBy(effect => effect.ApplyToAllEnemies ? 1 : 0);
     }
 
     private string BuildEffectsText()
@@ -101,7 +106,7 @@ public sealed class BigDogChewPrepPower : CustomPowerModel
 
     private LocString BuildEffectLine(BigDogChewPrepEffect effect)
     {
-        LocString line = new("powers", base.Id.Entry + "." + effect.Type.LocLineKey());
+        LocString line = new("powers", base.Id.Entry + "." + effect.Type.LocLineKey(effect.ApplyToAllEnemies));
         line.Add("Amount", effect.Amount);
         return line;
     }

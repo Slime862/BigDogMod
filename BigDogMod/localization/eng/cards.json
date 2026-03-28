@@ -165,7 +165,7 @@
   "BIGDOGMOD-FEARLESS_BEAST.title": "Fearless Beast",
   "BIGDOGMOD-MIGHTY_BLOW.description": "Deal {Damage:diff()} damage. Apply {BleedingPower:diff()} [gold]Bleeding[/gold]. Gain {StrengthPower:diff()} Strength.",
   "BIGDOGMOD-MIGHTY_BLOW.title": "Mighty Blow",
-  "BIGDOGMOD-FULLY_PREPARED.description": "[gold]Want Chew[/gold] {WantChew:diff()}. If you currently have 3 or more different types of Big Dog Exertion, add [gold]Big Dog Chew[/gold] to your hand.",
+  "BIGDOGMOD-FULLY_PREPARED.description": "Can only be played if you currently have 3 or more different types of Big Dog Exertion. [gold]Want Chew[/gold] {WantChew:diff()}. Return this to your hand after playing.",
   "BIGDOGMOD-FULLY_PREPARED.title": "Fully Prepared",
   "BIGDOGMOD-FRENZIED_GROWTH.description": "Heal HP equal to your own [gold]Bleeding[/gold]. Remove all of your [gold]Bleeding[/gold].",
   "BIGDOGMOD-FRENZIED_GROWTH.title": "Frenzied Growth",
@@ -179,7 +179,7 @@
   "FEARLESS_BEAST.title": "Fearless Beast",
   "MIGHTY_BLOW.description": "Deal {Damage:diff()} damage. Apply {BleedingPower:diff()} [gold]Bleeding[/gold]. Gain {StrengthPower:diff()} Strength.",
   "MIGHTY_BLOW.title": "Mighty Blow",
-  "FULLY_PREPARED.description": "[gold]Want Chew[/gold] {WantChew:diff()}. If you currently have 3 or more different types of Big Dog Exertion, add [gold]Big Dog Chew[/gold] to your hand.",
+  "FULLY_PREPARED.description": "Can only be played if you currently have 3 or more different types of Big Dog Exertion. [gold]Want Chew[/gold] {WantChew:diff()}. Return this to your hand after playing.",
   "FULLY_PREPARED.title": "Fully Prepared",
   "FRENZIED_GROWTH.description": "Heal HP equal to your own [gold]Bleeding[/gold]. Remove all of your [gold]Bleeding[/gold].",
   "FRENZIED_GROWTH.title": "Frenzied Growth"

@@ -64,14 +64,35 @@ public static class BigDogChewPrepCmd
                 case BigDogChewPrepEffectType.Block:
                     await CreatureCmd.GainBlock(owner.Creature, effect.Amount, ValueProp.Move, null);
                     break;
-                case BigDogChewPrepEffectType.Weak when target.IsAlive:
-                    await PowerCmd.Apply<WeakPower>(target, effect.Amount, owner.Creature, targetCard);
+                case BigDogChewPrepEffectType.Weak:
+                    if (effect.ApplyToAllEnemies && owner.Creature.CombatState != null)
+                    {
+                        await PowerCmd.Apply<WeakPower>(owner.Creature.CombatState.HittableEnemies.Where(enemy => enemy.IsAlive), effect.Amount, owner.Creature, targetCard);
+                    }
+                    else if (target.IsAlive)
+                    {
+                        await PowerCmd.Apply<WeakPower>(target, effect.Amount, owner.Creature, targetCard);
+                    }
                     break;
-                case BigDogChewPrepEffectType.Vulnerable when target.IsAlive:
-                    await PowerCmd.Apply<VulnerablePower>(target, effect.Amount, owner.Creature, targetCard);
+                case BigDogChewPrepEffectType.Vulnerable:
+                    if (effect.ApplyToAllEnemies && owner.Creature.CombatState != null)
+                    {
+                        await PowerCmd.Apply<VulnerablePower>(owner.Creature.CombatState.HittableEnemies.Where(enemy => enemy.IsAlive), effect.Amount, owner.Creature, targetCard);
+                    }
+                    else if (target.IsAlive)
+                    {
+                        await PowerCmd.Apply<VulnerablePower>(target, effect.Amount, owner.Creature, targetCard);
+                    }
                     break;
-                case BigDogChewPrepEffectType.Bleeding when target.IsAlive:
-                    await PowerCmd.Apply<BleedingPower>(target, effect.Amount, owner.Creature, targetCard);
+                case BigDogChewPrepEffectType.Bleeding:
+                    if (effect.ApplyToAllEnemies && owner.Creature.CombatState != null)
+                    {
+                        await PowerCmd.Apply<BleedingPower>(owner.Creature.CombatState.HittableEnemies.Where(enemy => enemy.IsAlive), effect.Amount, owner.Creature, targetCard);
+                    }
+                    else if (target.IsAlive)
+                    {
+                        await PowerCmd.Apply<BleedingPower>(target, effect.Amount, owner.Creature, targetCard);
+                    }
                     break;
                 case BigDogChewPrepEffectType.Draw:
                     await CardPileCmd.Draw(choiceContext, effect.Amount, owner);

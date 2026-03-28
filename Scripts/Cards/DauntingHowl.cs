@@ -37,7 +37,7 @@ public sealed class DauntingHowl : CustomCardModel, IBigDogChewPrepSource
 
     public IEnumerable<BigDogChewPrepEffect> GetBigDogChewPrepEffects()
     {
-        yield return new BigDogChewPrepEffect(BigDogChewPrepEffectType.Vulnerable, base.DynamicVars.Vulnerable.IntValue);
+        yield return new BigDogChewPrepEffect(BigDogChewPrepEffectType.Vulnerable, base.DynamicVars.Vulnerable.IntValue, true);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

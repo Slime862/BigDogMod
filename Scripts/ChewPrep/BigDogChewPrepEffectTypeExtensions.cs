@@ -6,8 +6,19 @@ namespace BigDogMod.Scripts.ChewPrep;
 
 public static class BigDogChewPrepEffectTypeExtensions
 {
-    public static string LocLineKey(this BigDogChewPrepEffectType effectType)
+    public static string LocLineKey(this BigDogChewPrepEffectType effectType, bool applyToAllEnemies = false)
     {
+        if (applyToAllEnemies)
+        {
+            return effectType switch
+            {
+                BigDogChewPrepEffectType.Weak => "weakAllEnemiesLine",
+                BigDogChewPrepEffectType.Vulnerable => "vulnerableAllEnemiesLine",
+                BigDogChewPrepEffectType.Bleeding => "bleedingAllEnemiesLine",
+                _ => effectType.LocLineKey(false)
+            };
+        }
+
         return effectType switch
         {
             BigDogChewPrepEffectType.Block => "blockLine",

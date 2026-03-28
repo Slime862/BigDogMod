@@ -3,6 +3,7 @@ using BaseLib.Abstracts;
 using BigDogMod.Scripts.Assets;
 using BigDogMod.Scripts.Cards;
 using BigDogMod.Scripts.Pools;
+using BigDogMod.Scripts.Relics;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
@@ -70,7 +71,7 @@ public sealed class BigDog : PlaceholderCharacterModel
         ];
 
     public override IReadOnlyList<RelicModel> StartingRelics =>
-        [ModelDb.Relic<RingOfTheSnake>()];
+        [ModelDb.Relic<HoundCollar>()];
 
     public override float AttackAnimDelay => 0.15f;
 
