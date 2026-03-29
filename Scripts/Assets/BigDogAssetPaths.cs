@@ -14,6 +14,10 @@ public static class BigDogAssetPaths
 
     public static string PowerBetaIcon(string fileName) => $"{BasePath}/powers/beta/{fileName}.png";
 
+    public static string BigDogHowlSfx => $"{BasePath}/audio/big_dog_howl.mp3";
+
+    public static string BigDogChewSfx => $"{BasePath}/audio/big_dog_chew.mp3";
+
     public static string CharacterSelectIcon => $"{BasePath}/character/select/char_select_big_dog.png";
 
     public static string CharacterSelectLockedIcon => $"{BasePath}/character/select/char_select_big_dog_locked.png";

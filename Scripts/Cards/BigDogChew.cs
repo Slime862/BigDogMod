@@ -18,6 +18,8 @@ public sealed class BigDogChew : CustomCardModel
 {
     private decimal _extraDamageFromWantChew;
 
+    public decimal CurrentDamage => base.DynamicVars.Damage.BaseValue;
+
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
         [CardKeyword.Retain, CardKeyword.Exhaust];
 

@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
+using BigDogMod.Scripts.Audio;
 using BigDogMod.Scripts.Cards;
 using BigDogMod.Scripts.Powers;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -32,6 +34,27 @@ public sealed class HoundCollar : CustomRelicModel
     protected override string PackedIconOutlinePath => ImageHelper.GetImagePath("atlases/relic_outline_atlas.sprites/ring_of_the_snake.tres");
 
     protected override string BigIconPath => ImageHelper.GetImagePath("relics/ring_of_the_snake.png");
+
+    public override Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
+    {
+        if (cardPlay.Card.Owner != base.Owner)
+        {
+            return Task.CompletedTask;
+        }
+
+        if (cardPlay.Card is BigDogChew)
+        {
+            BigDogSfxHelper.PlayChew(base.Owner);
+            return Task.CompletedTask;
+        }
+
+        if (cardPlay.Card.Tags.Contains(BigDogTags.Jiao))
+        {
+            BigDogSfxHelper.PlayHowl(base.Owner);
+        }
+
+        return Task.CompletedTask;
+    }
 
     public override async Task AfterDamageGiven(PlayerChoiceContext choiceContext, Creature? dealer, DamageResult result, ValueProp props, Creature target, CardModel? cardSource)
     {
