@@ -30,7 +30,7 @@ public sealed class TailWag : CustomCardModel
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("tail_wag");
 
     public TailWag()
-        : base(1, CardType.Skill, CardRarity.Common, TargetType.Self, autoAdd: false)
+        : base(0, CardType.Skill, CardRarity.Common, TargetType.Self, autoAdd: false)
     {
     }
 

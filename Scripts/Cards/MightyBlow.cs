@@ -26,7 +26,7 @@ public sealed class MightyBlow : CustomCardModel
         [
             new DamageVar(9m, ValueProp.Move),
             new PowerVar<BleedingPower>(2m),
-            new PowerVar<StrengthPower>(-2m)
+            new PowerVar<StrengthPower>(-1m)
         ];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("mighty_blow");

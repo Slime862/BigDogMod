@@ -22,7 +22,7 @@ public sealed class RipOpen : CustomCardModel
         [HoverTipFactory.FromPower<BleedingPower>()];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new PowerVar<BleedingPower>(2m)];
+        [new PowerVar<BleedingPower>(4m)];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("rip_open");
 
@@ -53,6 +53,6 @@ public sealed class RipOpen : CustomCardModel
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars["BleedingPower"].UpgradeValueBy(2m);
+        base.DynamicVars["BleedingPower"].UpgradeValueBy(3m);
     }
 }
