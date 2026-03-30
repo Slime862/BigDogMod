@@ -21,13 +21,13 @@ public sealed class ForcedDefense : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new PowerVar<BleedingPower>(1m),
-            new BlockVar(9m, ValueProp.Move)
+            new BlockVar(10m, ValueProp.Move)
         ];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("forced_defense");
 
     public ForcedDefense()
-        : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
+        : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
     {
     }
 

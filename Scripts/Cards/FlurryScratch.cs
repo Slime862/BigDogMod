@@ -18,13 +18,13 @@ public sealed class FlurryScratch : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new DamageVar(2m, ValueProp.Move),
-            new DynamicVar("Hits", 3m)
+            new DynamicVar("Hits", 4m)
         ];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("flurry_scratch");
 
     public FlurryScratch()
-        : base(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies, autoAdd: false)
+        : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies, autoAdd: false)
     {
     }
 

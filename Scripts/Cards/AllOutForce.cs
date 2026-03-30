@@ -19,7 +19,7 @@ public sealed class AllOutForce : CustomCardModel
         BigDogHoverTips.FromWantChew(base.DynamicVars["WantChew"]);
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new WantChewVar(20m)];
+        [new WantChewVar(24m)];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("all_out_force");
 
@@ -35,6 +35,6 @@ public sealed class AllOutForce : CustomCardModel
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars["WantChew"].UpgradeValueBy(10m);
+        base.DynamicVars["WantChew"].UpgradeValueBy(12m);
     }
 }

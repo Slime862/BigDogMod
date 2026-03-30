@@ -171,7 +171,7 @@
   "BERSERKER_DOG.title": "狂战士狗",
   "CHEW_AT_WILL.description": "抽到[gold]大狗嚼[/gold]时，自动打出。",
   "CHEW_AT_WILL.title": "想嚼就嚼",
-  "COWARD_DOG.description": "所有具有[gold]想嚼[/gold]的牌，其想嚼变为0。获得{WildnessPower:diff()}层[gold]野性[/gold]。",
+  "COWARD_DOG.description": "所有具有[gold]想嚼[/gold]的攻击牌，其想嚼变为0。获得{WildnessPower:diff()}层[gold]野性[/gold]。",
   "COWARD_DOG.title": "胆小狗",
   "PROOF_OF_DEATH.description": "造成目标[gold]流血[/gold]层数2倍的伤害。如果其死亡，获得{Energy:diff()}点能量。",
   "PROOF_OF_DEATH.title": "死亡证明",

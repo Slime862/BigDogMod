@@ -35,7 +35,7 @@ public sealed class BloodDrink : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new BlockVar(4m, ValueProp.Move),
-            new DynamicVar("BlockPerBleed", 2m)
+            new DynamicVar("BlockPerBleed", 3m)
         ];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("blood_drink");
@@ -57,6 +57,6 @@ public sealed class BloodDrink : CustomCardModel
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars["BlockPerBleed"].UpgradeValueBy(1m);
+        base.DynamicVars["BlockPerBleed"].UpgradeValueBy(2m);
     }
 }

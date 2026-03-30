@@ -23,7 +23,7 @@ public sealed class ForceAwaken : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new PowerVar<BleedingPower>(1m),
-            new EnergyVar(1)
+            new EnergyVar(2)
         ];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("force_awaken");

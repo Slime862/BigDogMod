@@ -30,7 +30,7 @@ public sealed class PiercingScreech : CustomCardModel, IBigDogChewPrepSource
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("piercing_screech");
 
     public PiercingScreech()
-        : base(1, CardType.Skill, CardRarity.Common, TargetType.AllEnemies, autoAdd: false)
+        : base(0, CardType.Skill, CardRarity.Common, TargetType.AllEnemies, autoAdd: false)
     {
     }
 
@@ -52,6 +52,6 @@ public sealed class PiercingScreech : CustomCardModel, IBigDogChewPrepSource
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars["BleedingPower"].UpgradeValueBy(1m);
+        base.DynamicVars["BleedingPower"].UpgradeValueBy(2m);
     }
 }

@@ -54,6 +54,6 @@ public sealed class MightyBlow : CustomCardModel
     protected override void OnUpgrade()
     {
         base.DynamicVars.Damage.UpgradeValueBy(3m);
-        base.DynamicVars["BleedingPower"].UpgradeValueBy(1m);
+        base.DynamicVars["BleedingPower"].UpgradeValueBy(2m);
     }
 }

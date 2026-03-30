@@ -45,24 +45,22 @@ public sealed class Bloodthirst : CustomCardModel
             return;
         }
 
+        if (cardPlay.Target.HasPower<BleedingPower>())
+        {
+            decimal amount = base.DynamicVars["WildnessPower"].BaseValue;
+            await PowerCmd.Apply<WildnessPower>(base.Owner.Creature, amount, base.Owner.Creature, this);
+            base.Owner.Creature.GetPower<WildnessPower>()?.AddTemporaryAmount(amount);
+        }
+
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue)
             .FromCard(this)
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
-
-        if (!cardPlay.Target.HasPower<BleedingPower>())
-        {
-            return;
-        }
-
-        decimal amount = base.DynamicVars["WildnessPower"].BaseValue;
-        await PowerCmd.Apply<WildnessPower>(base.Owner.Creature, amount, base.Owner.Creature, this);
-        base.Owner.Creature.GetPower<WildnessPower>()?.AddTemporaryAmount(amount);
     }
 
     protected override void OnUpgrade()
     {
         base.DynamicVars.Damage.UpgradeValueBy(2m);
-        base.DynamicVars["WildnessPower"].UpgradeValueBy(1m);
+        base.DynamicVars["WildnessPower"].UpgradeValueBy(2m);
     }
 }

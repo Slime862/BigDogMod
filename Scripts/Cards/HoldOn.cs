@@ -24,7 +24,7 @@ public sealed class HoldOn : CustomCardModel
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("hold_on");
 
     public HoldOn()
-        : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
+        : base(1, CardType.Skill, CardRarity.Common, TargetType.Self, autoAdd: false)
     {
     }
 

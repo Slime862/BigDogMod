@@ -19,7 +19,7 @@ public sealed class FocusedForce : CustomCardModel
         BigDogHoverTips.FromWantChew(base.DynamicVars["WantChew"]);
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new WantChewVar(9m)];
+        [new WantChewVar(12m)];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("focused_force");
 
@@ -35,6 +35,6 @@ public sealed class FocusedForce : CustomCardModel
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars["WantChew"].UpgradeValueBy(5m);
+        base.DynamicVars["WantChew"].UpgradeValueBy(8m);
     }
 }
