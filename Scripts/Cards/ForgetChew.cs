@@ -6,27 +6,20 @@ using BigDogMod.Scripts.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace BigDogMod.Scripts.Cards;
 
-public sealed class MightyBlow : CustomCardModel
+public sealed class ForgetChew : CustomCardModel
 {
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        [HoverTipFactory.FromPower<BleedingPower>()];
-
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [
-            new DamageVar(9m, ValueProp.Move),
-            new PowerVar<BleedingPower>(3m)
-        ];
+        [new DamageVar(28m, ValueProp.Move)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("mighty_blow");
+    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("forget_chew");
 
-    public MightyBlow()
+    public ForgetChew()
         : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, autoAdd: false)
     {
     }
@@ -42,11 +35,11 @@ public sealed class MightyBlow : CustomCardModel
             .FromCard(this)
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
-        await PowerCmd.Apply<BleedingPower>(cardPlay.Target, base.DynamicVars["BleedingPower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<ForgetChewPower>(base.Owner.Creature, 3m, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Damage.UpgradeValueBy(3m);
+        base.DynamicVars.Damage.UpgradeValueBy(8m);
     }
 }

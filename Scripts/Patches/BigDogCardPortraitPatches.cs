@@ -62,7 +62,7 @@ public static class BigDogCardPortraitPathPatch
         if (__instance is BleedOut or BloodDrink or ForceAwaken or VigilantHowl or IntimidatingHowl or PiercingScreech or WarmUpVoice
             or SustainedCharge or AllOutForce or FocusedForce or DauntingHowl or PanicScamper or FriendlyHowlFlow
             or AdmireVictory or Prelude or TailWag or Forget or LickWounds or JoyOfRegen or DogSage or ForcedDefense
-            or BerserkerDog or ChewAtWill or CowardDog or EndlessBleeding or WiseHowl or HoldOn
+            or BerserkerDog or SharkDog or ChewAtWill or CowardDog or BluesDog or EndlessBleeding or WiseHowl or HoldOn
             or FearlessBeast or FullyPrepared or FrenziedGrowth)
         {
             __result = ModelDb.Card<DefendSilent>().PortraitPath;
@@ -75,7 +75,7 @@ public static class BigDogCardPortraitPathPatch
             return false;
         }
 
-        if (__instance is Feint or Bloodthirst or FlurryScratch or RipOpen or ProofOfDeath or MightyBlow)
+        if (__instance is Feint or Bloodthirst or FlurryScratch or RipOpen or ProofOfDeath or MightyBlow or ForgetChew)
         {
             __result = ModelDb.Card<StrikeSilent>().PortraitPath;
             return false;
@@ -141,7 +141,7 @@ public static class BigDogCardBetaPortraitPathPatch
         if (__instance is BleedOut or BloodDrink or ForceAwaken or VigilantHowl or IntimidatingHowl or PiercingScreech or WarmUpVoice
             or SustainedCharge or AllOutForce or FocusedForce or DauntingHowl or PanicScamper or FriendlyHowlFlow
             or AdmireVictory or Prelude or TailWag or Forget or LickWounds or JoyOfRegen or DogSage or ForcedDefense
-            or BerserkerDog or ChewAtWill or CowardDog or EndlessBleeding or WiseHowl or HoldOn
+            or BerserkerDog or SharkDog or ChewAtWill or CowardDog or BluesDog or EndlessBleeding or WiseHowl or HoldOn
             or FearlessBeast or FullyPrepared or FrenziedGrowth)
         {
             __result = ModelDb.Card<DefendSilent>().BetaPortraitPath;
@@ -154,7 +154,7 @@ public static class BigDogCardBetaPortraitPathPatch
             return false;
         }
 
-        if (__instance is Feint or Bloodthirst or FlurryScratch or RipOpen or ProofOfDeath or MightyBlow)
+        if (__instance is Feint or Bloodthirst or FlurryScratch or RipOpen or ProofOfDeath or MightyBlow or ForgetChew)
         {
             __result = ModelDb.Card<StrikeSilent>().BetaPortraitPath;
             return false;

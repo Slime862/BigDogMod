@@ -17,6 +17,9 @@ namespace BigDogMod.Scripts.Cards;
 public sealed class BigDogChew : CustomCardModel
 {
     private decimal _extraDamageFromWantChew;
+    protected override bool IsPlayable => base.Owner.Creature.GetPower<ForgetChewPower>() == null;
+
+    protected override bool ShouldGlowRedInternal => !IsPlayable;
 
     public decimal CurrentDamage => base.DynamicVars.Damage.BaseValue;
 

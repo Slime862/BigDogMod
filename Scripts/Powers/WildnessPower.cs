@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
+using BigDogMod.Scripts.Cards;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -41,6 +42,11 @@ public sealed class WildnessPower : CustomPowerModel
         if (!props.HasFlag(ValueProp.Move) || props.HasFlag(ValueProp.Unpowered))
         {
             return 0m;
+        }
+
+        if (cardSource is MightyBlow or ForgetChew)
+        {
+            return base.Amount * 2m;
         }
 
         return base.Amount;

@@ -1,11 +1,7 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using BaseLib.Abstracts;
+﻿using BaseLib.Abstracts;
 using BigDogMod.Scripts.Cards;
-using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
 namespace BigDogMod.Scripts.Powers;
@@ -16,19 +12,15 @@ public sealed class ChewAtWillPower : CustomPowerModel
 
     public override PowerStackType StackType => PowerStackType.Single;
 
-    public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
+    public override bool TryModifyEnergyCostInCombat(CardModel card, decimal originalCost, out decimal modifiedCost)
     {
-        if (card.Owner != base.Owner.Player || card is not BigDogChew || card.CombatState == null)
+        modifiedCost = originalCost;
+        if (card.Owner.Creature != base.Owner || card is not BigDogChew)
         {
-            return;
+            return false;
         }
 
-        if (!card.CombatState.HittableEnemies.Any())
-        {
-            return;
-        }
-
-        Flash();
-        await CardCmd.AutoPlay(choiceContext, card, null);
+        modifiedCost = 0m;
+        return true;
     }
 }

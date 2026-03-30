@@ -51,8 +51,11 @@ public static class Entry
         ModHelper.AddModelToPool<BigDogCardPool, DogSage>();
         ModHelper.AddModelToPool<BigDogCardPool, ForcedDefense>();
         ModHelper.AddModelToPool<BigDogCardPool, BerserkerDog>();
+        ModHelper.AddModelToPool<BigDogCardPool, SharkDog>();
         ModHelper.AddModelToPool<BigDogCardPool, ChewAtWill>();
+        ModHelper.AddModelToPool<BigDogCardPool, ForgetChew>();
         ModHelper.AddModelToPool<BigDogCardPool, CowardDog>();
+        ModHelper.AddModelToPool<BigDogCardPool, BluesDog>();
         ModHelper.AddModelToPool<BigDogCardPool, ProofOfDeath>();
         ModHelper.AddModelToPool<BigDogCardPool, WiseHowl>();
         ModHelper.AddModelToPool<BigDogCardPool, PetrifiedSkin>();

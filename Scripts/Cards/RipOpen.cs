@@ -33,7 +33,7 @@ public sealed class RipOpen : CustomCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        int hits = ResolveEnergyXValue();
+        int hits = ResolveEnergyXValue() + 1 + (base.IsUpgraded ? 1 : 0);
         if (base.CombatState == null)
         {
             return;
@@ -53,6 +53,5 @@ public sealed class RipOpen : CustomCardModel
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars["BleedingPower"].UpgradeValueBy(3m);
     }
 }

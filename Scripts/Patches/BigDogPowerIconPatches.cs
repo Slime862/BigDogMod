@@ -67,6 +67,11 @@ internal static class BigDogPowerIconHelper
             return ModelDb.Power<RitualPower>().PackedIconPath;
         }
 
+        if (power is SharkDogPower)
+        {
+            return ModelDb.Power<InfiniteBladesPower>().PackedIconPath;
+        }
+
         if (power is ChewAtWillPower)
         {
             return ModelDb.Power<DoubleDamagePower>().PackedIconPath;
@@ -75,6 +80,16 @@ internal static class BigDogPowerIconHelper
         if (power is CowardDogPower)
         {
             return ModelDb.Power<WeakPower>().PackedIconPath;
+        }
+
+        if (power is ForgetChewPower)
+        {
+            return ModelDb.Power<WeakPower>().PackedIconPath;
+        }
+
+        if (power is BluesDogPower)
+        {
+            return ModelDb.Power<BufferPower>().PackedIconPath;
         }
 
         if (power is EndlessBleedingPower)
@@ -162,6 +177,11 @@ internal static class BigDogPowerIconHelper
             return ModelDb.Power<RitualPower>().ResolvedBigIconPath;
         }
 
+        if (power is SharkDogPower)
+        {
+            return ModelDb.Power<InfiniteBladesPower>().ResolvedBigIconPath;
+        }
+
         if (power is ChewAtWillPower)
         {
             return ModelDb.Power<DoubleDamagePower>().ResolvedBigIconPath;
@@ -170,6 +190,16 @@ internal static class BigDogPowerIconHelper
         if (power is CowardDogPower)
         {
             return ModelDb.Power<WeakPower>().ResolvedBigIconPath;
+        }
+
+        if (power is ForgetChewPower)
+        {
+            return ModelDb.Power<WeakPower>().ResolvedBigIconPath;
+        }
+
+        if (power is BluesDogPower)
+        {
+            return ModelDb.Power<BufferPower>().ResolvedBigIconPath;
         }
 
         if (power is EndlessBleedingPower)

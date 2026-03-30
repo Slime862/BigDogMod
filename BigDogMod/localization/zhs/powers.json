@@ -1,4 +1,4 @@
-{
+﻿{
     "BIGDOGMOD-BEL_CANTO_HOWL_POWER.description":  "打出带有[gold]叫[/gold]标签的牌时，额外打出一次。",
     "BIGDOGMOD-BEL_CANTO_HOWL_POWER.title":  "美声叫法",
     "BIGDOGMOD-BIG_DOG_CHEW_PREP_POWER.description":  "下次[gold]大狗嚼[/gold]获得：{EffectsText}",
@@ -26,9 +26,9 @@
     "BIGDOGMOD-PRELUDE_POWER.title":  "前奏",
     "BIGDOGMOD-DOG_SAGE_POWER.description":  "每回合第一次打出带有[gold]叫[/gold]标签的牌时，抽{Amount}张牌。",
     "BIGDOGMOD-DOG_SAGE_POWER.title":  "狗中贤者",
-    "BIGDOGMOD-BERSERKER_DOG_POWER.description":  "每回合结束时获得{Amount}层[gold]流血[/gold]。每个回合开始时获得{EnergyPerTurn}点能量。",
+    "BIGDOGMOD-BERSERKER_DOG_POWER.description":  "造成伤害时，获得等同于伤害量的格挡。",
     "BIGDOGMOD-BERSERKER_DOG_POWER.title":  "狂战士狗",
-    "BIGDOGMOD-CHEW_AT_WILL_POWER.description":  "抽到[gold]大狗嚼[/gold]时，自动打出。",
+    "BIGDOGMOD-CHEW_AT_WILL_POWER.description":  "[gold]大狗嚼[/gold]变为0费。",
     "BIGDOGMOD-CHEW_AT_WILL_POWER.title":  "想嚼就嚼",
     "BIGDOGMOD-COWARD_DOG_POWER.description":  "所有具有[gold]想嚼[/gold]的牌，其想嚼变为0。",
     "BIGDOGMOD-COWARD_DOG_POWER.title":  "胆小狗",
@@ -65,9 +65,9 @@
     "PRELUDE_POWER.title":  "前奏",
     "DOG_SAGE_POWER.description":  "每回合第一次打出带有[gold]叫[/gold]标签的牌时，抽{Amount}张牌。",
     "DOG_SAGE_POWER.title":  "狗中贤者",
-    "BERSERKER_DOG_POWER.description":  "每回合结束时获得{Amount}层[gold]流血[/gold]。每个回合开始时获得{EnergyPerTurn}点能量。",
+    "BERSERKER_DOG_POWER.description":  "造成伤害时，获得等同于伤害量的格挡。",
     "BERSERKER_DOG_POWER.title":  "狂战士狗",
-    "CHEW_AT_WILL_POWER.description":  "抽到[gold]大狗嚼[/gold]时，自动打出。",
+    "CHEW_AT_WILL_POWER.description":  "[gold]大狗嚼[/gold]变为0费。",
     "CHEW_AT_WILL_POWER.title":  "想嚼就嚼",
     "COWARD_DOG_POWER.description":  "所有具有[gold]想嚼[/gold]的牌，其想嚼变为0。",
     "COWARD_DOG_POWER.title":  "胆小狗",
@@ -76,5 +76,17 @@
     "PETRIFIED_SKIN_POWER.description":  "你自身的[gold]流血[/gold]改为造成伤害而非失去生命值。",
     "PETRIFIED_SKIN_POWER.title":  "石化皮肤",
     "BLEEDING_GUARD_POWER.description":  "本回合结束时，免疫[gold]流血[/gold]伤害。",
-    "BLEEDING_GUARD_POWER.title":  "强撑"
+    "BLEEDING_GUARD_POWER.title":  "强撑",
+    "BIGDOGMOD-SHARK_DOG_POWER.title":  "鲨狗",
+    "BIGDOGMOD-SHARK_DOG_POWER.description":  "回合开始时，获得敌人中[gold]流血[/gold]最多者相同数量的[gold]想嚼[/gold]。",
+    "BIGDOGMOD-FORGET_CHEW_POWER.title":  "忘嚼了",
+    "BIGDOGMOD-FORGET_CHEW_POWER.description":  "无法打出[gold]大狗嚼[/gold]。剩余{Amount}回合。",
+    "BIGDOGMOD-BLUES_DOG_POWER.title":  "布鲁斯狗",
+    "BIGDOGMOD-BLUES_DOG_POWER.description":  "格挡时，获得等同于格挡量的[gold]想嚼[/gold]。",
+    "SHARK_DOG_POWER.title":  "鲨狗",
+    "SHARK_DOG_POWER.description":  "回合开始时，获得敌人中[gold]流血[/gold]最多者相同数量的[gold]想嚼[/gold]。",
+    "FORGET_CHEW_POWER.title":  "忘嚼了",
+    "FORGET_CHEW_POWER.description":  "无法打出[gold]大狗嚼[/gold]。剩余{Amount}回合。",
+    "BLUES_DOG_POWER.title":  "布鲁斯狗",
+    "BLUES_DOG_POWER.description":  "格挡时，获得等同于格挡量的[gold]想嚼[/gold]。"
 }
