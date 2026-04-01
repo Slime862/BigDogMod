@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace BigDogMod.Scripts.Cards;
@@ -15,7 +16,7 @@ namespace BigDogMod.Scripts.Cards;
 public sealed class ForgetChew : CustomCardModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new DamageVar(28m, ValueProp.Move)];
+        [new DamageVar(16m, ValueProp.Move)];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("forget_chew");
 
@@ -36,6 +37,7 @@ public sealed class ForgetChew : CustomCardModel
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
         await PowerCmd.Apply<ForgetChewPower>(base.Owner.Creature, 3m, base.Owner.Creature, this);
+        await PowerCmd.Apply<StrengthPower>(base.Owner.Creature, -2m, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace BigDogMod.Scripts.Cards;
@@ -43,6 +44,7 @@ public sealed class MightyBlow : CustomCardModel
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
         await PowerCmd.Apply<BleedingPower>(cardPlay.Target, base.DynamicVars["BleedingPower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<MightyBlowStrengthDownPower>(base.Owner.Creature, 3m, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

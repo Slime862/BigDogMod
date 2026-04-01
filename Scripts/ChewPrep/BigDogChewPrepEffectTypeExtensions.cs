@@ -27,6 +27,7 @@ public static class BigDogChewPrepEffectTypeExtensions
             BigDogChewPrepEffectType.Bleeding => "bleedingLine",
             BigDogChewPrepEffectType.Draw => "drawLine",
             BigDogChewPrepEffectType.Energy => "energyLine",
+            BigDogChewPrepEffectType.RepeatPlay => "repeatPlayLine",
             _ => effectType.ToString().ToLowerInvariant() + "Line"
         };
     }

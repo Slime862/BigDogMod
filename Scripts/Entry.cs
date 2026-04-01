@@ -66,6 +66,7 @@ public static class Entry
         ModHelper.AddModelToPool<BigDogCardPool, FullyPrepared>();
         ModHelper.AddModelToPool<BigDogCardPool, FrenziedGrowth>();
         ModHelper.AddModelToPool<TokenCardPool, BigDogChew>();
+        ModHelper.AddModelToPool<TokenCardPool, BigDogFakeChew>();
 
         var harmony = new Harmony("sts2.bigdog.mod");
         harmony.PatchAll();

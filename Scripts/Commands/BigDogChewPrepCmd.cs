@@ -43,7 +43,7 @@ public static class BigDogChewPrepCmd
         power?.AddEffects(effectList);
     }
 
-    public static async Task Resolve(PlayerChoiceContext choiceContext, BigDogChew targetCard, Creature target, Player owner)
+    public static async Task Resolve(PlayerChoiceContext choiceContext, CardModel targetCard, Creature target, Player owner, bool consume = true)
     {
         BigDogChewPrepPower? power = owner.Creature.GetPower<BigDogChewPrepPower>();
         if (power == null || !power.HasAnyEffects)
@@ -51,7 +51,7 @@ public static class BigDogChewPrepCmd
             return;
         }
 
-        IReadOnlyList<BigDogChewPrepEffect> effects = power.ConsumeAll();
+        IReadOnlyList<BigDogChewPrepEffect> effects = consume ? power.ConsumeAll() : power.SnapshotAll();
         foreach (BigDogChewPrepEffect effect in effects)
         {
             if (effect.Amount <= 0)
@@ -100,9 +100,14 @@ public static class BigDogChewPrepCmd
                 case BigDogChewPrepEffectType.Energy:
                     await PlayerCmd.GainEnergy(effect.Amount, owner);
                     break;
+                case BigDogChewPrepEffectType.RepeatPlay:
+                    break;
             }
         }
 
-        await PowerCmd.Remove(power);
+        if (consume)
+        {
+            await PowerCmd.Remove(power);
+        }
     }
 }

@@ -92,6 +92,11 @@ internal static class BigDogPowerIconHelper
             return ModelDb.Power<BufferPower>().PackedIconPath;
         }
 
+        if (power is MightyBlowStrengthDownPower)
+        {
+            return ModelDb.Power<StrengthPower>().PackedIconPath;
+        }
+
         if (power is EndlessBleedingPower)
         {
             return ModelDb.Power<PoisonPower>().PackedIconPath;
@@ -200,6 +205,11 @@ internal static class BigDogPowerIconHelper
         if (power is BluesDogPower)
         {
             return ModelDb.Power<BufferPower>().ResolvedBigIconPath;
+        }
+
+        if (power is MightyBlowStrengthDownPower)
+        {
+            return ModelDb.Power<StrengthPower>().ResolvedBigIconPath;
         }
 
         if (power is EndlessBleedingPower)

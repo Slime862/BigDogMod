@@ -35,10 +35,10 @@ public static class BigDogCardPortraitPathPatch
             return false;
         }
 
-        if (__instance is BigDogChew)
+        if (__instance is BigDogChew or BigDogFakeChew)
         {
-            __result = BigDogAssetPaths.Exists(BigDogAssetPaths.CardPortrait("big_dog_chew"))
-                ? BigDogAssetPaths.CardPortrait("big_dog_chew")
+            __result = BigDogAssetPaths.Exists(BigDogAssetPaths.CardPortrait(__instance is BigDogFakeChew ? "big_dog_fake_chew" : "big_dog_chew"))
+                ? BigDogAssetPaths.CardPortrait(__instance is BigDogFakeChew ? "big_dog_fake_chew" : "big_dog_chew")
                 : ModelDb.Card<StrikeSilent>().PortraitPath;
             return false;
         }
@@ -114,10 +114,10 @@ public static class BigDogCardBetaPortraitPathPatch
             return false;
         }
 
-        if (__instance is BigDogChew)
+        if (__instance is BigDogChew or BigDogFakeChew)
         {
-            __result = BigDogAssetPaths.Exists(BigDogAssetPaths.CardBetaPortrait("big_dog_chew"))
-                ? BigDogAssetPaths.CardBetaPortrait("big_dog_chew")
+            __result = BigDogAssetPaths.Exists(BigDogAssetPaths.CardBetaPortrait(__instance is BigDogFakeChew ? "big_dog_fake_chew" : "big_dog_chew"))
+                ? BigDogAssetPaths.CardBetaPortrait(__instance is BigDogFakeChew ? "big_dog_fake_chew" : "big_dog_chew")
                 : ModelDb.Card<StrikeSilent>().BetaPortraitPath;
             return false;
         }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using BigDogMod.Scripts.Assets;
@@ -51,6 +52,11 @@ public sealed class BigDogChew : CustomCardModel
             .Targeting(cardPlay.Target)
             //.WithHitFx("vfx/vfx_bite")
             .Execute(choiceContext);
+
+        foreach (AdmireVictory admireVictory in base.Owner.PlayerCombatState?.AllCards.OfType<AdmireVictory>() ?? [])
+        {
+            admireVictory.EnergyCost.SetThisTurnOrUntilPlayed(0);
+        }
 
         await BigDogChewPrepCmd.Resolve(choiceContext, this, cardPlay.Target, base.Owner);
     }

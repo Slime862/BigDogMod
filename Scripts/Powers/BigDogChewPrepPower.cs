@@ -3,10 +3,12 @@ using System.Linq;
 using BaseLib.Abstracts;
 using BigDogMod.Scripts.Cards;
 using BigDogMod.Scripts.ChewPrep;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Rooms;
 
@@ -77,6 +79,24 @@ public sealed class BigDogChewPrepPower : CustomPowerModel
         List<BigDogChewPrepEffect> snapshot = ActiveEffects().ToList();
         _effects.Clear();
         return snapshot;
+    }
+
+    public IReadOnlyList<BigDogChewPrepEffect> SnapshotAll()
+    {
+        return ActiveEffects().ToList();
+    }
+
+    public override int ModifyCardPlayCount(CardModel card, Creature? target, int playCount)
+    {
+        if (card.Owner.Creature != base.Owner || card is not BigDogChew)
+        {
+            return playCount;
+        }
+
+        int repeatCount = ActiveEffects()
+            .Where(effect => effect.Type == BigDogChewPrepEffectType.RepeatPlay)
+            .Sum(effect => effect.Amount);
+        return playCount + repeatCount;
     }
 
     public override Task AfterCombatEnd(CombatRoom room)
