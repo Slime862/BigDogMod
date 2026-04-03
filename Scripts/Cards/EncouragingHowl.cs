@@ -52,9 +52,13 @@ public sealed class EncouragingHowl : CustomCardModel
         }
 
         int extraStrength = base.Owner.Creature.GetPowerAmount<WildnessPower>();
-        if (extraStrength != 0)
+        if (extraStrength > 0)
         {
-            await PowerCmd.Apply<StrengthPower>(base.Owner.Creature, extraStrength, base.Owner.Creature, this);
+            await PowerCmd.Apply<EncouragingHowlTemporaryStrengthPower>(base.Owner.Creature, extraStrength, base.Owner.Creature, this);
+        }
+        else if (extraStrength < 0)
+        {
+            await PowerCmd.Apply<EncouragingHowlTemporaryStrengthDownPower>(base.Owner.Creature, -extraStrength, base.Owner.Creature, this);
         }
     }
 

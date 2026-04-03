@@ -108,7 +108,7 @@ public static class BigDogChewPrepCmd
             }
         }
 
-        if (consume)
+        if (consume && !owner.Creature.HasPower<LingeringEchoPower>())
         {
             await PowerCmd.Remove(power);
         }
