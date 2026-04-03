@@ -52,6 +52,6 @@ public sealed class PiercingScreech : CustomCardModel, IBigDogChewPrepSource
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars["BleedingPower"].UpgradeValueBy(2m);
+        base.DynamicVars["BleedingPower"].UpgradeValueBy(1m);
     }
 }
