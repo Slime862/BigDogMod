@@ -17,7 +17,7 @@ public sealed class Feint : CustomCardModel
         new IHoverTip[] { HoverTipFactory.FromKeyword(CardKeyword.Retain) }
             .Concat(HoverTipFactory.FromCardWithCardHoverTips<BigDogFakeChew>());
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("feint");
 
@@ -34,6 +34,6 @@ public sealed class Feint : CustomCardModel
 
     protected override void OnUpgrade()
     {
-        base.EnergyCost.UpgradeBy(-1);
+        RemoveKeyword(CardKeyword.Exhaust);
     }
 }

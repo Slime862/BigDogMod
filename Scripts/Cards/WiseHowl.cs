@@ -26,7 +26,7 @@ public sealed class WiseHowl : CustomCardModel, IBigDogChewPrepSource
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("wise_howl");
 
     public WiseHowl()
-        : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
+        : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
     {
     }
 

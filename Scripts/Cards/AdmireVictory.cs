@@ -23,8 +23,8 @@ public sealed class AdmireVictory : CustomCardModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new BlockVar(9m, ValueProp.Move),
-            new PowerVar<WildnessPower>(3m)
+            new BlockVar(7m, ValueProp.Move),
+            new PowerVar<WildnessPower>(2m)
         ];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("admire_victory");

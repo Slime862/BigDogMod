@@ -36,11 +36,11 @@ public sealed class HeavenlyHowl : CustomCardModel, IBigDogChewPrepSource
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new WantChewVar(6m),
-            new CardsVar(2),
+            new WantChewVar(3m),
+            new CardsVar(1),
             new EnergyVar(1),
             new PowerVar<WeakPower>(1m),
-            new BlockVar(9m, ValueProp.Move)
+            new BlockVar(7m, ValueProp.Move)
         ];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("heavenly_howl");
@@ -66,7 +66,7 @@ public sealed class HeavenlyHowl : CustomCardModel, IBigDogChewPrepSource
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars["WantChew"].UpgradeValueBy(2m);
+        base.DynamicVars["WantChew"].UpgradeValueBy(3m);
         base.DynamicVars.Cards.UpgradeValueBy(1m);
         base.DynamicVars.Energy.UpgradeValueBy(1m);
         base.DynamicVars["WeakPower"].UpgradeValueBy(1m);
