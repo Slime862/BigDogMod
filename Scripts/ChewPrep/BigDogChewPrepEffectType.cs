@@ -8,5 +8,6 @@ public enum BigDogChewPrepEffectType
     Bleeding,
     Draw,
     Energy,
-    RepeatPlay
+    RepeatPlay,
+    WantChew
 }

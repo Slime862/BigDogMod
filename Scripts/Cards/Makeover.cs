@@ -33,7 +33,9 @@ public sealed class Makeover : CustomCardModel
             return;
         }
 
-        await PowerCmd.ModifyAmount(power, -power.Amount, base.Owner.Creature, this);
+        decimal delta = -power.Amount * 2m;
+        await PowerCmd.ModifyAmount(power, delta, base.Owner.Creature, this);
+        base.Owner.Creature.GetPower<WildnessPower>()?.AddTemporaryAmount(delta);
     }
 
     protected override void OnUpgrade()

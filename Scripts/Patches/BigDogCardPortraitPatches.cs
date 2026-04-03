@@ -63,19 +63,20 @@ public static class BigDogCardPortraitPathPatch
             or SustainedCharge or AllOutForce or FocusedForce or DauntingHowl or PanicScamper or FriendlyHowlFlow
             or AdmireVictory or Prelude or TailWag or Forget or LickWounds or JoyOfRegen or DogSage or ForcedDefense
             or BerserkerDog or SharkDog or ChewAtWill or CowardDog or BluesDog or EndlessBleeding or WiseHowl or HoldOn
-            or FearlessBeast or FullyPrepared or FrenziedGrowth)
+            or FearlessBeast or FullyPrepared or FrenziedGrowth or HeavenlyHowl or Coagulate or PainIntoPower
+            or SuddenRampage or LingeringEcho or EncouragingHowl)
         {
             __result = ModelDb.Card<DefendSilent>().PortraitPath;
             return false;
         }
 
-        if (__instance is BloodlettingSlot or Cuteify or BelCantoHowl or HighSongForm or Makeover or PetrifiedSkin)
+        if (__instance is BloodlettingSlot or Cuteify or BelCantoHowl or HighSongForm or Makeover or PetrifiedSkin or HellhoundIncarnation or OffenseAndDefense or LoyalFriend)
         {
             __result = ModelDb.Card<Survivor>().PortraitPath;
             return false;
         }
 
-        if (__instance is Feint or Bloodthirst or FlurryScratch or RipOpen or ProofOfDeath or MightyBlow or ForgetChew)
+        if (__instance is Feint or Bloodthirst or FlurryScratch or RipOpen or ProofOfDeath or MightyBlow or ForgetChew or BackDigging)
         {
             __result = ModelDb.Card<StrikeSilent>().PortraitPath;
             return false;
@@ -142,19 +143,20 @@ public static class BigDogCardBetaPortraitPathPatch
             or SustainedCharge or AllOutForce or FocusedForce or DauntingHowl or PanicScamper or FriendlyHowlFlow
             or AdmireVictory or Prelude or TailWag or Forget or LickWounds or JoyOfRegen or DogSage or ForcedDefense
             or BerserkerDog or SharkDog or ChewAtWill or CowardDog or BluesDog or EndlessBleeding or WiseHowl or HoldOn
-            or FearlessBeast or FullyPrepared or FrenziedGrowth)
+            or FearlessBeast or FullyPrepared or FrenziedGrowth or HeavenlyHowl or Coagulate or PainIntoPower
+            or SuddenRampage or LingeringEcho or EncouragingHowl)
         {
             __result = ModelDb.Card<DefendSilent>().BetaPortraitPath;
             return false;
         }
 
-        if (__instance is BloodlettingSlot or Cuteify or BelCantoHowl or HighSongForm or Makeover or PetrifiedSkin)
+        if (__instance is BloodlettingSlot or Cuteify or BelCantoHowl or HighSongForm or Makeover or PetrifiedSkin or HellhoundIncarnation or OffenseAndDefense or LoyalFriend)
         {
             __result = ModelDb.Card<Survivor>().BetaPortraitPath;
             return false;
         }
 
-        if (__instance is Feint or Bloodthirst or FlurryScratch or RipOpen or ProofOfDeath or MightyBlow or ForgetChew)
+        if (__instance is Feint or Bloodthirst or FlurryScratch or RipOpen or ProofOfDeath or MightyBlow or ForgetChew or BackDigging)
         {
             __result = ModelDb.Card<StrikeSilent>().BetaPortraitPath;
             return false;

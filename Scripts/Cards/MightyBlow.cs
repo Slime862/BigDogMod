@@ -22,7 +22,7 @@ public sealed class MightyBlow : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new DamageVar(9m, ValueProp.Move),
-            new PowerVar<BleedingPower>(3m)
+            new PowerVar<BleedingPower>(4m)
         ];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("mighty_blow");

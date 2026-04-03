@@ -54,7 +54,7 @@ public sealed class BleedingPower : CustomPowerModel
             return base.Owner.IsAlive;
         }
 
-        if (base.Owner.HasPower<BleedingGuardPower>())
+        if (base.Owner.HasPower<HellhoundFormPower>())
         {
             if (base.Owner.IsAlive)
             {
@@ -64,7 +64,8 @@ public sealed class BleedingPower : CustomPowerModel
             return base.Owner.IsAlive;
         }
 
-        ValueProp props = base.Owner.HasPower<PetrifiedSkinPower>()
+        bool canBlockBleeding = base.Owner.HasPower<BleedingGuardPower>() || base.Owner.HasPower<HellhoundFormPower>() || base.Owner.HasPower<PetrifiedSkinPower>();
+        ValueProp props = canBlockBleeding
             ? ValueProp.Unpowered
             : ValueProp.Unblockable | ValueProp.Unpowered;
 

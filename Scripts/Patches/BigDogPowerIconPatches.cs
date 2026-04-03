@@ -92,6 +92,26 @@ internal static class BigDogPowerIconHelper
             return ModelDb.Power<BufferPower>().PackedIconPath;
         }
 
+        if (power is LingeringEchoPower)
+        {
+            return ModelDb.Power<BufferPower>().PackedIconPath;
+        }
+
+        if (power is HellhoundFormPower)
+        {
+            return ModelDb.Power<PoisonPower>().PackedIconPath;
+        }
+
+        if (power is OffenseAndDefensePower)
+        {
+            return ModelDb.Power<PlatingPower>().PackedIconPath;
+        }
+
+        if (power is LoyalFriendPower)
+        {
+            return ModelDb.Power<RegenPower>().PackedIconPath;
+        }
+
         if (power is MightyBlowStrengthDownPower)
         {
             return ModelDb.Power<StrengthPower>().PackedIconPath;
@@ -205,6 +225,26 @@ internal static class BigDogPowerIconHelper
         if (power is BluesDogPower)
         {
             return ModelDb.Power<BufferPower>().ResolvedBigIconPath;
+        }
+
+        if (power is LingeringEchoPower)
+        {
+            return ModelDb.Power<BufferPower>().ResolvedBigIconPath;
+        }
+
+        if (power is HellhoundFormPower)
+        {
+            return ModelDb.Power<PoisonPower>().ResolvedBigIconPath;
+        }
+
+        if (power is OffenseAndDefensePower)
+        {
+            return ModelDb.Power<PlatingPower>().ResolvedBigIconPath;
+        }
+
+        if (power is LoyalFriendPower)
+        {
+            return ModelDb.Power<RegenPower>().ResolvedBigIconPath;
         }
 
         if (power is MightyBlowStrengthDownPower)

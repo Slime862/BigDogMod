@@ -36,19 +36,9 @@ public sealed class FullyPrepared : CustomCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if ((base.Owner.Creature.GetPower<BigDogChewPrepPower>()?.ActiveEffectTypeCount ?? 0) >= 3)
-        {
-            await WantChewCmd.WantChew(WantChewModifiers.GetEffectiveWantChewAmount(this, base.DynamicVars["WantChew"].BaseValue), base.Owner, this);
-            BigDogChew? chew = PileType.Draw.GetPile(base.Owner).Cards.OfType<BigDogChew>().FirstOrDefault()
-                ?? PileType.Discard.GetPile(base.Owner).Cards.OfType<BigDogChew>().FirstOrDefault();
-            if (chew != null)
-            {
-                await CardPileCmd.Add(chew, PileType.Hand);
-            }
-        }
+        await WantChewCmd.WantChew(WantChewModifiers.GetEffectiveWantChewAmount(this, base.DynamicVars["WantChew"].BaseValue), base.Owner, this);
+        await CardPileCmd.Draw(choiceContext, 1m, base.Owner);
     }
-
-    
 
     protected override void OnUpgrade()
     {

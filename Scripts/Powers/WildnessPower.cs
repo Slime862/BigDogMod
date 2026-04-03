@@ -71,6 +71,11 @@ public sealed class WildnessPower : CustomPowerModel
             return 0m;
         }
 
+        if (base.Owner.HasPower<OffenseAndDefensePower>() && base.Amount > 0m)
+        {
+            return 0m;
+        }
+
         return -base.Amount;
     }
 

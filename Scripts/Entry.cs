@@ -40,6 +40,16 @@ public static class Entry
         ModHelper.AddModelToPool<BigDogCardPool, FriendlyHowlFlow>();
         ModHelper.AddModelToPool<BigDogCardPool, AdmireVictory>();
         ModHelper.AddModelToPool<BigDogCardPool, Bloodthirst>();
+        ModHelper.AddModelToPool<BigDogCardPool, HeavenlyHowl>();
+        ModHelper.AddModelToPool<BigDogCardPool, Coagulate>();
+        ModHelper.AddModelToPool<BigDogCardPool, PainIntoPower>();
+        ModHelper.AddModelToPool<BigDogCardPool, SuddenRampage>();
+        ModHelper.AddModelToPool<BigDogCardPool, BackDigging>();
+        ModHelper.AddModelToPool<BigDogCardPool, LingeringEcho>();
+        ModHelper.AddModelToPool<BigDogCardPool, HellhoundIncarnation>();
+        ModHelper.AddModelToPool<BigDogCardPool, OffenseAndDefense>();
+        ModHelper.AddModelToPool<BigDogCardPool, EncouragingHowl>();
+        ModHelper.AddModelToPool<BigDogCardPool, LoyalFriend>();
         ModHelper.AddModelToPool<BigDogCardPool, Prelude>();
         ModHelper.AddModelToPool<BigDogCardPool, TailWag>();
         ModHelper.AddModelToPool<BigDogCardPool, Makeover>();

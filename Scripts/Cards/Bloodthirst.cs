@@ -27,14 +27,14 @@ public sealed class Bloodthirst : CustomCardModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new DamageVar(5m, ValueProp.Move),
+            new DamageVar(4m, ValueProp.Move),
             new PowerVar<WildnessPower>(2m)
         ];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("bloodthirst");
 
     public Bloodthirst()
-        : base(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy, autoAdd: false)
+        : base(0, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy, autoAdd: false)
     {
     }
 
@@ -60,7 +60,6 @@ public sealed class Bloodthirst : CustomCardModel
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Damage.UpgradeValueBy(2m);
         base.DynamicVars["WildnessPower"].UpgradeValueBy(2m);
     }
 }

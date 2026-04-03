@@ -14,7 +14,7 @@ namespace BigDogMod.Scripts.Cards;
 public sealed class Feint : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        [HoverTipFactory.FromKeyword(CardKeyword.Retain)]
+        new IHoverTip[] { HoverTipFactory.FromKeyword(CardKeyword.Retain) }
             .Concat(HoverTipFactory.FromCardWithCardHoverTips<BigDogFakeChew>());
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [];

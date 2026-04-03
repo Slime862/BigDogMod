@@ -12,29 +12,30 @@ using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace BigDogMod.Scripts.Cards;
 
-public sealed class CowardDog : CustomCardModel
+public sealed class HellhoundIncarnation : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        [HoverTipFactory.FromPower<WildnessPower>()];
+        [HoverTipFactory.FromPower<BleedingPower>()];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new PowerVar<WildnessPower>(-4m)];
+        [new PowerVar<BleedingPower>(1m)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("coward_dog");
+    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("hellhound_incarnation");
 
-    public CowardDog()
-        : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
+    public HellhoundIncarnation()
+        : base(2, CardType.Power, CardRarity.Rare, TargetType.Self, autoAdd: false)
     {
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<WildnessPower>(base.Owner.Creature, base.DynamicVars["WildnessPower"].BaseValue, base.Owner.Creature, this);
-        await PowerCmd.Apply<CowardDogPower>(base.Owner.Creature, 1m, base.Owner.Creature, this);
+        await PowerCmd.Apply<BleedingPower>(base.Owner.Creature, base.DynamicVars["BleedingPower"].BaseValue, base.Owner.Creature, this);
+        await CreatureCmd.SetCurrentHp(base.Owner.Creature, 1m);
+        await PowerCmd.Apply<HellhoundFormPower>(base.Owner.Creature, 1m, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars["WildnessPower"].UpgradeValueBy(-2m);
+        base.DynamicVars["BleedingPower"].UpgradeValueBy(2m);
     }
 }

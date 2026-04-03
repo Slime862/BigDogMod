@@ -102,6 +102,9 @@ public static class BigDogChewPrepCmd
                     break;
                 case BigDogChewPrepEffectType.RepeatPlay:
                     break;
+                case BigDogChewPrepEffectType.WantChew:
+                    await WantChewCmd.WantChew(effect.Amount, owner, targetCard);
+                    break;
             }
         }
 

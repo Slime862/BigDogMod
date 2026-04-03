@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BigDogMod.Scripts.Cards;
+using BigDogMod.Scripts.Powers;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -16,6 +17,11 @@ public static class WantChewCmd
     public static async Task<IEnumerable<BigDogChew>> WantChew(decimal amount, Player player, AbstractModel? source)
     {
         if (CombatManager.Instance.IsOverOrEnding)
+        {
+            return Array.Empty<BigDogChew>();
+        }
+
+        if (amount <= 0m || player.Creature.HasPower<CowardDogPower>())
         {
             return Array.Empty<BigDogChew>();
         }

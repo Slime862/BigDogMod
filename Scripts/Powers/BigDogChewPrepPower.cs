@@ -60,6 +60,11 @@ public sealed class BigDogChewPrepPower : CustomPowerModel
 
     public void AddEffects(IEnumerable<BigDogChewPrepEffect> effects)
     {
+        if (base.Owner.HasPower<LingeringEchoPower>())
+        {
+            return;
+        }
+
         foreach (BigDogChewPrepEffect effect in effects)
         {
             if (effect.Amount <= 0)
@@ -77,7 +82,10 @@ public sealed class BigDogChewPrepPower : CustomPowerModel
     public IReadOnlyList<BigDogChewPrepEffect> ConsumeAll()
     {
         List<BigDogChewPrepEffect> snapshot = ActiveEffects().ToList();
-        _effects.Clear();
+        if (!base.Owner.HasPower<LingeringEchoPower>())
+        {
+            _effects.Clear();
+        }
         return snapshot;
     }
 
