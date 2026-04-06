@@ -84,6 +84,8 @@ public static class Entry
         ModHelper.AddModelToPool<BigDogCardPool, EndlessBleeding>();
         ModHelper.AddModelToPool<BigDogCardPool, FullyPrepared>();
         ModHelper.AddModelToPool<BigDogCardPool, FrenziedGrowth>();
+        ModHelper.AddModelToPool<BigDogCardPool, AncientWildness>();
+        ModHelper.AddModelToPool<BigDogCardPool, WolfHowl>();
         ModHelper.AddModelToPool<EventCardPool, AncientWildness>();
         ModHelper.AddModelToPool<EventCardPool, WolfHowl>();
         ModHelper.AddModelToPool<TokenCardPool, BigDogChew>();
