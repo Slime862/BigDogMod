@@ -14,14 +14,12 @@ namespace BigDogMod.Scripts.Cards;
 public sealed class LingeringEcho : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        [HoverTipFactory.FromPower<BigDogChewPrepPower>(), HoverTipFactory.FromKeyword(CardKeyword.Exhaust)];
-
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+        [HoverTipFactory.FromPower<BigDogChewPrepPower>()];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("lingering_echo");
 
     public LingeringEcho()
-        : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self, autoAdd: false)
+        : base(1, CardType.Power, CardRarity.Rare, TargetType.Self, autoAdd: false)
     {
     }
 

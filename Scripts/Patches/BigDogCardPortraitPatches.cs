@@ -13,9 +13,20 @@ public static class BigDogCardPortraitFallbacks
     public static CardModel? GetFallbackCard(CardModel card)
     {
         if (card is StrikeBigDog or RendingBite or BigDogChew or BigDogFakeChew or BigDogHowl
-            or Feint or Bloodthirst or FlurryScratch or RipOpen or ProofOfDeath or MightyBlow or ForgetChew or BackDigging)
+            or Feint or Bloodthirst or FlurryScratch or RipOpen or ProofOfDeath or MightyBlow or ForgetChew or BackDigging
+            or AwakenImpulse)
         {
             return ModelDb.Card<StrikeSilent>();
+        }
+
+        if (card is AncientWildness)
+        {
+            return ModelDb.Card<Relax>();
+        }
+
+        if (card is WolfHowl)
+        {
+            return ModelDb.Card<TheSealedThrone>();
         }
 
         if (card is DefendBigDog or StokeWildness or BleedOut or BloodDrink or ForceAwaken or VigilantHowl or IntimidatingHowl
@@ -23,7 +34,7 @@ public static class BigDogCardPortraitFallbacks
             or FriendlyHowlFlow or AdmireVictory or Prelude or TailWag or Forget or LickWounds or JoyOfRegen or DogSage
             or ForcedDefense or BerserkerDog or SharkDog or ChewAtWill or CowardDog or BluesDog or EndlessBleeding
             or WiseHowl or HoldOn or FearlessBeast or FullyPrepared or FrenziedGrowth or HeavenlyHowl or Coagulate
-            or PainIntoPower or SuddenRampage or LingeringEcho or EncouragingHowl)
+            or PainIntoPower or SuddenRampage or LingeringEcho or EncouragingHowl or ResistImpulse or Impulse)
         {
             return ModelDb.Card<DefendSilent>();
         }
@@ -69,6 +80,7 @@ public static class BigDogCardPortraitFallbacks
 }
 
 [HarmonyPatch(typeof(CardModel), nameof(CardModel.PortraitPath), MethodType.Getter)]
+[HarmonyPriority(Priority.First)]
 public static class BigDogCardPortraitPathPatch
 {
     public static bool Prefix(CardModel __instance, ref string __result)
@@ -92,6 +104,7 @@ public static class BigDogCardPortraitPathPatch
 }
 
 [HarmonyPatch(typeof(CardModel), nameof(CardModel.BetaPortraitPath), MethodType.Getter)]
+[HarmonyPriority(Priority.First)]
 public static class BigDogCardBetaPortraitPathPatch
 {
     public static bool Prefix(CardModel __instance, ref string __result)
@@ -115,6 +128,7 @@ public static class BigDogCardBetaPortraitPathPatch
 }
 
 [HarmonyPatch(typeof(CardModel), nameof(CardModel.Portrait), MethodType.Getter)]
+[HarmonyPriority(Priority.First)]
 public static class BigDogCardPortraitTexturePatch
 {
     public static bool Prefix(CardModel __instance, ref Texture2D __result)

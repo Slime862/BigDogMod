@@ -22,7 +22,7 @@
     "BIGDOGMOD-WILDNESS_POWER.title":  "Wildness",
     "BIGDOGMOD-SUSTAINED_CHARGE_POWER.description":  "At the start of your turn, [gold]Want Chew[/gold] {WantChew}.",
     "BIGDOGMOD-SUSTAINED_CHARGE_POWER.title":  "Sustained Charge",
-    "BIGDOGMOD-HIGH_SONG_FORM_POWER.description":  "[gold]Big Dog Chew[/gold] damage no longer resets.",
+    "BIGDOGMOD-HIGH_SONG_FORM_POWER.description":  "[gold]Big Dog Chew[/gold] damage no longer resets and it loses [gold]Retain[/gold].",
     "BIGDOGMOD-HIGH_SONG_FORM_POWER.title":  "Chew Chew Chew Form",
     "BIGDOGMOD-PRELUDE_POWER.description":  "At the start of your next {Turns} turns, [gold]Want Chew[/gold] {WantChew}.",
     "BIGDOGMOD-PRELUDE_POWER.title":  "Prelude",
@@ -63,7 +63,7 @@
     "WILDNESS_POWER.title":  "Wildness",
     "SUSTAINED_CHARGE_POWER.description":  "At the start of your turn, [gold]Want Chew[/gold] {WantChew}.",
     "SUSTAINED_CHARGE_POWER.title":  "Sustained Charge",
-    "HIGH_SONG_FORM_POWER.description":  "[gold]Big Dog Chew[/gold] damage no longer resets.",
+    "HIGH_SONG_FORM_POWER.description":  "[gold]Big Dog Chew[/gold] damage no longer resets and it loses [gold]Retain[/gold].",
     "HIGH_SONG_FORM_POWER.title":  "Chew Chew Chew Form",
     "PRELUDE_POWER.description":  "At the start of your next {Turns} turns, [gold]Want Chew[/gold] {WantChew}.",
     "PRELUDE_POWER.title":  "Prelude",
@@ -108,5 +108,9 @@
     "OFFENSE_AND_DEFENSE_POWER.title":  "Offense and Defense",
     "OFFENSE_AND_DEFENSE_POWER.description":  "Your [gold]Wildness[/gold] no longer lowers the value of Block cards.",
     "LOYAL_FRIEND_POWER.title":  "Loyal Friend",
-    "LOYAL_FRIEND_POWER.description":  "After [gold]Big Dog Chew[/gold] is played and deals damage, other players heal {Amount} HP."
+    "LOYAL_FRIEND_POWER.description":  "After [gold]Big Dog Chew[/gold] is played and deals damage, other players heal {Amount} HP.",
+    "BIGDOGMOD-WOLF_HOWL_POWER.title":  "Wolf Howl",
+    "BIGDOGMOD-WOLF_HOWL_POWER.description":  "Whenever you play a card with the [gold]Howl[/gold] tag or [gold]Big Dog Chew[/gold], all enemies gain {Amount} temporary Strength Down this turn.",
+    "WOLF_HOWL_POWER.title":  "Wolf Howl",
+    "WOLF_HOWL_POWER.description":  "Whenever you play a card with the [gold]Howl[/gold] tag or [gold]Big Dog Chew[/gold], all enemies gain {Amount} temporary Strength Down this turn."
 }

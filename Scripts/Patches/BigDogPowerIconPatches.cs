@@ -112,6 +112,11 @@ internal static class BigDogPowerIconHelper
             return ModelDb.Power<RegenPower>().PackedIconPath;
         }
 
+        if (power is WolfHowlPower)
+        {
+            return ModelDb.Power<WeakPower>().PackedIconPath;
+        }
+
         if (power is EncouragingHowlTemporaryStrengthPower or EncouragingHowlTemporaryStrengthDownPower)
         {
             return ModelDb.Power<StrengthPower>().PackedIconPath;
@@ -250,6 +255,11 @@ internal static class BigDogPowerIconHelper
         if (power is LoyalFriendPower)
         {
             return ModelDb.Power<RegenPower>().ResolvedBigIconPath;
+        }
+
+        if (power is WolfHowlPower)
+        {
+            return ModelDb.Power<WeakPower>().ResolvedBigIconPath;
         }
 
         if (power is EncouragingHowlTemporaryStrengthPower or EncouragingHowlTemporaryStrengthDownPower)

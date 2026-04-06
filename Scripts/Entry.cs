@@ -1,12 +1,16 @@
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
+using BaseLib.Config;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models.CardPools;
+using MegaCrit.Sts2.Core.Models.RelicPools;
 using BigDogMod.Scripts.Cards;
 using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Config;
 using BigDogMod.Scripts.Pools;
+using BigDogMod.Scripts.Relics;
 
 namespace BigDogMod.Scripts;
 
@@ -15,8 +19,13 @@ public static class Entry
 {
     public static void Init()
     {
+        ModConfigRegistry.Register("BigDogMod", new BigDogModConfig());
+
         ModHelper.AddModelToPool<BigDogCardPool, StokeWildness>();
         ModHelper.AddModelToPool<BigDogCardPool, BigDogHowl>();
+        ModHelper.AddModelToPool<BigDogCardPool, ResistImpulse>();
+        ModHelper.AddModelToPool<BigDogCardPool, Impulse>();
+        ModHelper.AddModelToPool<BigDogCardPool, AwakenImpulse>();
         ModHelper.AddModelToPool<BigDogCardPool, StrikeBigDog>();
         ModHelper.AddModelToPool<BigDogCardPool, DefendBigDog>();
         ModHelper.AddModelToPool<BigDogCardPool, RendingBite>();
@@ -75,8 +84,11 @@ public static class Entry
         ModHelper.AddModelToPool<BigDogCardPool, EndlessBleeding>();
         ModHelper.AddModelToPool<BigDogCardPool, FullyPrepared>();
         ModHelper.AddModelToPool<BigDogCardPool, FrenziedGrowth>();
+        ModHelper.AddModelToPool<EventCardPool, AncientWildness>();
+        ModHelper.AddModelToPool<EventCardPool, WolfHowl>();
         ModHelper.AddModelToPool<TokenCardPool, BigDogChew>();
         ModHelper.AddModelToPool<TokenCardPool, BigDogFakeChew>();
+        ModHelper.AddModelToPool<EventRelicPool, HonorCollar>();
 
         var harmony = new Harmony("sts2.bigdog.mod");
         harmony.PatchAll();

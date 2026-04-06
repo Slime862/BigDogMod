@@ -25,10 +25,14 @@ public sealed class BigDogChew : CustomCardModel
     public decimal CurrentDamage => base.DynamicVars.Damage.BaseValue;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        [CardKeyword.Retain, CardKeyword.Exhaust];
+        base.Owner?.Creature?.HasPower<HighSongFormPower>() == true
+            ? [CardKeyword.Exhaust]
+            : [CardKeyword.Retain, CardKeyword.Exhaust];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        [HoverTipFactory.FromKeyword(CardKeyword.Retain), HoverTipFactory.FromKeyword(CardKeyword.Exhaust)];
+        base.Owner?.Creature?.HasPower<HighSongFormPower>() == true
+            ? [HoverTipFactory.FromKeyword(CardKeyword.Exhaust)]
+            : [HoverTipFactory.FromKeyword(CardKeyword.Retain), HoverTipFactory.FromKeyword(CardKeyword.Exhaust)];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new DamageVar(1m, ValueProp.Move)];

@@ -22,7 +22,7 @@
     "BIGDOGMOD-WILDNESS_POWER.title":  "野性",
     "BIGDOGMOD-SUSTAINED_CHARGE_POWER.description":  "在你的回合开始时，[gold]想嚼[/gold]{WantChew}。",
     "BIGDOGMOD-SUSTAINED_CHARGE_POWER.title":  "持续蓄力",
-    "BIGDOGMOD-HIGH_SONG_FORM_POWER.description":  "[gold]大狗嚼[/gold]的伤害不再会重置。",
+    "BIGDOGMOD-HIGH_SONG_FORM_POWER.description":  "[gold]大狗嚼[/gold]的伤害不再会重置，并失去[gold]保留[/gold]。",
     "BIGDOGMOD-HIGH_SONG_FORM_POWER.title":  "嚼嚼嚼形态",
     "BIGDOGMOD-PRELUDE_POWER.description":  "接下来{Turns}个回合开始时，[gold]想嚼[/gold]{WantChew}。",
     "BIGDOGMOD-PRELUDE_POWER.title":  "前奏",
@@ -63,7 +63,7 @@
     "WILDNESS_POWER.title":  "野性",
     "SUSTAINED_CHARGE_POWER.description":  "在你的回合开始时，[gold]想嚼[/gold]{WantChew}。",
     "SUSTAINED_CHARGE_POWER.title":  "持续蓄力",
-    "HIGH_SONG_FORM_POWER.description":  "[gold]大狗嚼[/gold]的伤害不再会重置。",
+    "HIGH_SONG_FORM_POWER.description":  "[gold]大狗嚼[/gold]的伤害不再会重置，并失去[gold]保留[/gold]。",
     "HIGH_SONG_FORM_POWER.title":  "嚼嚼嚼形态",
     "PRELUDE_POWER.description":  "接下来{Turns}个回合开始时，[gold]想嚼[/gold]{WantChew}。",
     "PRELUDE_POWER.title":  "前奏",
@@ -95,6 +95,8 @@
     "BIGDOGMOD-OFFENSE_AND_DEFENSE_POWER.description":  "你的[gold]野性[/gold]不会再降低防御牌的数值。",
     "BIGDOGMOD-LOYAL_FRIEND_POWER.title":  "忠诚朋友",
     "BIGDOGMOD-LOYAL_FRIEND_POWER.description":  "打出[gold]大狗嚼[/gold]并成功造成伤害后，其他玩家回复{Amount}点生命。",
+    "BIGDOGMOD-WOLF_HOWL_POWER.title":  "狼嚎",
+    "BIGDOGMOD-WOLF_HOWL_POWER.description":  "每打出一张带有[gold]叫[/gold]标签的牌或[gold]大狗嚼[/gold]，所有敌人本回合力量-{Amount}。",
     "SHARK_DOG_POWER.title":  "鲨狗",
     "SHARK_DOG_POWER.description":  "回合开始时，获得敌人中[gold]流血[/gold]最多者相同数量的[gold]想嚼[/gold]。",
     "FORGET_CHEW_POWER.title":  "忘嚼了",
@@ -108,5 +110,7 @@
     "OFFENSE_AND_DEFENSE_POWER.title":  "攻守兼备",
     "OFFENSE_AND_DEFENSE_POWER.description":  "你的[gold]野性[/gold]不会再降低防御牌的数值。",
     "LOYAL_FRIEND_POWER.title":  "忠诚朋友",
-    "LOYAL_FRIEND_POWER.description":  "打出[gold]大狗嚼[/gold]并成功造成伤害后，其他玩家回复{Amount}点生命。"
+    "LOYAL_FRIEND_POWER.description":  "打出[gold]大狗嚼[/gold]并成功造成伤害后，其他玩家回复{Amount}点生命。",
+    "WOLF_HOWL_POWER.title":  "狼嚎",
+    "WOLF_HOWL_POWER.description":  "每打出一张带有[gold]叫[/gold]标签的牌或[gold]大狗嚼[/gold]，所有敌人本回合力量-{Amount}。"
 }

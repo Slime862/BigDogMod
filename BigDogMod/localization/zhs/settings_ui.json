@@ -1,0 +1,6 @@
+{
+  "BIGDOGMOD-AUDIO_SETTINGS.title": "语音设置",
+  "BIGDOGMOD-DISABLE_VOICE_LINES.title": "禁用语音",
+  "BIGDOGMOD-DISABLE_VOICE_LINES.hover.title": "语音",
+  "BIGDOGMOD-DISABLE_VOICE_LINES.hover.desc": "开启后，大狗叫和大狗嚼将不再播放语音。"
+}

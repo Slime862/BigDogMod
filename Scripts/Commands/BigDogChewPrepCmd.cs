@@ -51,7 +51,8 @@ public static class BigDogChewPrepCmd
             return;
         }
 
-        IReadOnlyList<BigDogChewPrepEffect> effects = consume ? power.ConsumeAll() : power.SnapshotAll();
+        bool shouldPersist = owner.Creature.HasPower<LingeringEchoPower>();
+        IReadOnlyList<BigDogChewPrepEffect> effects = consume && !shouldPersist ? power.ConsumeAll() : power.SnapshotAll();
         foreach (BigDogChewPrepEffect effect in effects)
         {
             if (effect.Amount <= 0)
@@ -108,7 +109,7 @@ public static class BigDogChewPrepCmd
             }
         }
 
-        if (consume && !owner.Creature.HasPower<LingeringEchoPower>())
+        if (consume && !shouldPersist)
         {
             await PowerCmd.Remove(power);
         }

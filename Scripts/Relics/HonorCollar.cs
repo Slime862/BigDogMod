@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using BigDogMod.Scripts.Audio;
 using BigDogMod.Scripts.Cards;
-using BigDogMod.Scripts.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -17,9 +16,9 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace BigDogMod.Scripts.Relics;
 
-public sealed class HoundCollar : CustomRelicModel
+public sealed class HonorCollar : CustomRelicModel
 {
-    public HoundCollar()
+    public HonorCollar()
         : base(autoAdd: false)
     {
     }
@@ -27,15 +26,13 @@ public sealed class HoundCollar : CustomRelicModel
     public override RelicRarity Rarity => RelicRarity.Starter;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new HealVar(1m)];
+        [new HealVar(2m)];
 
     public override string PackedIconPath => ImageHelper.GetImagePath("atlases/relic_atlas.sprites/ring_of_the_snake.tres");
 
     protected override string PackedIconOutlinePath => ImageHelper.GetImagePath("atlases/relic_outline_atlas.sprites/ring_of_the_snake.tres");
 
     protected override string BigIconPath => ImageHelper.GetImagePath("relics/ring_of_the_snake.png");
-
-    public override RelicModel? GetUpgradeReplacement() => ModelDb.Relic<HonorCollar>();
 
     public override Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {

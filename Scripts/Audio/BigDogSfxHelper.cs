@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using BigDogMod.Scripts.Assets;
+using BigDogMod.Scripts.Config;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Players;
 
@@ -23,6 +24,11 @@ public static class BigDogSfxHelper
 
     public static void PlayHowl(Player player)
     {
+        if (BigDogModConfig.DisableVoiceLines)
+        {
+            return;
+        }
+
         AudioState state = _audioStates.GetOrCreateValue(player);
         state.PlaybackRate = Mathf.Clamp(state.PlaybackRate + HowlPlaybackRateIncrease, BasePlaybackRate, MaxPlaybackRate);
         Play(BigDogAssetPaths.BigDogHowlSfx, state.PlaybackRate);
@@ -30,6 +36,11 @@ public static class BigDogSfxHelper
 
     public static void PlayChew(Player player)
     {
+        if (BigDogModConfig.DisableVoiceLines)
+        {
+            return;
+        }
+
         AudioState state = _audioStates.GetOrCreateValue(player);
         Play(BigDogAssetPaths.BigDogChewSfx, state.PlaybackRate);
         state.PlaybackRate = BasePlaybackRate;
