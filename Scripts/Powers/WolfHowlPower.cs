@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace BigDogMod.Scripts.Powers;
@@ -15,6 +16,16 @@ public sealed class WolfHowlPower : CustomPowerModel
     public override PowerType Type => PowerType.Buff;
 
     public override PowerStackType StackType => PowerStackType.Counter;
+
+    public override LocString Description
+    {
+        get
+        {
+            LocString description = new("powers", base.Id.Entry + ".description");
+            description.Add("Amount", base.Amount);
+            return description;
+        }
+    }
 
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
