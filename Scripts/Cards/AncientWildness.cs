@@ -22,8 +22,8 @@ public sealed class AncientWildness : CustomCardModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new BlockVar(12m, ValueProp.Move),
-            new PowerVar<WildnessPower>(3m)
+            new BlockVar(14m, ValueProp.Move),
+            new PowerVar<WildnessPower>(4m)
         ];
 
     public override CardPoolModel Pool => ModelDb.CardPool<EventCardPool>();

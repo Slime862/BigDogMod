@@ -27,7 +27,7 @@ public sealed class WolfHowl : CustomCardModel
     public override CardPoolModel VisualCardPool => ModelDb.CardPool<EventCardPool>();
 
     public WolfHowl()
-        : base(1, CardType.Power, CardRarity.Ancient, TargetType.Self, autoAdd: false)
+        : base(0, CardType.Power, CardRarity.Ancient, TargetType.Self, autoAdd: false)
     {
     }
 
