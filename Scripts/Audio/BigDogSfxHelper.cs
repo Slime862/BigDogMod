@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using BigDogMod.Scripts.Assets;
 using BigDogMod.Scripts.Config;
 using Godot;
@@ -17,6 +18,7 @@ public static class BigDogSfxHelper
     private sealed class AudioState
     {
         public float PlaybackRate { get; set; } = BasePlaybackRate;
+        public int SequenceVersion { get; set; }
     }
 
     private static readonly ConditionalWeakTable<Player, AudioState> _audioStates = new();
@@ -42,8 +44,31 @@ public static class BigDogSfxHelper
         }
 
         AudioState state = _audioStates.GetOrCreateValue(player);
-        Play(BigDogAssetPaths.BigDogChewSfx, state.PlaybackRate);
+        float targetPlaybackRate = state.PlaybackRate;
+        state.SequenceVersion++;
+        PlayChewSequence(targetPlaybackRate, state.SequenceVersion);
         state.PlaybackRate = BasePlaybackRate;
+    }
+
+    private static async void PlayChewSequence(float targetPlaybackRate, int sequenceVersion)
+    {
+        AudioStream? stream = LoadStream(BigDogAssetPaths.BigDogChewSfx);
+        if (stream == null)
+        {
+            return;
+        }
+
+        if (Engine.GetMainLoop() is not SceneTree sceneTree || sceneTree.Root == null)
+        {
+            return;
+        }
+
+        float playbackRate = BasePlaybackRate;
+        while (playbackRate <= targetPlaybackRate + 0.001f)
+        {
+            await PlaySequenceStep(sceneTree, stream, playbackRate);
+            playbackRate = Mathf.Clamp(playbackRate + HowlPlaybackRateIncrease, BasePlaybackRate, MaxPlaybackRate + HowlPlaybackRateIncrease);
+        }
     }
 
     private static void Play(string path, float playbackRate)
@@ -67,6 +92,24 @@ public static class BigDogSfxHelper
         audioPlayer.Finished += audioPlayer.QueueFree;
         sceneTree.Root.AddChild(audioPlayer);
         audioPlayer.Play();
+    }
+
+    private static Task PlaySequenceStep(SceneTree sceneTree, AudioStream stream, float playbackRate)
+    {
+        TaskCompletionSource<bool> completion = new();
+        AudioStreamPlayer audioPlayer = new AudioStreamPlayer
+        {
+            Stream = stream,
+            PitchScale = playbackRate
+        };
+        audioPlayer.Finished += () =>
+        {
+            audioPlayer.QueueFree();
+            completion.TrySetResult(true);
+        };
+        sceneTree.Root.AddChild(audioPlayer);
+        audioPlayer.Play();
+        return completion.Task;
     }
 
     private static AudioStream? LoadStream(string preferredPath)

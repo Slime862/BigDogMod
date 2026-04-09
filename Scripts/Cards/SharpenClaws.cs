@@ -5,49 +5,56 @@ using BigDogMod.Scripts.Assets;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace BigDogMod.Scripts.Cards;
 
-public sealed class AwakenImpulse : CustomCardModel
+public sealed class SharpenClaws : CustomCardModel
 {
-    protected override bool IsPlayable => BigDogChewLocator.FindInDiscard(base.Owner) != null;
-
-    protected override bool ShouldGlowRedInternal => !IsPlayable;
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        [HoverTipFactory.FromCard<BigDogChew>()];
+    private decimal _extraDamageFromPileMoves;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new DamageVar(9m, ValueProp.Move)];
+        [
+            new DamageVar(4m, ValueProp.Move),
+            new DynamicVar("Grow", 2m)
+        ];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("awaken_impulse");
+    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("sharpen_claws");
 
-    public AwakenImpulse()
+    public SharpenClaws()
         : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, autoAdd: false)
     {
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        BigDogChew? chew = BigDogChewLocator.FindInDiscard(base.Owner);
-        if (chew == null || cardPlay.Target == null)
+        if (cardPlay.Target == null)
         {
             return;
         }
 
-        await CardPileCmd.Add(chew, PileType.Draw);
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue)
             .FromCard(this)
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
     }
 
+    public void AddPileMoveDamage(decimal amount)
+    {
+        base.DynamicVars.Damage.BaseValue += amount;
+        _extraDamageFromPileMoves += amount;
+    }
+
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Damage.UpgradeValueBy(6m);
+        base.DynamicVars["Grow"].UpgradeValueBy(1m);
+    }
+
+    protected override void AfterDowngraded()
+    {
+        base.AfterDowngraded();
+        base.DynamicVars.Damage.BaseValue += _extraDamageFromPileMoves;
     }
 }

@@ -43,8 +43,7 @@ public sealed class BigDogHowl : CustomCardModel
             return;
         }
 
-        decimal rawWantChew = base.DynamicVars["WantChew"].BaseValue;
-        decimal effectiveWantChew = WantChewModifiers.GetEffectiveWantChewAmount(this, rawWantChew);
+        decimal effectiveWantChew = WantChewModifiers.GetEffectiveWantChewAmount(this, base.DynamicVars["WantChew"].BaseValue);
 
         await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue)

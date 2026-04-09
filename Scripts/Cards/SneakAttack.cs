@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using BigDogMod.Scripts.Assets;
+using BigDogMod.Scripts.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -12,34 +13,28 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace BigDogMod.Scripts.Cards;
 
-public sealed class AwakenImpulse : CustomCardModel
+public sealed class SneakAttack : CustomCardModel
 {
-    protected override bool IsPlayable => BigDogChewLocator.FindInDiscard(base.Owner) != null;
-
-    protected override bool ShouldGlowRedInternal => !IsPlayable;
-
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        [HoverTipFactory.FromCard<BigDogChew>()];
+        [HoverTipFactory.FromPower<WildnessPower>()];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new DamageVar(9m, ValueProp.Move)];
+        [new DamageVar(8m, ValueProp.Move)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("awaken_impulse");
+    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("sneak_attack");
 
-    public AwakenImpulse()
-        : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, autoAdd: false)
+    public SneakAttack()
+        : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, autoAdd: false)
     {
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        BigDogChew? chew = BigDogChewLocator.FindInDiscard(base.Owner);
-        if (chew == null || cardPlay.Target == null)
+        if (cardPlay.Target == null)
         {
             return;
         }
 
-        await CardPileCmd.Add(chew, PileType.Draw);
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue)
             .FromCard(this)
             .Targeting(cardPlay.Target)
@@ -48,6 +43,6 @@ public sealed class AwakenImpulse : CustomCardModel
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Damage.UpgradeValueBy(6m);
+        base.DynamicVars.Damage.UpgradeValueBy(4m);
     }
 }

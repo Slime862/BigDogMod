@@ -9,24 +9,23 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
-using MegaCrit.Sts2.Core.ValueProps;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace BigDogMod.Scripts.Cards;
 
-public sealed class ForcedDefense : CustomCardModel
+public sealed class BigOpenClose : CustomCardModel
 {
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        [HoverTipFactory.FromPower<BleedingPower>()];
+        [HoverTipFactory.FromPower<BleedingPower>(), HoverTipFactory.FromPower<DoubleDamagePower>(), HoverTipFactory.FromKeyword(CardKeyword.Exhaust)];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [
-            new PowerVar<BleedingPower>(1m),
-            new BlockVar(8m, ValueProp.Move)
-        ];
+        [new PowerVar<BleedingPower>(2m)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("forced_defense");
+    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("big_open_close");
 
-    public ForcedDefense()
+    public BigOpenClose()
         : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
     {
     }
@@ -34,11 +33,17 @@ public sealed class ForcedDefense : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await PowerCmd.Apply<BleedingPower>(base.Owner.Creature, base.DynamicVars["BleedingPower"].BaseValue, base.Owner.Creature, this);
-        await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
+        BleedingPower? bleeding = base.Owner.Creature.GetPower<BleedingPower>();
+        if (bleeding != null && bleeding.Amount > 0)
+        {
+            await PowerCmd.ModifyAmount(bleeding, bleeding.Amount, base.Owner.Creature, this);
+        }
+
+        await PowerCmd.Apply<DoubleDamagePower>(base.Owner.Creature, 1m, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Block.UpgradeValueBy(4m);
+        RemoveKeyword(CardKeyword.Exhaust);
     }
 }

@@ -31,7 +31,7 @@ public sealed class Impulse : CustomCardModel
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("impulse");
 
     public Impulse()
-        : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
+        : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
     {
     }
 

@@ -49,6 +49,11 @@ public sealed class WildnessPower : CustomPowerModel
             return base.Amount * 2m;
         }
 
+        if (cardSource is SneakAttack && base.Amount < 0m)
+        {
+            return -base.Amount * 2m;
+        }
+
         return base.Amount;
     }
 

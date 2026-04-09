@@ -1,0 +1,39 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using BaseLib.Abstracts;
+using BigDogMod.Scripts.Assets;
+using BigDogMod.Scripts.Powers;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Cards;
+
+namespace BigDogMod.Scripts.Cards;
+
+public sealed class AttackWindup : CustomCardModel
+{
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+        [HoverTipFactory.FromPower<AttackWindupPower>()];
+
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+        [new CardsVar(2)];
+
+    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("attack_windup");
+
+    public AttackWindup()
+        : base(1, CardType.Power, CardRarity.Rare, TargetType.Self, autoAdd: false)
+    {
+    }
+
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        await PowerCmd.Apply<AttackWindupPower>(base.Owner.Creature, base.DynamicVars.Cards.BaseValue, base.Owner.Creature, this);
+    }
+
+    protected override void OnUpgrade()
+    {
+        base.DynamicVars.Cards.UpgradeValueBy(1m);
+    }
+}

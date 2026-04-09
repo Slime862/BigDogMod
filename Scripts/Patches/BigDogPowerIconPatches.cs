@@ -52,6 +52,11 @@ internal static class BigDogPowerIconHelper
             return ModelDb.Power<InfiniteBladesPower>().PackedIconPath;
         }
 
+        if (power is HealingSongPower)
+        {
+            return ModelDb.Power<RegenPower>().PackedIconPath;
+        }
+
         if (power is PetrifiedSkinPower)
         {
             return ModelDb.Power<PlatingPower>().PackedIconPath;
@@ -95,6 +100,16 @@ internal static class BigDogPowerIconHelper
         if (power is LingeringEchoPower)
         {
             return ModelDb.Power<BufferPower>().PackedIconPath;
+        }
+
+        if (power is AttackWindupPower)
+        {
+            return ModelDb.Power<InfiniteBladesPower>().PackedIconPath;
+        }
+
+        if (power is HesitationPower)
+        {
+            return ModelDb.Power<DoubleDamagePower>().PackedIconPath;
         }
 
         if (power is HellhoundFormPower)
@@ -197,6 +212,11 @@ internal static class BigDogPowerIconHelper
             return ModelDb.Power<InfiniteBladesPower>().ResolvedBigIconPath;
         }
 
+        if (power is HealingSongPower)
+        {
+            return ModelDb.Power<RegenPower>().ResolvedBigIconPath;
+        }
+
         if (power is PetrifiedSkinPower)
         {
             return ModelDb.Power<PlatingPower>().ResolvedBigIconPath;
@@ -240,6 +260,16 @@ internal static class BigDogPowerIconHelper
         if (power is LingeringEchoPower)
         {
             return ModelDb.Power<BufferPower>().ResolvedBigIconPath;
+        }
+
+        if (power is AttackWindupPower)
+        {
+            return ModelDb.Power<InfiniteBladesPower>().ResolvedBigIconPath;
+        }
+
+        if (power is HesitationPower)
+        {
+            return ModelDb.Power<DoubleDamagePower>().ResolvedBigIconPath;
         }
 
         if (power is HellhoundFormPower)

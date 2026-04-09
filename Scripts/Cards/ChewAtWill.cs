@@ -17,7 +17,7 @@ public sealed class ChewAtWill : CustomCardModel
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("chew_at_will");
 
     public ChewAtWill()
-        : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
+        : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
     {
     }
 
@@ -28,6 +28,6 @@ public sealed class ChewAtWill : CustomCardModel
 
     protected override void OnUpgrade()
     {
-        AddKeyword(CardKeyword.Innate);
+        base.EnergyCost.UpgradeBy(-1);
     }
 }

@@ -112,5 +112,11 @@
     "BIGDOGMOD-WOLF_HOWL_POWER.title":  "Wolf Howl",
     "BIGDOGMOD-WOLF_HOWL_POWER.description":  "Whenever you play a card with the [gold]Howl[/gold] tag or [gold]Big Dog Chew[/gold], all enemies gain {Amount} temporary Strength Down this turn.",
     "WOLF_HOWL_POWER.title":  "Wolf Howl",
-    "WOLF_HOWL_POWER.description":  "Whenever you play a card with the [gold]Howl[/gold] tag or [gold]Big Dog Chew[/gold], all enemies gain {Amount} temporary Strength Down this turn."
+    "WOLF_HOWL_POWER.description":  "Whenever you play a card with the [gold]Howl[/gold] tag or [gold]Big Dog Chew[/gold], all enemies gain {Amount} temporary Strength Down this turn.",
+    "BIGDOGMOD-HEALING_SONG_POWER.description":  "Whenever you play a card with [gold]Howl[/gold], reduce your [gold]Bleeding[/gold] by {Amount}.",
+    "BIGDOGMOD-HESITATION_POWER.description":  "Whenever [gold]Big Dog Chew[/gold] changes piles this turn, gain [gold]Want Chew[/gold] {Amount}.",
+    "BIGDOGMOD-HEALING_SONG_POWER.title":  "Healing Song",
+    "BIGDOGMOD-ATTACK_WINDUP_POWER.title":  "Attack Windup",
+    "BIGDOGMOD-HESITATION_POWER.title":  "Hesitation",
+    "BIGDOGMOD-ATTACK_WINDUP_POWER.description":  "Your [gold]Big Dog Chew[/gold] is created in your draw pile instead. When you draw [gold]Big Dog Chew[/gold], draw {Amount} more cards."
 }

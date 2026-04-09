@@ -23,6 +23,7 @@ public static class Entry
 
         ModHelper.AddModelToPool<BigDogCardPool, StokeWildness>();
         ModHelper.AddModelToPool<BigDogCardPool, BigDogHowl>();
+        ModHelper.AddModelToPool<BigDogCardPool, HealingSong>();
         ModHelper.AddModelToPool<BigDogCardPool, ResistImpulse>();
         ModHelper.AddModelToPool<BigDogCardPool, Impulse>();
         ModHelper.AddModelToPool<BigDogCardPool, AwakenImpulse>();
@@ -31,6 +32,7 @@ public static class Entry
         ModHelper.AddModelToPool<BigDogCardPool, RendingBite>();
         ModHelper.AddModelToPool<BigDogCardPool, BleedOut>();
         ModHelper.AddModelToPool<BigDogCardPool, BloodDrink>();
+        ModHelper.AddModelToPool<BigDogCardPool, ToxicBlood>();
         ModHelper.AddModelToPool<BigDogCardPool, BloodlettingSlot>();
         ModHelper.AddModelToPool<BigDogCardPool, ForceAwaken>();
         ModHelper.AddModelToPool<BigDogCardPool, Cuteify>();
@@ -62,7 +64,9 @@ public static class Entry
         ModHelper.AddModelToPool<BigDogCardPool, Prelude>();
         ModHelper.AddModelToPool<BigDogCardPool, TailWag>();
         ModHelper.AddModelToPool<BigDogCardPool, Makeover>();
+        ModHelper.AddModelToPool<BigDogCardPool, BigOpenClose>();
         ModHelper.AddModelToPool<BigDogCardPool, FlurryScratch>();
+        ModHelper.AddModelToPool<BigDogCardPool, AttackWindup>();
         ModHelper.AddModelToPool<BigDogCardPool, Forget>();
         ModHelper.AddModelToPool<BigDogCardPool, LickWounds>();
         ModHelper.AddModelToPool<BigDogCardPool, RipOpen>();
@@ -84,6 +88,11 @@ public static class Entry
         ModHelper.AddModelToPool<BigDogCardPool, EndlessBleeding>();
         ModHelper.AddModelToPool<BigDogCardPool, FullyPrepared>();
         ModHelper.AddModelToPool<BigDogCardPool, FrenziedGrowth>();
+        ModHelper.AddModelToPool<BigDogCardPool, Hesitation>();
+        ModHelper.AddModelToPool<BigDogCardPool, SplashWater>();
+        ModHelper.AddModelToPool<BigDogCardPool, RunAway>();
+        ModHelper.AddModelToPool<BigDogCardPool, SharpenClaws>();
+        ModHelper.AddModelToPool<BigDogCardPool, SneakAttack>();
         ModHelper.AddModelToPool<BigDogCardPool, AncientWildness>();
         ModHelper.AddModelToPool<BigDogCardPool, WolfHowl>();
         ModHelper.AddModelToPool<EventCardPool, AncientWildness>();

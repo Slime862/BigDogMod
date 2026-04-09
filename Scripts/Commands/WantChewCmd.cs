@@ -36,7 +36,8 @@ public static class WantChewCmd
             }
 
             BigDogChew bigDogChew = combatState.CreateCard<BigDogChew>(player);
-            await CardPileCmd.AddGeneratedCardToCombat(bigDogChew, PileType.Hand, addedByPlayer: true);
+            PileType pileType = player.Creature.HasPower<AttackWindupPower>() ? PileType.Draw : PileType.Hand;
+            await CardPileCmd.AddGeneratedCardToCombat(bigDogChew, pileType, addedByPlayer: true);
             chews.Add(bigDogChew);
         }
 
