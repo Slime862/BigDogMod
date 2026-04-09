@@ -35,9 +35,14 @@ public static class BigDogCardPortraitFallbacks
             or ForcedDefense or BerserkerDog or SharkDog or ChewAtWill or CowardDog or BluesDog or EndlessBleeding
             or WiseHowl or HoldOn or FearlessBeast or FullyPrepared or FrenziedGrowth or HeavenlyHowl or Coagulate
             or PainIntoPower or SuddenRampage or LingeringEcho or EncouragingHowl or ResistImpulse or Impulse
-            or ToxicBlood or BigOpenClose or Hesitation or SplashWater or RunAway)
+            or ToxicBlood or BigOpenClose or Hesitation or SplashWater or RunAway or WatcherDog)
         {
             return ModelDb.Card<DefendSilent>();
+        }
+
+        if (card is Finale)
+        {
+            return ModelDb.Card<StrikeSilent>();
         }
 
         if (card is BloodlettingSlot or Cuteify or BelCantoHowl or HighSongForm or Makeover or PetrifiedSkin

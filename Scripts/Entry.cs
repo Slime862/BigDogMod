@@ -62,6 +62,8 @@ public static class Entry
         ModHelper.AddModelToPool<BigDogCardPool, EncouragingHowl>();
         ModHelper.AddModelToPool<BigDogCardPool, LoyalFriend>();
         ModHelper.AddModelToPool<BigDogCardPool, Prelude>();
+        ModHelper.AddModelToPool<BigDogCardPool, WatcherDog>();
+        ModHelper.AddModelToPool<BigDogCardPool, Finale>();
         ModHelper.AddModelToPool<BigDogCardPool, TailWag>();
         ModHelper.AddModelToPool<BigDogCardPool, Makeover>();
         ModHelper.AddModelToPool<BigDogCardPool, BigOpenClose>();

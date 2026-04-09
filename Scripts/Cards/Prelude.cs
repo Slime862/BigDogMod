@@ -27,7 +27,7 @@ public sealed class Prelude : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new BlockVar(4m, ValueProp.Move),
-            new WantChewVar(9m)
+            new WantChewVar(6m)
         ];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("prelude");
@@ -46,6 +46,6 @@ public sealed class Prelude : CustomCardModel
     protected override void OnUpgrade()
     {
         base.DynamicVars.Block.UpgradeValueBy(3m);
-        base.DynamicVars["WantChew"].UpgradeValueBy(2m);
+        base.DynamicVars["WantChew"].UpgradeValueBy(3m);
     }
 }

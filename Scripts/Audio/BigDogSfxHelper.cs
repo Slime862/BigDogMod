@@ -32,8 +32,8 @@ public static class BigDogSfxHelper
         }
 
         AudioState state = _audioStates.GetOrCreateValue(player);
-        state.PlaybackRate = Mathf.Clamp(state.PlaybackRate + HowlPlaybackRateIncrease, BasePlaybackRate, MaxPlaybackRate);
         Play(BigDogAssetPaths.BigDogHowlSfx, state.PlaybackRate);
+        state.PlaybackRate = Mathf.Clamp(state.PlaybackRate + HowlPlaybackRateIncrease, BasePlaybackRate, MaxPlaybackRate);
     }
 
     public static void PlayChew(Player player)

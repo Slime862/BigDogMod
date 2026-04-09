@@ -37,6 +37,14 @@ public sealed class HoundCollar : CustomRelicModel
 
     public override RelicModel? GetUpgradeReplacement() => ModelDb.Relic<HonorCollar>();
 
+    public override async Task BeforeCombatStart()
+    {
+        if (!base.Owner.Creature.HasPower<FinaleTrackerPower>())
+        {
+            await PowerCmd.Apply<FinaleTrackerPower>(base.Owner.Creature, 1m, base.Owner.Creature, null, silent: true);
+        }
+    }
+
     public override Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner != base.Owner)
