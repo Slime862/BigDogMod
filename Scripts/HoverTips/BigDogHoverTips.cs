@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using BigDogMod.Scripts.Cards;
 
 namespace BigDogMod.Scripts.HoverTips;
 
@@ -15,8 +14,7 @@ public static class BigDogHoverTips
         description.Add(amount);
         return
         [
-            new HoverTip(title, description),
-            .. HoverTipFactory.FromCardWithCardHoverTips<BigDogChew>()
+            new HoverTip(title, description)
         ];
     }
 }
