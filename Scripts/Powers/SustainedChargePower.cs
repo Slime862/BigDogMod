@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
+using BaseLib.Patches.Localization;
 using BigDogMod.Scripts.Commands;
 using BigDogMod.Scripts.HoverTips;
 using MegaCrit.Sts2.Core.Combat;
@@ -13,20 +14,15 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace BigDogMod.Scripts.Powers;
 
-public sealed class SustainedChargePower : CustomPowerModel
+public sealed class SustainedChargePower : CustomPowerModel, IAddDumbVariablesToPowerDescription
 {
     public override PowerType Type => PowerType.Buff;
 
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override LocString Description
+    public void AddDumbVariablesToPowerDescription(LocString description)
     {
-        get
-        {
-            LocString description = new("powers", base.Id.Entry + ".description");
-            description.Add("WantChew", Amount);
-            return description;
-        }
+        description.Add("WantChew", Amount);
     }
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

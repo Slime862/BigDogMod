@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using BaseLib.Abstracts;
+using BaseLib.Patches.Localization;
 using BigDogMod.Scripts.Cards;
 using BigDogMod.Scripts.ChewPrep;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -14,7 +15,7 @@ using MegaCrit.Sts2.Core.Rooms;
 
 namespace BigDogMod.Scripts.Powers;
 
-public sealed class BigDogChewPrepPower : CustomPowerModel
+public sealed class BigDogChewPrepPower : CustomPowerModel, IAddDumbVariablesToPowerDescription
 {
     private readonly Dictionary<BigDogChewPrepEffect, int> _effects = [];
 
@@ -30,14 +31,9 @@ public sealed class BigDogChewPrepPower : CustomPowerModel
         .Distinct()
         .Count();
 
-    public override LocString Description
+    public void AddDumbVariablesToPowerDescription(LocString description)
     {
-        get
-        {
-            LocString description = new("powers", base.Id.Entry + ".description");
-            description.Add("EffectsText", BuildEffectsText());
-            return description;
-        }
+        description.Add("EffectsText", BuildEffectsText());
     }
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips

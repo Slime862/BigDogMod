@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
+using BaseLib.Patches.Localization;
 using BigDogMod.Scripts.Cards;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -10,7 +11,7 @@ using MegaCrit.Sts2.Core.Localization;
 
 namespace BigDogMod.Scripts.Powers;
 
-public sealed class DogSagePower : CustomPowerModel
+public sealed class DogSagePower : CustomPowerModel, IAddDumbVariablesToPowerDescription
 {
     private bool _triggeredThisTurn;
 
@@ -18,14 +19,9 @@ public sealed class DogSagePower : CustomPowerModel
 
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override LocString Description
+    public void AddDumbVariablesToPowerDescription(LocString description)
     {
-        get
-        {
-            LocString description = new("powers", base.Id.Entry + ".description");
-            description.Add("Amount", base.Amount);
-            return description;
-        }
+        description.Add("Amount", base.Amount);
     }
 
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)

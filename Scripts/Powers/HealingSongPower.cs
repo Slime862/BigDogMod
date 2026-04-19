@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
+using BaseLib.Patches.Localization;
 using BigDogMod.Scripts.Cards;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,20 +13,15 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace BigDogMod.Scripts.Powers;
 
-public sealed class HealingSongPower : CustomPowerModel
+public sealed class HealingSongPower : CustomPowerModel, IAddDumbVariablesToPowerDescription
 {
     public override PowerType Type => PowerType.Buff;
 
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override LocString Description
+    public void AddDumbVariablesToPowerDescription(LocString description)
     {
-        get
-        {
-            LocString description = new("powers", base.Id.Entry + ".description");
-            description.Add("Amount", base.Amount);
-            return description;
-        }
+        description.Add("Amount", base.Amount);
     }
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

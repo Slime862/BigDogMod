@@ -7,10 +7,12 @@ using BigDogMod.Scripts.Commands;
 using BigDogMod.Scripts.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.Models.Exceptions;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace BigDogMod.Scripts.Cards;
@@ -24,13 +26,10 @@ public sealed class BigDogChew : CustomCardModel
 
     public decimal CurrentDamage => base.DynamicVars.Damage.BaseValue;
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        base.Owner?.Creature?.HasPower<HighSongFormPower>() == true
-            ? [CardKeyword.Exhaust]
-            : [CardKeyword.Retain, CardKeyword.Exhaust];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain, CardKeyword.Exhaust];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        base.Owner?.Creature?.HasPower<HighSongFormPower>() == true
+        TryGetOwnerCreature()?.HasPower<HighSongFormPower>() == true
             ? [HoverTipFactory.FromKeyword(CardKeyword.Exhaust)]
             : [HoverTipFactory.FromKeyword(CardKeyword.Retain), HoverTipFactory.FromKeyword(CardKeyword.Exhaust)];
 
@@ -80,9 +79,21 @@ public sealed class BigDogChew : CustomCardModel
     protected override void AfterDowngraded()
     {
         base.AfterDowngraded();
-        if (base.Owner?.Creature?.GetPower<HighSongFormPower>() != null)
+        if (TryGetOwnerCreature()?.GetPower<HighSongFormPower>() != null)
         {
             base.DynamicVars.Damage.BaseValue += _extraDamageFromWantChew;
+        }
+    }
+
+    private Creature? TryGetOwnerCreature()
+    {
+        try
+        {
+            return base.Owner?.Creature;
+        }
+        catch (CanonicalModelException)
+        {
+            return null;
         }
     }
 }
