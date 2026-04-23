@@ -33,7 +33,7 @@ public sealed class LickWounds : CustomCardModel
             return;
         }
 
-        int amountToRemove = base.IsUpgraded ? power.Amount : power.Amount / 2;
+        int amountToRemove = power.Amount / 2;
         if (amountToRemove > 0)
         {
             await PowerCmd.ModifyAmount(power, -amountToRemove, base.Owner.Creature, this);
@@ -42,5 +42,6 @@ public sealed class LickWounds : CustomCardModel
 
     protected override void OnUpgrade()
     {
+        RemoveKeyword(CardKeyword.Exhaust);
     }
 }

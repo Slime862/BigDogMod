@@ -6,45 +6,59 @@ using BigDogMod.Scripts.Assets;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace BigDogMod.Scripts.Cards;
 
 public sealed class SplashWater : CustomCardModel
 {
-    protected override bool IsPlayable => BigDogChewLocator.FindInHand(base.Owner) != null;
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+        [HoverTipFactory.Static(StaticHoverTip.Block), HoverTipFactory.FromKeyword(CardKeyword.Retain)];
 
-    protected override bool ShouldGlowRedInternal => !IsPlayable;
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+        [new BlockVar(1m, ValueProp.Move)];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("splash_water");
 
     public SplashWater()
-        : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
+        : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
     {
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        BigDogChew? chew = BigDogChewLocator.FindInHand(base.Owner);
-        if (chew == null || base.Owner.PlayerCombatState == null)
+        if (base.Owner.PlayerCombatState == null)
         {
             return;
         }
 
-        List<CardModel> cardsToExhaust = base.Owner.PlayerCombatState.Hand.Cards
-            .Where(card => card == chew || card.Type == CardType.Status)
+        List<CardModel> statusCards = base.Owner.PlayerCombatState.Hand.Cards
+            .Where(card => card.Type == CardType.Status)
             .ToList();
-        if (cardsToExhaust.Count == 0)
+        if (statusCards.Count > 0)
         {
-            return;
+            await CardPileCmd.Add(statusCards, PileType.Exhaust);
         }
 
-        await CardPileCmd.Add(cardsToExhaust, PileType.Exhaust);
-        await CardPileCmd.Draw(choiceContext, cardsToExhaust.Count, base.Owner);
+        List<CardModel> discardCards = PileType.Discard.GetPile(base.Owner).Cards.ToList();
+        if (discardCards.Count > 0)
+        {
+            await CardPileCmd.Add(discardCards, PileType.Draw);
+        }
+
+        int drawPileCount = PileType.Draw.GetPile(base.Owner).Cards.Count;
+        if (drawPileCount > 0)
+        {
+            await CreatureCmd.GainBlock(base.Owner.Creature, drawPileCount, ValueProp.Move, cardPlay);
+        }
     }
 
     protected override void OnUpgrade()
     {
+        AddKeyword(CardKeyword.Retain);
     }
 }

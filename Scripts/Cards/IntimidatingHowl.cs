@@ -24,32 +24,35 @@ public sealed class IntimidatingHowl : CustomCardModel, IBigDogChewPrepSource
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [
             HoverTipFactory.FromPower<WeakPower>(),
+            HoverTipFactory.FromPower<StrengthPower>(),
             HoverTipFactory.FromPower<BigDogChewPrepPower>()
         ];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new PowerVar<WeakPower>(2m)];
+        [new PowerVar<WeakPower>(1m), new DynamicVar("StrengthDown", 1m)];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("intimidating_howl");
 
     public IntimidatingHowl()
-        : base(0, CardType.Skill, CardRarity.Common, TargetType.AllEnemies, autoAdd: false)
+        : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy, autoAdd: false)
     {
     }
 
     public IEnumerable<BigDogChewPrepEffect> GetBigDogChewPrepEffects()
     {
-        yield return new BigDogChewPrepEffect(BigDogChewPrepEffectType.Weak, base.DynamicVars["WeakPower"].IntValue, true);
+        yield return new BigDogChewPrepEffect(BigDogChewPrepEffectType.Weak, base.DynamicVars["WeakPower"].IntValue);
+        yield return new BigDogChewPrepEffect(BigDogChewPrepEffectType.StrengthDown, base.DynamicVars["StrengthDown"].IntValue);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (base.CombatState == null)
+        if (cardPlay.Target == null)
         {
             return;
         }
 
-        await PowerCmd.Apply<WeakPower>(base.CombatState.HittableEnemies, base.DynamicVars["WeakPower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<WeakPower>(cardPlay.Target, base.DynamicVars["WeakPower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<StrengthPower>(cardPlay.Target, -base.DynamicVars["StrengthDown"].BaseValue, base.Owner.Creature, this);
         await BigDogChewPrepCmd.QueueFromSource(base.Owner, this);
     }
 

@@ -147,6 +147,11 @@ internal static class BigDogPowerIconHelper
             return ModelDb.Power<PoisonPower>().PackedIconPath;
         }
 
+        if (power is OpenWoundPower)
+        {
+            return ModelDb.Power<PoisonPower>().PackedIconPath;
+        }
+
         if (power is BigDogChewPrepPower)
         {
             string custom = BigDogAssetPaths.PowerIcon("big_dog_chew_prep_power");
@@ -303,6 +308,11 @@ internal static class BigDogPowerIconHelper
         }
 
         if (power is EndlessBleedingPower)
+        {
+            return ModelDb.Power<PoisonPower>().ResolvedBigIconPath;
+        }
+
+        if (power is OpenWoundPower)
         {
             return ModelDb.Power<PoisonPower>().ResolvedBigIconPath;
         }

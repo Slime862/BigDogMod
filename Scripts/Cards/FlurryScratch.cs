@@ -59,6 +59,5 @@ public sealed class FlurryScratch : CustomCardModel
     protected override void OnUpgrade()
     {
         base.DynamicVars.Damage.UpgradeValueBy(1m);
-        base.DynamicVars["Hits"].UpgradeValueBy(1m);
     }
 }

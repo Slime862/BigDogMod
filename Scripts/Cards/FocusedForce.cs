@@ -15,8 +15,13 @@ namespace BigDogMod.Scripts.Cards;
 
 public sealed class FocusedForce : CustomCardModel
 {
+    protected override bool IsPlayable => BigDogChewLocator.FindInHand(base.Owner) != null;
+
+    protected override bool ShouldGlowRedInternal => !IsPlayable;
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        BigDogHoverTips.FromWantChew(base.DynamicVars["WantChew"]);
+        BigDogHoverTips.FromWantChew(base.DynamicVars["WantChew"])
+            .Concat(HoverTipFactory.FromCardWithCardHoverTips<BigDogChew>());
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new WantChewVar(12m)];
@@ -24,7 +29,7 @@ public sealed class FocusedForce : CustomCardModel
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("focused_force");
 
     public FocusedForce()
-        : base(1, CardType.Skill, CardRarity.Common, TargetType.Self, autoAdd: false)
+        : base(0, CardType.Skill, CardRarity.Common, TargetType.Self, autoAdd: false)
     {
     }
 

@@ -2,29 +2,31 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using BigDogMod.Scripts.Assets;
+using BigDogMod.Scripts.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace BigDogMod.Scripts.Cards;
 
-public sealed class SharpenClaws : CustomCardModel
+public sealed class OpenWound : CustomCardModel
 {
-    private decimal _extraDamageFromPileMoves;
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+        [HoverTipFactory.FromPower<BleedingPower>(), HoverTipFactory.FromPower<OpenWoundPower>(), HoverTipFactory.FromKeyword(CardKeyword.Exhaust)];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [
-            new DamageVar(4m, ValueProp.Move),
-            new DynamicVar("Grow", 2m)
-        ];
+        [new DamageVar(3m, ValueProp.Move)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("sharpen_claws");
+    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("open_wound");
 
-    public SharpenClaws()
-        : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, autoAdd: false)
+    public OpenWound()
+        : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, autoAdd: false)
     {
     }
 
@@ -35,26 +37,16 @@ public sealed class SharpenClaws : CustomCardModel
             return;
         }
 
+        await PowerCmd.Apply<OpenWoundPower>(cardPlay.Target, 1m, base.Owner.Creature, this);
+
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue)
             .FromCard(this)
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
     }
 
-    public void AddPileMoveDamage(decimal amount)
-    {
-        base.DynamicVars.Damage.BaseValue += amount;
-        _extraDamageFromPileMoves += amount;
-    }
-
     protected override void OnUpgrade()
     {
-        base.DynamicVars["Grow"].UpgradeValueBy(1m);
-    }
-
-    protected override void AfterDowngraded()
-    {
-        base.AfterDowngraded();
-        base.DynamicVars.Damage.BaseValue += _extraDamageFromPileMoves;
+        base.DynamicVars.Damage.UpgradeValueBy(3m);
     }
 }

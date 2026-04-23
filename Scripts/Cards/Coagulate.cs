@@ -17,14 +17,12 @@ public sealed class Coagulate : CustomCardModel
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [
             HoverTipFactory.FromPower<BleedingPower>(),
-            HoverTipFactory.FromPower<BleedingGuardPower>()
+            HoverTipFactory.Static(StaticHoverTip.Block),
+            HoverTipFactory.FromPower<CoagulatePower>()
         ];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [
-            new PowerVar<BleedingPower>(2m),
-            new CardsVar(1)
-        ];
+        [new PowerVar<BleedingPower>(3m)];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("coagulate");
 
@@ -36,12 +34,11 @@ public sealed class Coagulate : CustomCardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await PowerCmd.Apply<BleedingPower>(base.Owner.Creature, base.DynamicVars["BleedingPower"].BaseValue, base.Owner.Creature, this);
-        await PowerCmd.Apply<BleedingGuardPower>(base.Owner.Creature, 1m, base.Owner.Creature, this);
-        await CardPileCmd.Draw(choiceContext, base.DynamicVars.Cards.BaseValue, base.Owner);
+        decimal multiplier = base.IsUpgraded ? 2m : 1m;
+        await PowerCmd.Apply<CoagulatePower>(base.Owner.Creature, multiplier, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars["BleedingPower"].UpgradeValueBy(-1m);
     }
 }

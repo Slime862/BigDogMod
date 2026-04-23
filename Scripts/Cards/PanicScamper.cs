@@ -2,13 +2,11 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using BigDogMod.Scripts.Assets;
-using BigDogMod.Scripts.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -17,16 +15,10 @@ namespace BigDogMod.Scripts.Cards;
 public sealed class PanicScamper : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        [
-            HoverTipFactory.Static(StaticHoverTip.Block),
-            HoverTipFactory.FromPower<WildnessPower>()
-        ];
+        [HoverTipFactory.Static(StaticHoverTip.Block)];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [
-            new BlockVar(7m, ValueProp.Move),
-            new PowerVar<WildnessPower>(-2m)
-        ];
+        [new BlockVar(4m, ValueProp.Move)];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("panic_scamper");
 
@@ -37,15 +29,14 @@ public sealed class PanicScamper : CustomCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
-        decimal amount = base.DynamicVars["WildnessPower"].BaseValue;
-        await PowerCmd.Apply<WildnessPower>(base.Owner.Creature, amount, base.Owner.Creature, this);
-        base.Owner.Creature.GetPower<WildnessPower>()?.AddTemporaryAmount(amount);
+        for (int i = 0; i < 2; i++)
+        {
+            await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
+        }
     }
 
     protected override void OnUpgrade()
     {
         base.DynamicVars.Block.UpgradeValueBy(1m);
-        base.DynamicVars["WildnessPower"].UpgradeValueBy(-1m);
     }
 }

@@ -40,9 +40,15 @@ public sealed class WatcherDogPower : CustomPowerModel
             return;
         }
 
-        int current = wildness.Amount;
-        int next = current >= 0 ? -(current + 1) : Math.Abs(current) + 1;
-        int delta = next - current;
+        decimal step = base.Amount;
+        if (step <= 0m)
+        {
+            return;
+        }
+
+        decimal current = wildness.TemporaryAmount;
+        decimal next = current >= 0m ? -(current + step) : Math.Abs(current) + step;
+        decimal delta = next - current;
         if (delta == 0)
         {
             return;
@@ -50,7 +56,7 @@ public sealed class WatcherDogPower : CustomPowerModel
 
         Flash();
         await PowerCmd.Apply<WildnessPower>(base.Owner, delta, base.Owner, null, silent: true);
-        base.Owner.GetPower<WildnessPower>()?.AddTemporaryAmount(delta);
+        wildness.AddTemporaryAmount(delta);
     }
 
     public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)

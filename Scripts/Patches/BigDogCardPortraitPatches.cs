@@ -13,8 +13,8 @@ public static class BigDogCardPortraitFallbacks
     public static CardModel? GetFallbackCard(CardModel card)
     {
         if (card is StrikeBigDog or RendingBite or BigDogChew or BigDogFakeChew or BigDogHowl
-            or Feint or Bloodthirst or FlurryScratch or RipOpen or ProofOfDeath or MightyBlow or ForgetChew or BackDigging
-            or AwakenImpulse or SharpenClaws or SneakAttack)
+            or Feint or Bloodthirst or FlurryScratch or RipOpen or ProofOfDeath or MightyBlow or GatebreakerBite or ForgetChew or BackDigging
+            or AwakenImpulse or SharpenClaws or SneakAttack or OpenWound)
         {
             return ModelDb.Card<StrikeSilent>();
         }
@@ -35,7 +35,8 @@ public static class BigDogCardPortraitFallbacks
             or ForcedDefense or BerserkerDog or SharkDog or ChewAtWill or CowardDog or BluesDog or EndlessBleeding
             or WiseHowl or HoldOn or FearlessBeast or FullyPrepared or FrenziedGrowth or HeavenlyHowl or Coagulate
             or PainIntoPower or SuddenRampage or LingeringEcho or EncouragingHowl or ResistImpulse or Impulse
-            or ToxicBlood or BigOpenClose or Hesitation or SplashWater or RunAway or WatcherDog)
+            or ToxicBlood or BigOpenClose or Hesitation or SplashWater or RunAway or WatcherDog or SharePain
+            or CatchBreath or Endure or ShockingOpening or FlashStep)
         {
             return ModelDb.Card<DefendSilent>();
         }

@@ -1,11 +1,7 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using BigDogMod.Scripts.Assets;
-using BigDogMod.Scripts.Commands;
-using BigDogMod.Scripts.DynamicVars;
-using BigDogMod.Scripts.HoverTips;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,40 +11,39 @@ using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace BigDogMod.Scripts.Cards;
 
-public sealed class Impulse : CustomCardModel
+public sealed class CatchBreath : CustomCardModel
 {
-    protected override bool IsPlayable => BigDogChewLocator.FindInDraw(base.Owner) != null;
+    protected override bool IsPlayable => BigDogChewLocator.FindInHand(base.Owner) != null;
 
     protected override bool ShouldGlowRedInternal => !IsPlayable;
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        BigDogHoverTips.FromWantChew(base.DynamicVars["WantChew"])
-            .Concat(HoverTipFactory.FromCardWithCardHoverTips<BigDogChew>());
+        [HoverTipFactory.FromCard<BigDogChew>()];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new WantChewVar(8m)];
+        [new EnergyVar(1)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("impulse");
+    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("catch_breath");
 
-    public Impulse()
+    public CatchBreath()
         : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
     {
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        BigDogChew? chew = BigDogChewLocator.FindInDraw(base.Owner);
+        BigDogChew? chew = BigDogChewLocator.FindInHand(base.Owner);
         if (chew == null)
         {
             return;
         }
 
-        await CardPileCmd.Add(chew, PileType.Hand);
-        await WantChewCmd.WantChew(base.DynamicVars["WantChew"].BaseValue, base.Owner, this);
+        await CardCmd.Discard(choiceContext, chew);
+        await PlayerCmd.GainEnergy(base.DynamicVars.Energy.IntValue, base.Owner);
     }
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars["WantChew"].UpgradeValueBy(4m);
+        base.DynamicVars.Energy.UpgradeValueBy(1m);
     }
 }

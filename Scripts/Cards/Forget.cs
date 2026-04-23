@@ -31,13 +31,15 @@ public sealed class Forget : CustomCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        CardModel? selected = (await CardSelectCmd.FromHand(
-            prefs: new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 1),
+        int exhaustCount = System.Math.Min(2, base.Owner.PlayerCombatState?.Hand.Cards.Count ?? 0);
+        IEnumerable<CardModel> selectedCards = await CardSelectCmd.FromHand(
+            prefs: new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, exhaustCount),
             context: choiceContext,
             player: base.Owner,
             filter: null,
-            source: this)).FirstOrDefault();
-        if (selected != null)
+            source: this);
+
+        foreach (CardModel selected in selectedCards)
         {
             await CardCmd.Exhaust(choiceContext, selected);
         }

@@ -23,6 +23,11 @@ public sealed class BleedingPower : CustomPowerModel
             return;
         }
 
+        if (base.Owner.HasPower<CoagulatePower>())
+        {
+            return;
+        }
+
         bool isAliveAfterBaseTrigger = await TriggerBleeding();
         if (!isAliveAfterBaseTrigger)
         {

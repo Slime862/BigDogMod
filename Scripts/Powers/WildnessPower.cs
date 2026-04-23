@@ -17,6 +17,7 @@ namespace BigDogMod.Scripts.Powers;
 public sealed class WildnessPower : CustomPowerModel
 {
     private decimal _temporaryAmount;
+    public decimal TemporaryAmount => _temporaryAmount;
 
     public override PowerType Type => PowerType.Buff;
 

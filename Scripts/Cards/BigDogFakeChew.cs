@@ -13,10 +13,10 @@ namespace BigDogMod.Scripts.Cards;
 public sealed class BigDogFakeChew : CustomCardModel
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        [CardKeyword.Retain];
+        [CardKeyword.Retain, CardKeyword.Exhaust];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        [HoverTipFactory.FromKeyword(CardKeyword.Retain)];
+        [HoverTipFactory.FromKeyword(CardKeyword.Retain), HoverTipFactory.FromKeyword(CardKeyword.Exhaust)];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("big_dog_fake_chew");
 

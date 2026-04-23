@@ -15,6 +15,7 @@ public static class BigDogChewPrepEffectTypeExtensions
                 BigDogChewPrepEffectType.Weak => "weakAllEnemiesLine",
                 BigDogChewPrepEffectType.Vulnerable => "vulnerableAllEnemiesLine",
                 BigDogChewPrepEffectType.Bleeding => "bleedingAllEnemiesLine",
+                BigDogChewPrepEffectType.StrengthDown => "strengthDownAllEnemiesLine",
                 _ => effectType.LocLineKey(false)
             };
         }
@@ -25,6 +26,7 @@ public static class BigDogChewPrepEffectTypeExtensions
             BigDogChewPrepEffectType.Weak => "weakLine",
             BigDogChewPrepEffectType.Vulnerable => "vulnerableLine",
             BigDogChewPrepEffectType.Bleeding => "bleedingLine",
+            BigDogChewPrepEffectType.StrengthDown => "strengthDownLine",
             BigDogChewPrepEffectType.Draw => "drawLine",
             BigDogChewPrepEffectType.Energy => "energyLine",
             BigDogChewPrepEffectType.RepeatPlay => "repeatPlayLine",
@@ -41,6 +43,7 @@ public static class BigDogChewPrepEffectTypeExtensions
             BigDogChewPrepEffectType.Weak => HoverTipFactory.FromPower<WeakPower>(),
             BigDogChewPrepEffectType.Vulnerable => HoverTipFactory.FromPower<VulnerablePower>(),
             BigDogChewPrepEffectType.Bleeding => HoverTipFactory.FromPower<BleedingPower>(),
+            BigDogChewPrepEffectType.StrengthDown => HoverTipFactory.FromPower<StrengthPower>(),
             _ => null
         };
     }

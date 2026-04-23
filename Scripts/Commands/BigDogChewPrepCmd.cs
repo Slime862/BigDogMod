@@ -95,6 +95,16 @@ public static class BigDogChewPrepCmd
                         await PowerCmd.Apply<BleedingPower>(target, effect.Amount, owner.Creature, targetCard);
                     }
                     break;
+                case BigDogChewPrepEffectType.StrengthDown:
+                    if (effect.ApplyToAllEnemies && owner.Creature.CombatState != null)
+                    {
+                        await PowerCmd.Apply<StrengthPower>(owner.Creature.CombatState.HittableEnemies.Where(enemy => enemy.IsAlive), -effect.Amount, owner.Creature, targetCard);
+                    }
+                    else if (target.IsAlive)
+                    {
+                        await PowerCmd.Apply<StrengthPower>(target, -effect.Amount, owner.Creature, targetCard);
+                    }
+                    break;
                 case BigDogChewPrepEffectType.Draw:
                     await CardPileCmd.Draw(choiceContext, effect.Amount, owner);
                     break;

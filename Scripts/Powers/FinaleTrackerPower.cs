@@ -13,7 +13,7 @@ namespace BigDogMod.Scripts.Powers;
 
 public sealed class FinaleTrackerPower : CustomPowerModel
 {
-    private int _jiaoStreak;
+    private int _jiaoCountThisTurn;
 
     public override PowerType Type => PowerType.Buff;
 
@@ -35,7 +35,7 @@ public sealed class FinaleTrackerPower : CustomPowerModel
             return 0m;
         }
 
-        return _jiaoStreak * finale.DynamicVars["Bonus"].BaseValue;
+        return _jiaoCountThisTurn * finale.DynamicVars["Bonus"].BaseValue;
     }
 
     public override Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
@@ -47,11 +47,7 @@ public sealed class FinaleTrackerPower : CustomPowerModel
 
         if (cardPlay.Card.Tags.Contains(BigDogTags.Jiao))
         {
-            _jiaoStreak++;
-        }
-        else
-        {
-            _jiaoStreak = 0;
+            _jiaoCountThisTurn++;
         }
 
         return Task.CompletedTask;
@@ -61,7 +57,7 @@ public sealed class FinaleTrackerPower : CustomPowerModel
     {
         if (side == base.Owner.Side)
         {
-            _jiaoStreak = 0;
+            _jiaoCountThisTurn = 0;
         }
 
         return Task.CompletedTask;

@@ -15,9 +15,7 @@ namespace BigDogMod.Scripts.Cards;
 public sealed class SuddenRampage : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        [HoverTipFactory.FromPower<WildnessPower>(), HoverTipFactory.FromKeyword(CardKeyword.Exhaust)];
-
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+        [HoverTipFactory.FromPower<WildnessPower>()];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new PowerVar<WildnessPower>(3m)];

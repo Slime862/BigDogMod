@@ -18,7 +18,7 @@ public sealed class WatcherDog : CustomCardModel
         [HoverTipFactory.FromPower<WildnessPower>()];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new PowerVar<WildnessPower>(1m)];
+        [new PowerVar<WildnessPower>(1m), new DynamicVar("PerCard", 2m)];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("watcher_dog");
 
@@ -32,11 +32,11 @@ public sealed class WatcherDog : CustomCardModel
         decimal amount = base.DynamicVars["WildnessPower"].BaseValue;
         await PowerCmd.Apply<WildnessPower>(base.Owner.Creature, amount, base.Owner.Creature, this);
         base.Owner.Creature.GetPower<WildnessPower>()?.AddTemporaryAmount(amount);
-        await PowerCmd.Apply<WatcherDogPower>(base.Owner.Creature, 1m, base.Owner.Creature, this);
+        await PowerCmd.Apply<WatcherDogPower>(base.Owner.Creature, base.DynamicVars["PerCard"].BaseValue, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        AddKeyword(CardKeyword.Retain);
+        base.DynamicVars["PerCard"].UpgradeValueBy(1m);
     }
 }

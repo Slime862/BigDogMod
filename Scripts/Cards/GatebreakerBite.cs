@@ -11,20 +11,15 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace BigDogMod.Scripts.Cards;
 
-public sealed class SharpenClaws : CustomCardModel
+public sealed class GatebreakerBite : CustomCardModel
 {
-    private decimal _extraDamageFromPileMoves;
-
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [
-            new DamageVar(4m, ValueProp.Move),
-            new DynamicVar("Grow", 2m)
-        ];
+        [new DamageVar(28m, ValueProp.Move)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("sharpen_claws");
+    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("big_dog_howl");
 
-    public SharpenClaws()
-        : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, autoAdd: false)
+    public GatebreakerBite()
+        : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, autoAdd: false)
     {
     }
 
@@ -41,20 +36,8 @@ public sealed class SharpenClaws : CustomCardModel
             .Execute(choiceContext);
     }
 
-    public void AddPileMoveDamage(decimal amount)
-    {
-        base.DynamicVars.Damage.BaseValue += amount;
-        _extraDamageFromPileMoves += amount;
-    }
-
     protected override void OnUpgrade()
     {
-        base.DynamicVars["Grow"].UpgradeValueBy(1m);
-    }
-
-    protected override void AfterDowngraded()
-    {
-        base.AfterDowngraded();
-        base.DynamicVars.Damage.BaseValue += _extraDamageFromPileMoves;
+        base.DynamicVars.Damage.UpgradeValueBy(8m);
     }
 }

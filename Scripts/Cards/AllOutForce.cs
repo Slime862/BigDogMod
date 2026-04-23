@@ -15,8 +15,13 @@ namespace BigDogMod.Scripts.Cards;
 
 public sealed class AllOutForce : CustomCardModel
 {
+    protected override bool IsPlayable => BigDogChewLocator.FindInHand(base.Owner) != null;
+
+    protected override bool ShouldGlowRedInternal => !IsPlayable;
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        BigDogHoverTips.FromWantChew(base.DynamicVars["WantChew"]);
+        BigDogHoverTips.FromWantChew(base.DynamicVars["WantChew"])
+            .Concat(HoverTipFactory.FromCardWithCardHoverTips<BigDogChew>());
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new WantChewVar(24m)];
@@ -24,7 +29,7 @@ public sealed class AllOutForce : CustomCardModel
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("all_out_force");
 
     public AllOutForce()
-        : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self, autoAdd: false)
+        : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self, autoAdd: false)
     {
     }
 

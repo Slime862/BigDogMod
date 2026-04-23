@@ -16,7 +16,7 @@ public sealed class Finale : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new DamageVar(10m, ValueProp.Move),
-            new DynamicVar("Bonus", 4m)
+            new DynamicVar("Bonus", 6m)
         ];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("finale");

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using BigDogMod.Scripts.Assets;
@@ -7,33 +6,37 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace BigDogMod.Scripts.Cards;
 
-public sealed class Feint : CustomCardModel
+public sealed class FlashStep : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        new IHoverTip[] { HoverTipFactory.FromKeyword(CardKeyword.Retain) }
-            .Concat(HoverTipFactory.FromCardWithCardHoverTips<BigDogFakeChew>());
+        [HoverTipFactory.Static(StaticHoverTip.Block)];
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+        [new BlockVar(2m, ValueProp.Move)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("feint");
+    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("flash_step");
 
-    public Feint()
+    public FlashStep()
         : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
     {
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        BigDogFakeChew fakeChew = base.Owner.Creature.CombatState!.CreateCard<BigDogFakeChew>(base.Owner);
-        await CardPileCmd.AddGeneratedCardToCombat(fakeChew, PileType.Hand, addedByPlayer: true);
+        for (int i = 0; i < 4; i++)
+        {
+            await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
+        }
     }
 
     protected override void OnUpgrade()
     {
-        RemoveKeyword(CardKeyword.Exhaust);
+        base.DynamicVars.Block.UpgradeValueBy(1m);
     }
 }

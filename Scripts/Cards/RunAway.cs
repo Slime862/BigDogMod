@@ -15,26 +15,24 @@ namespace BigDogMod.Scripts.Cards;
 public sealed class RunAway : CustomCardModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new CardsVar(3)];
+        [new CardsVar(1)];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("run_away");
 
     public RunAway()
-        : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
+        : base(1, CardType.Skill, CardRarity.Common, TargetType.Self, autoAdd: false)
     {
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        for (int i = 0; i < base.DynamicVars.Cards.IntValue; i++)
+        CardModel? cardFromDraw = PileType.Draw.GetPile(base.Owner).Cards.FirstOrDefault();
+        if (cardFromDraw != null)
         {
-            IEnumerable<CardModel> drawnCards = await CardPileCmd.Draw(choiceContext, 1m, base.Owner);
-            CardModel? drawn = drawnCards.FirstOrDefault();
-            if (drawn?.Type == CardType.Attack)
-            {
-                await CardPileCmd.Add(drawn, PileType.Discard);
-            }
+            await CardPileCmd.Add(cardFromDraw, PileType.Discard);
         }
+
+        await CardPileCmd.Draw(choiceContext, base.DynamicVars.Cards.BaseValue, base.Owner);
     }
 
     protected override void OnUpgrade()
