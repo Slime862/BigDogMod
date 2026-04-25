@@ -21,7 +21,7 @@ public sealed class Makeover : CustomCardModel
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("makeover");
 
     public Makeover()
-        : base(0, CardType.Skill, CardRarity.Common, TargetType.Self, autoAdd: false)
+        : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
     {
     }
 

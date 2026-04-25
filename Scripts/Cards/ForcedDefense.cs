@@ -15,30 +15,39 @@ namespace BigDogMod.Scripts.Cards;
 
 public sealed class ForcedDefense : CustomCardModel
 {
+    protected override bool IsPlayable => BigDogChewLocator.FindInHand(base.Owner) != null;
+
+    protected override bool ShouldGlowRedInternal => !IsPlayable;
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        [HoverTipFactory.FromPower<BleedingPower>()];
+        [HoverTipFactory.FromCard<BigDogChew>(), HoverTipFactory.FromPower<WildnessPower>()];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [
-            new PowerVar<BleedingPower>(1m),
-            new BlockVar(8m, ValueProp.Move)
-        ];
+        [new PowerVar<WildnessPower>(-3m)];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("forced_defense");
 
     public ForcedDefense()
-        : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
+        : base(0, CardType.Skill, CardRarity.Common, TargetType.Self, autoAdd: false)
     {
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<BleedingPower>(base.Owner.Creature, base.DynamicVars["BleedingPower"].BaseValue, base.Owner.Creature, this);
-        await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
+        BigDogChew? chew = BigDogChewLocator.FindInHand(base.Owner);
+        if (chew == null)
+        {
+            return;
+        }
+
+        await CardCmd.Discard(choiceContext, chew);
+        decimal amount = base.DynamicVars["WildnessPower"].BaseValue;
+        await PowerCmd.Apply<WildnessPower>(base.Owner.Creature, amount, base.Owner.Creature, this);
+        base.Owner.Creature.GetPower<WildnessPower>()?.AddTemporaryAmount(amount);
     }
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Block.UpgradeValueBy(4m);
+        base.DynamicVars["WildnessPower"].UpgradeValueBy(-2m);
     }
 }

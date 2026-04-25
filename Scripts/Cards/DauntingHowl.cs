@@ -4,6 +4,8 @@ using BaseLib.Abstracts;
 using BigDogMod.Scripts.Assets;
 using BigDogMod.Scripts.ChewPrep;
 using BigDogMod.Scripts.Commands;
+using BigDogMod.Scripts.DynamicVars;
+using BigDogMod.Scripts.HoverTips;
 using BigDogMod.Scripts.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -22,11 +24,12 @@ public sealed class DauntingHowl : CustomCardModel, IBigDogChewPrepSource
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [
             HoverTipFactory.FromPower<VulnerablePower>(),
+            ..BigDogHoverTips.FromWantChew(base.DynamicVars["WantChew"]),
             HoverTipFactory.FromPower<BigDogChewPrepPower>()
         ];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new PowerVar<VulnerablePower>(1m)];
+        [new PowerVar<VulnerablePower>(1m), new WantChewVar(2m)];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("daunting_howl");
 
@@ -49,6 +52,7 @@ public sealed class DauntingHowl : CustomCardModel, IBigDogChewPrepSource
 
         await PowerCmd.Apply<VulnerablePower>(base.CombatState.HittableEnemies, base.DynamicVars.Vulnerable.BaseValue, base.Owner.Creature, this);
         await BigDogChewPrepCmd.QueueFromSource(base.Owner, this);
+        await WantChewCmd.WantChew(base.DynamicVars["WantChew"].BaseValue, base.Owner, this);
     }
 
     protected override void OnUpgrade()

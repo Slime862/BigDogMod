@@ -5,6 +5,7 @@ using BigDogMod.Scripts.Assets;
 using BigDogMod.Scripts.Commands;
 using BigDogMod.Scripts.DynamicVars;
 using BigDogMod.Scripts.HoverTips;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -35,11 +36,18 @@ public sealed class FocusedForce : CustomCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        BigDogChew? chew = BigDogChewLocator.FindInHand(base.Owner);
+        if (chew == null)
+        {
+            return;
+        }
+
+        await CardCmd.Discard(choiceContext, chew);
         await WantChewCmd.WantChew(WantChewModifiers.GetEffectiveWantChewAmount(this, base.DynamicVars["WantChew"].BaseValue), base.Owner, this);
     }
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars["WantChew"].UpgradeValueBy(8m);
+        base.DynamicVars["WantChew"].UpgradeValueBy(6m);
     }
 }

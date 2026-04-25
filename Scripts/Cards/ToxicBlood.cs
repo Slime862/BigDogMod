@@ -29,7 +29,7 @@ public sealed class ToxicBlood : CustomCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        int poisonAmount = base.Owner.Creature.GetPowerAmount<BleedingPower>();
+        int poisonAmount = base.Owner.Creature.GetPowerAmount<BleedingPower>() * 2;
         if (poisonAmount <= 0 || base.CombatState == null)
         {
             return;

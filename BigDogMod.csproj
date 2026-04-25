@@ -26,12 +26,20 @@
       <HintPath>ThirdParty\BaseLib\BaseLib.dll</HintPath>
       <Private>false</Private>
     </Reference>
+
+    <Reference Include="STS2-RitsuLib">
+      <HintPath>ThirdParty\RitsuLib\STS2-RitsuLib.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="ThirdParty\BaseLibSource\**\*.cs" />
     <EmbeddedResource Remove="ThirdParty\BaseLibSource\**\*" />
     <None Remove="ThirdParty\BaseLibSource\**\*" />
+    <Compile Remove="ThirdParty\RitsuLibSource\**\*.cs" />
+    <EmbeddedResource Remove="ThirdParty\RitsuLibSource\**\*" />
+    <None Remove="ThirdParty\RitsuLibSource\**\*" />
   </ItemGroup>
 
   <Target Name="Copy Mod" AfterTargets="PostBuildEvent">

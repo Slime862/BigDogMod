@@ -47,7 +47,7 @@ public static class BigDogCardPortraitFallbacks
             or WiseHowl or HoldOn or FearlessBeast or FullyPrepared or FrenziedGrowth or HeavenlyHowl or Coagulate
             or PainIntoPower or SuddenRampage or LingeringEcho or EncouragingHowl or ResistImpulse or Impulse
             or ToxicBlood or BigOpenClose or Hesitation or SplashWater or RunAway or WatcherDog or SharePain
-            or CatchBreath or Endure or ShockingOpening or FlashStep)
+            or CatchBreath or Endure or ShockingOpening or FlashStep or TrainJawMuscles)
         {
             return ModelDb.Card<DefendSilent>();
         }

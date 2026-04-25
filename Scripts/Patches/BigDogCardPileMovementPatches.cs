@@ -37,9 +37,9 @@ public static class BigDogCardPileMovementPatch
             await WantChewCmd.WantChew(hesitationPower.Amount, card.Owner, hesitationPower);
         }
 
-        if (card is SharpenClaws sharpenClaws)
+        if (newPileType == PileType.Discard && card is IOnEnterDiscardPileCard discardPileCard)
         {
-            sharpenClaws.AddPileMoveDamage(sharpenClaws.DynamicVars["Grow"].BaseValue);
+            await discardPileCard.OnEnterDiscardPile();
         }
 
         return result;

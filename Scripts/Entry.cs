@@ -11,6 +11,7 @@ using BigDogMod.Scripts.Characters;
 using BigDogMod.Scripts.Config;
 using BigDogMod.Scripts.Pools;
 using BigDogMod.Scripts.Relics;
+using STS2RitsuLib.Interop;
 
 namespace BigDogMod.Scripts;
 
@@ -20,6 +21,7 @@ public static class Entry
     public static void Init()
     {
         ModConfigRegistry.Register("BigDogMod", new BigDogModConfig());
+        ModTypeDiscoveryHub.RegisterModAssembly("BigDogMod", typeof(Entry).Assembly);
 
         ModHelper.AddModelToPool<BigDogCardPool, StokeWildness>();
         ModHelper.AddModelToPool<BigDogCardPool, BigDogHowl>();
@@ -67,7 +69,6 @@ public static class Entry
         ModHelper.AddModelToPool<BigDogCardPool, BigOpenClose>();
         ModHelper.AddModelToPool<BigDogCardPool, FlurryScratch>();
         ModHelper.AddModelToPool<BigDogCardPool, AttackWindup>();
-        ModHelper.AddModelToPool<BigDogCardPool, Forget>();
         ModHelper.AddModelToPool<BigDogCardPool, LickWounds>();
         ModHelper.AddModelToPool<BigDogCardPool, JoyOfRegen>();
         ModHelper.AddModelToPool<BigDogCardPool, DogSage>();
@@ -83,7 +84,6 @@ public static class Entry
         ModHelper.AddModelToPool<BigDogCardPool, HoldOn>();
         ModHelper.AddModelToPool<BigDogCardPool, FearlessBeast>();
         ModHelper.AddModelToPool<BigDogCardPool, MightyBlow>();
-        ModHelper.AddModelToPool<BigDogCardPool, GatebreakerBite>();
         ModHelper.AddModelToPool<BigDogCardPool, EndlessBleeding>();
         ModHelper.AddModelToPool<BigDogCardPool, FullyPrepared>();
         ModHelper.AddModelToPool<BigDogCardPool, FrenziedGrowth>();
@@ -91,6 +91,7 @@ public static class Entry
         ModHelper.AddModelToPool<BigDogCardPool, SplashWater>();
         ModHelper.AddModelToPool<BigDogCardPool, RunAway>();
         ModHelper.AddModelToPool<BigDogCardPool, SharpenClaws>();
+        ModHelper.AddModelToPool<BigDogCardPool, TrainJawMuscles>();
         ModHelper.AddModelToPool<BigDogCardPool, SneakAttack>();
         ModHelper.AddModelToPool<BigDogCardPool, SharePain>();
         ModHelper.AddModelToPool<BigDogCardPool, OpenWound>();

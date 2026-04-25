@@ -9,20 +9,17 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace BigDogMod.Scripts.Cards;
 
 public sealed class Coagulate : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        [
-            HoverTipFactory.FromPower<BleedingPower>(),
-            HoverTipFactory.Static(StaticHoverTip.Block),
-            HoverTipFactory.FromPower<CoagulatePower>()
-        ];
+        [HoverTipFactory.FromPower<BleedingPower>(), HoverTipFactory.Static(StaticHoverTip.Block)];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new PowerVar<BleedingPower>(3m)];
+        [new BlockVar(2m, ValueProp.Move), new DynamicVar("Hits", 2m)];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("coagulate");
 
@@ -33,12 +30,17 @@ public sealed class Coagulate : CustomCardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<BleedingPower>(base.Owner.Creature, base.DynamicVars["BleedingPower"].BaseValue, base.Owner.Creature, this);
-        decimal multiplier = base.IsUpgraded ? 2m : 1m;
-        await PowerCmd.Apply<CoagulatePower>(base.Owner.Creature, multiplier, base.Owner.Creature, this);
+        int bleedingAmount = base.Owner.Creature.GetPowerAmount<BleedingPower>();
+        decimal blockPerHit = base.DynamicVars.Block.BaseValue + bleedingAmount;
+
+        for (int i = 0; i < base.DynamicVars["Hits"].IntValue; i++)
+        {
+            await CreatureCmd.GainBlock(base.Owner.Creature, blockPerHit, ValueProp.Move, cardPlay);
+        }
     }
 
     protected override void OnUpgrade()
     {
+        base.DynamicVars["Hits"].UpgradeValueBy(1m);
     }
 }

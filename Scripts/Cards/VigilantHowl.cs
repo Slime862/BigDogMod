@@ -4,6 +4,8 @@ using BaseLib.Abstracts;
 using BigDogMod.Scripts.Assets;
 using BigDogMod.Scripts.ChewPrep;
 using BigDogMod.Scripts.Commands;
+using BigDogMod.Scripts.DynamicVars;
+using BigDogMod.Scripts.HoverTips;
 using BigDogMod.Scripts.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -22,11 +24,12 @@ public sealed class VigilantHowl : CustomCardModel, IBigDogChewPrepSource
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [
             HoverTipFactory.Static(StaticHoverTip.Block),
+            ..BigDogHoverTips.FromWantChew(base.DynamicVars["WantChew"]),
             HoverTipFactory.FromPower<BigDogChewPrepPower>()
         ];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new BlockVar(6m, ValueProp.Move)];
+        [new BlockVar(6m, ValueProp.Move), new WantChewVar(2m)];
 
     public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("vigilant_howl");
 
@@ -44,6 +47,7 @@ public sealed class VigilantHowl : CustomCardModel, IBigDogChewPrepSource
     {
         await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
         await BigDogChewPrepCmd.QueueFromSource(base.Owner, this);
+        await WantChewCmd.WantChew(base.DynamicVars["WantChew"].BaseValue, base.Owner, this);
     }
 
     protected override void OnUpgrade()
