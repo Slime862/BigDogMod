@@ -7,8 +7,11 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
 namespace BigDogMod.Scripts.Powers;
 
+[RegisterPower()]
 public sealed class BerserkerDogPower : CustomPowerModel
 {
     public override PowerType Type => PowerType.Buff;
@@ -26,3 +29,4 @@ public sealed class BerserkerDogPower : CustomPowerModel
         await CreatureCmd.GainBlock(base.Owner, result.UnblockedDamage, ValueProp.Unpowered, null, fast: true);
     }
 }
+

@@ -9,14 +9,19 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class LingeringEcho : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [HoverTipFactory.FromPower<BigDogChewPrepPower>()];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("lingering_echo");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("lingering_echo");
 
     public LingeringEcho()
         : base(1, CardType.Power, CardRarity.Rare, TargetType.Self, autoAdd: false)
@@ -33,3 +38,5 @@ public sealed class LingeringEcho : CustomCardModel
         base.EnergyCost.UpgradeBy(-1);
     }
 }
+
+

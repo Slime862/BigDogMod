@@ -9,8 +9,13 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class CatchBreath : CustomCardModel
 {
     protected override bool IsPlayable => BigDogChewLocator.FindInHand(base.Owner) != null;
@@ -23,7 +28,7 @@ public sealed class CatchBreath : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new EnergyVar(1)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("catch_breath");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("catch_breath");
 
     public CatchBreath()
         : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
@@ -47,3 +52,5 @@ public sealed class CatchBreath : CustomCardModel
         base.DynamicVars.Energy.UpgradeValueBy(1m);
     }
 }
+
+

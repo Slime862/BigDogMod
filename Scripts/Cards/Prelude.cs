@@ -14,8 +14,13 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class Prelude : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -30,7 +35,7 @@ public sealed class Prelude : CustomCardModel
             new WantChewVar(6m)
         ];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("prelude");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("prelude");
 
     public Prelude()
         : base(1, CardType.Skill, CardRarity.Common, TargetType.Self, autoAdd: false)
@@ -49,3 +54,5 @@ public sealed class Prelude : CustomCardModel
         base.DynamicVars["WantChew"].UpgradeValueBy(3m);
     }
 }
+
+

@@ -13,13 +13,16 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
-public sealed class IntimidatingHowl : CustomCardModel, IBigDogChewPrepSource
+[RegisterCard(typeof(BigDogCardPool))]
+public sealed class IntimidatingHowl : CustomCardModel, IBigDogChewPrepSource, IJiaoCard
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-
-    protected override HashSet<CardTag> CanonicalTags => new() { BigDogTags.Jiao };
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [
@@ -31,7 +34,7 @@ public sealed class IntimidatingHowl : CustomCardModel, IBigDogChewPrepSource
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new PowerVar<WeakPower>(1m), new DynamicVar("StrengthDown", 1m)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("intimidating_howl");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("intimidating_howl");
 
     public IntimidatingHowl()
         : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy, autoAdd: false)
@@ -61,3 +64,6 @@ public sealed class IntimidatingHowl : CustomCardModel, IBigDogChewPrepSource
         RemoveKeyword(CardKeyword.Exhaust);
     }
 }
+
+
+

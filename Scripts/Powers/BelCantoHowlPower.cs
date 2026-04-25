@@ -10,8 +10,11 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
 namespace BigDogMod.Scripts.Powers;
 
+[RegisterPower()]
 public sealed class BelCantoHowlPower : CustomPowerModel
 {
     private sealed class Data
@@ -40,7 +43,7 @@ public sealed class BelCantoHowlPower : CustomPowerModel
             return playCount;
         }
 
-        if (!card.Tags.Contains(BigDogTags.Jiao))
+        if (!BigDogCardTraits.IsJiao(card))
         {
             return playCount;
         }
@@ -55,7 +58,7 @@ public sealed class BelCantoHowlPower : CustomPowerModel
 
     public override Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner.Creature == base.Owner && cardPlay.Card.Tags.Contains(BigDogTags.Jiao))
+        if (cardPlay.Card.Owner.Creature == base.Owner && BigDogCardTraits.IsJiao(cardPlay.Card))
         {
             GetInternalData<Data>().TriggeredThisTurn = true;
         }
@@ -73,3 +76,5 @@ public sealed class BelCantoHowlPower : CustomPowerModel
         return Task.CompletedTask;
     }
 }
+
+

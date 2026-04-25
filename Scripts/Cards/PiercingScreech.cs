@@ -12,11 +12,15 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
-public sealed class PiercingScreech : CustomCardModel, IBigDogChewPrepSource
+[RegisterCard(typeof(BigDogCardPool))]
+public sealed class PiercingScreech : CustomCardModel, IBigDogChewPrepSource, IJiaoCard
 {
-    protected override HashSet<CardTag> CanonicalTags => new() { BigDogTags.Jiao };
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [
@@ -27,7 +31,7 @@ public sealed class PiercingScreech : CustomCardModel, IBigDogChewPrepSource
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new PowerVar<BleedingPower>(2m)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("piercing_screech");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("piercing_screech");
 
     public PiercingScreech()
         : base(0, CardType.Skill, CardRarity.Common, TargetType.AllEnemies, autoAdd: false)
@@ -55,3 +59,6 @@ public sealed class PiercingScreech : CustomCardModel, IBigDogChewPrepSource
         base.DynamicVars["BleedingPower"].UpgradeValueBy(1m);
     }
 }
+
+
+

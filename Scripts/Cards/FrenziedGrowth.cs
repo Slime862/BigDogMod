@@ -10,8 +10,13 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class FrenziedGrowth : CustomCardModel
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
@@ -24,7 +29,7 @@ public sealed class FrenziedGrowth : CustomCardModel
             HoverTipFactory.FromPower<RegenPower>()
         ];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("frenzied_growth");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("frenzied_growth");
 
     public FrenziedGrowth()
         : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self, autoAdd: false)
@@ -49,3 +54,5 @@ public sealed class FrenziedGrowth : CustomCardModel
         base.EnergyCost.UpgradeBy(-1);
     }
 }
+
+

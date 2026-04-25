@@ -13,8 +13,11 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Rooms;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
 namespace BigDogMod.Scripts.Powers;
 
+[RegisterPower()]
 public sealed class BigDogChewPrepPower : CustomPowerModel, IAddDumbVariablesToPowerDescription
 {
     private readonly Dictionary<BigDogChewPrepEffect, int> _effects = [];
@@ -140,3 +143,4 @@ public sealed class BigDogChewPrepPower : CustomPowerModel, IAddDumbVariablesToP
         return BuildEffectLine(effect).GetFormattedText();
     }
 }
+

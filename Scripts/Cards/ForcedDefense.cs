@@ -11,8 +11,13 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class ForcedDefense : CustomCardModel
 {
     protected override bool IsPlayable => BigDogChewLocator.FindInHand(base.Owner) != null;
@@ -25,7 +30,7 @@ public sealed class ForcedDefense : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new PowerVar<WildnessPower>(-3m)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("forced_defense");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("forced_defense");
 
     public ForcedDefense()
         : base(0, CardType.Skill, CardRarity.Common, TargetType.Self, autoAdd: false)
@@ -51,3 +56,5 @@ public sealed class ForcedDefense : CustomCardModel
         base.DynamicVars["WildnessPower"].UpgradeValueBy(-2m);
     }
 }
+
+

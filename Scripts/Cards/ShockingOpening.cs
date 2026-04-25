@@ -10,8 +10,13 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class ShockingOpening : CustomCardModel
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, CardKeyword.Innate, CardKeyword.Ethereal];
@@ -22,7 +27,7 @@ public sealed class ShockingOpening : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new PowerVar<BleedingPower>(4m)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("shocking_opening");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("shocking_opening");
 
     public ShockingOpening()
         : base(1, CardType.Skill, CardRarity.Rare, TargetType.AllEnemies, autoAdd: false)
@@ -44,3 +49,5 @@ public sealed class ShockingOpening : CustomCardModel
         base.DynamicVars["BleedingPower"].UpgradeValueBy(2m);
     }
 }
+
+

@@ -7,11 +7,16 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class OffenseAndDefense : CustomCardModel
 {
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("offense_and_defense");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("offense_and_defense");
 
     public OffenseAndDefense()
         : base(1, CardType.Power, CardRarity.Rare, TargetType.Self, autoAdd: false)
@@ -28,3 +33,5 @@ public sealed class OffenseAndDefense : CustomCardModel
         AddKeyword(CardKeyword.Innate);
     }
 }
+
+

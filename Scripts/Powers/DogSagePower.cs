@@ -9,8 +9,11 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
 namespace BigDogMod.Scripts.Powers;
 
+[RegisterPower()]
 public sealed class DogSagePower : CustomPowerModel, IAddDumbVariablesToPowerDescription
 {
     private bool _triggeredThisTurn;
@@ -26,7 +29,7 @@ public sealed class DogSagePower : CustomPowerModel, IAddDumbVariablesToPowerDes
 
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
-        if (_triggeredThisTurn || cardPlay.Card.Owner.Creature != base.Owner || !cardPlay.Card.Tags.Contains(BigDogTags.Jiao))
+        if (_triggeredThisTurn || cardPlay.Card.Owner.Creature != base.Owner || !BigDogCardTraits.IsJiao(cardPlay.Card))
         {
             return;
         }
@@ -51,3 +54,5 @@ public sealed class DogSagePower : CustomPowerModel, IAddDumbVariablesToPowerDes
         return Task.CompletedTask;
     }
 }
+
+

@@ -8,7 +8,19 @@ public static class BigDogAssetPaths
 
     public static string CardPortrait(string fileName) => $"{BasePath}/cards/{fileName}.png";
 
+    public static string? TryCardPortrait(string fileName)
+    {
+        var path = CardPortrait(fileName);
+        return Exists(path) ? path : null;
+    }
+
     public static string CardBetaPortrait(string fileName) => $"{BasePath}/cards/beta/{fileName}.png";
+
+    public static string? TryCardBetaPortrait(string fileName)
+    {
+        var path = CardBetaPortrait(fileName);
+        return Exists(path) ? path : null;
+    }
 
     public static string PowerIcon(string fileName) => $"{BasePath}/powers/{fileName}.png";
 

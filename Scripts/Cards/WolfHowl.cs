@@ -12,8 +12,14 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
+[RegisterCard(typeof(EventCardPool))]
 public sealed class WolfHowl : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -41,3 +47,5 @@ public sealed class WolfHowl : CustomCardModel
         base.DynamicVars.Cards.UpgradeValueBy(1m);
     }
 }
+
+

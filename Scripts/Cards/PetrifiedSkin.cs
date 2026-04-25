@@ -7,11 +7,16 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class PetrifiedSkin : CustomCardModel
 {
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("petrified_skin");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("petrified_skin");
 
     public PetrifiedSkin()
         : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
@@ -28,3 +33,5 @@ public sealed class PetrifiedSkin : CustomCardModel
         AddKeyword(CardKeyword.Innate);
     }
 }
+
+

@@ -16,7 +16,7 @@ public sealed class GatebreakerBite : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new DamageVar(28m, ValueProp.Move)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("gatebreaker_bite");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("gatebreaker_bite");
 
     public GatebreakerBite()
         : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, autoAdd: false)
@@ -41,3 +41,4 @@ public sealed class GatebreakerBite : CustomCardModel
         base.DynamicVars.Damage.UpgradeValueBy(8m);
     }
 }
+

@@ -10,8 +10,13 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class AwakenImpulse : CustomCardModel
 {
     protected override bool IsPlayable => BigDogChewLocator.FindInDiscard(base.Owner) != null;
@@ -24,7 +29,7 @@ public sealed class AwakenImpulse : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new DamageVar(9m, ValueProp.Move)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("awaken_impulse");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("awaken_impulse");
 
     public AwakenImpulse()
         : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, autoAdd: false)
@@ -51,3 +56,5 @@ public sealed class AwakenImpulse : CustomCardModel
         base.DynamicVars.Damage.UpgradeValueBy(6m);
     }
 }
+
+

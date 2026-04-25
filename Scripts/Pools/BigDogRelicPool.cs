@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using BaseLib.Abstracts;
 using BigDogMod.Scripts.Relics;
 using Godot;
 using MegaCrit.Sts2.Core.Helpers;
@@ -10,15 +9,11 @@ using MegaCrit.Sts2.Core.Unlocks;
 
 namespace BigDogMod.Scripts.Pools;
 
-public sealed class BigDogRelicPool : CustomRelicPoolModel
+public sealed class BigDogRelicPool : RelicPoolModel
 {
     public override string EnergyColorName => "silent";
 
     public override Color LabOutlineColor => StsColors.green;
-
-    public override string? BigEnergyIconPath => null;
-
-    public override string? TextEnergyIconPath => null;
 
     protected override IEnumerable<RelicModel> GenerateAllRelics()
     {

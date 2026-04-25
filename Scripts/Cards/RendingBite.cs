@@ -12,8 +12,13 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class RendingBite : CustomCardModel
 {
     protected override HashSet<CardTag> CanonicalTags => new() { CardTag.Strike };
@@ -29,7 +34,7 @@ public sealed class RendingBite : CustomCardModel
             new PowerVar<BleedingPower>(1m)
         ];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("rending_bite");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("rending_bite");
 
     public RendingBite()
         : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, autoAdd: false)
@@ -57,3 +62,5 @@ public sealed class RendingBite : CustomCardModel
         base.DynamicVars["BleedingPower"].UpgradeValueBy(1m);
     }
 }
+
+

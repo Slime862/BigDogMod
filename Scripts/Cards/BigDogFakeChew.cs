@@ -8,8 +8,14 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
+using MegaCrit.Sts2.Core.Models.CardPools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(TokenCardPool))]
 public sealed class BigDogFakeChew : CustomCardModel
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
@@ -18,7 +24,7 @@ public sealed class BigDogFakeChew : CustomCardModel
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [HoverTipFactory.FromKeyword(CardKeyword.Retain), HoverTipFactory.FromKeyword(CardKeyword.Exhaust)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("big_dog_fake_chew");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("big_dog_fake_chew");
 
     public BigDogFakeChew()
         : base(0, CardType.Skill, CardRarity.Token, TargetType.AnyEnemy, autoAdd: false)
@@ -35,3 +41,6 @@ public sealed class BigDogFakeChew : CustomCardModel
         await BigDogChewPrepCmd.Resolve(choiceContext, this, cardPlay.Target, base.Owner, consume: false);
     }
 }
+
+
+

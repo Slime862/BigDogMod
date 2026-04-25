@@ -14,11 +14,16 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
-public sealed class BigDogHowl : CustomCardModel
+[RegisterCard(typeof(BigDogCardPool))]
+[RegisterCharacterStarterCard(typeof(BigDog), 1)]
+public sealed class BigDogHowl : CustomCardModel, IJiaoCard
 {
-    protected override HashSet<CardTag> CanonicalTags => new() { BigDogTags.Jiao };
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         BigDogHoverTips.FromWantChew(base.DynamicVars["WantChew"]);
@@ -29,7 +34,7 @@ public sealed class BigDogHowl : CustomCardModel
             new WantChewVar(6m)
         ];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("big_dog_howl");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("big_dog_howl");
 
     public BigDogHowl()
         : base(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy, autoAdd: false)
@@ -60,3 +65,6 @@ public sealed class BigDogHowl : CustomCardModel
         base.DynamicVars["WantChew"].UpgradeValueBy(3m);
     }
 }
+
+
+

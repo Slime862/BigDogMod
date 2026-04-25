@@ -9,14 +9,19 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class DogSage : CustomCardModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new CardsVar(1)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("dog_sage");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("dog_sage");
 
     public DogSage()
         : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
@@ -33,3 +38,5 @@ public sealed class DogSage : CustomCardModel
         base.DynamicVars.Cards.UpgradeValueBy(1m);
     }
 }
+
+

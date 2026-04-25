@@ -7,8 +7,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
 namespace BigDogMod.Scripts.Powers;
 
+[RegisterPower()]
 public sealed class WatcherDogPower : CustomPowerModel
 {
     private bool _skipNextTrigger = true;
@@ -67,3 +70,4 @@ public sealed class WatcherDogPower : CustomPowerModel
         }
     }
 }
+

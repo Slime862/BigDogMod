@@ -10,8 +10,13 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class PanicScamper : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -20,7 +25,7 @@ public sealed class PanicScamper : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new BlockVar(4m, ValueProp.Move)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("panic_scamper");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("panic_scamper");
 
     public PanicScamper()
         : base(1, CardType.Skill, CardRarity.Common, TargetType.Self, autoAdd: false)
@@ -40,3 +45,5 @@ public sealed class PanicScamper : CustomCardModel
         base.DynamicVars.Block.UpgradeValueBy(1m);
     }
 }
+
+

@@ -24,7 +24,7 @@ public sealed class RipOpen : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new PowerVar<BleedingPower>(4m)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("rip_open");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("rip_open");
 
     public RipOpen()
         : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.RandomEnemy, autoAdd: false)
@@ -55,3 +55,4 @@ public sealed class RipOpen : CustomCardModel
     {
     }
 }
+

@@ -10,8 +10,13 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class HellhoundIncarnation : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -20,7 +25,7 @@ public sealed class HellhoundIncarnation : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new PowerVar<BleedingPower>(1m)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("hellhound_incarnation");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("hellhound_incarnation");
 
     public HellhoundIncarnation()
         : base(2, CardType.Power, CardRarity.Rare, TargetType.Self, autoAdd: false)
@@ -39,3 +44,5 @@ public sealed class HellhoundIncarnation : CustomCardModel
         base.DynamicVars["BleedingPower"].UpgradeValueBy(2m);
     }
 }
+
+

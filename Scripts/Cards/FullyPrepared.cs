@@ -12,8 +12,13 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class FullyPrepared : CustomCardModel
 {
     protected override bool IsPlayable => (base.Owner.Creature.GetPower<BigDogChewPrepPower>()?.ActiveEffectTypeCount ?? 0) >= 3;
@@ -27,7 +32,7 @@ public sealed class FullyPrepared : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new WantChewVar(10m)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("fully_prepared");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("fully_prepared");
 
     public FullyPrepared()
         : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self, autoAdd: false)
@@ -45,3 +50,5 @@ public sealed class FullyPrepared : CustomCardModel
         base.DynamicVars["WantChew"].UpgradeValueBy(7m);
     }
 }
+
+

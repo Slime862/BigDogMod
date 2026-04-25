@@ -38,7 +38,7 @@ public sealed class BloodDrink : CustomCardModel
             new DynamicVar("BlockPerBleed", 3m)
         ];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("blood_drink");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("blood_drink");
 
     public BloodDrink()
         : base(1, CardType.Skill, CardRarity.Common, TargetType.Self, autoAdd: false)
@@ -60,3 +60,4 @@ public sealed class BloodDrink : CustomCardModel
         base.DynamicVars["BlockPerBleed"].UpgradeValueBy(2m);
     }
 }
+

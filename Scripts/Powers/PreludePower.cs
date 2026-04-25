@@ -13,8 +13,11 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
 namespace BigDogMod.Scripts.Powers;
 
+[RegisterPower()]
 public sealed class PreludePower : CustomPowerModel, IAddDumbVariablesToPowerDescription
 {
     private int _remainingTurns = 2;
@@ -51,3 +54,4 @@ public sealed class PreludePower : CustomPowerModel, IAddDumbVariablesToPowerDes
         }
     }
 }
+

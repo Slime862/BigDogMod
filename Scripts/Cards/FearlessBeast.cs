@@ -11,8 +11,13 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class FearlessBeast : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -28,7 +33,7 @@ public sealed class FearlessBeast : CustomCardModel
             new DynamicVar("BleedingPerWildness", 1m)
         ];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("fearless_beast");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("fearless_beast");
 
     public FearlessBeast()
         : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
@@ -59,3 +64,5 @@ public sealed class FearlessBeast : CustomCardModel
         base.DynamicVars["BleedingPerWildness"].UpgradeValueBy(1m);
     }
 }
+
+

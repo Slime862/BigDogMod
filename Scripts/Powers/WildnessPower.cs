@@ -12,8 +12,11 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
 namespace BigDogMod.Scripts.Powers;
 
+[RegisterPower()]
 public sealed class WildnessPower : CustomPowerModel
 {
     private decimal _temporaryAmount;
@@ -98,3 +101,4 @@ public sealed class WildnessPower : CustomPowerModel
         await PowerCmd.Apply<WildnessPower>(base.Owner, -amountToRemove, base.Owner, null, silent: true);
     }
 }
+

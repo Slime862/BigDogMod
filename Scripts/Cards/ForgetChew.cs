@@ -11,14 +11,19 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class ForgetChew : CustomCardModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new DamageVar(16m, ValueProp.Move)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("forget_chew");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("forget_chew");
 
     public ForgetChew()
         : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, autoAdd: false)
@@ -45,3 +50,5 @@ public sealed class ForgetChew : CustomCardModel
         base.DynamicVars.Damage.UpgradeValueBy(8m);
     }
 }
+
+

@@ -10,8 +10,13 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class PainIntoPower : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -20,7 +25,7 @@ public sealed class PainIntoPower : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new DynamicVar("Multiplier", 3m)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("pain_into_power");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("pain_into_power");
 
     public PainIntoPower()
         : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self, autoAdd: false)
@@ -43,3 +48,5 @@ public sealed class PainIntoPower : CustomCardModel
         base.DynamicVars["Multiplier"].UpgradeValueBy(1m);
     }
 }
+
+

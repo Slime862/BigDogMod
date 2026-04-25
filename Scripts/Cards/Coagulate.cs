@@ -11,8 +11,13 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class Coagulate : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -21,7 +26,7 @@ public sealed class Coagulate : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new BlockVar(2m, ValueProp.Move), new DynamicVar("Hits", 2m)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("coagulate");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("coagulate");
 
     public Coagulate()
         : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
@@ -44,3 +49,5 @@ public sealed class Coagulate : CustomCardModel
         base.DynamicVars["Hits"].UpgradeValueBy(1m);
     }
 }
+
+

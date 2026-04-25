@@ -10,8 +10,13 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class WarmUpVoice : CustomCardModel
 {
     protected override bool HasEnergyCostX => true;
@@ -19,7 +24,7 @@ public sealed class WarmUpVoice : CustomCardModel
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [HoverTipFactory.FromPower<BigDogChewPrepPower>()];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("warm_up_voice");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("warm_up_voice");
 
     public WarmUpVoice()
         : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self, autoAdd: false)
@@ -41,3 +46,5 @@ public sealed class WarmUpVoice : CustomCardModel
     {
     }
 }
+
+

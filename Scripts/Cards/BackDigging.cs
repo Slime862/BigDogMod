@@ -13,8 +13,13 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class BackDigging : CustomCardModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
@@ -23,7 +28,7 @@ public sealed class BackDigging : CustomCardModel
             new DynamicVar("Hits", 10m)
         ];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("back_digging");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("back_digging");
 
     public BackDigging()
         : base(1, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies, autoAdd: false)
@@ -64,3 +69,5 @@ public sealed class BackDigging : CustomCardModel
         base.DynamicVars["Hits"].UpgradeValueBy(5m);
     }
 }
+
+

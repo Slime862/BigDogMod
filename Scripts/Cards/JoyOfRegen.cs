@@ -9,8 +9,13 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class JoyOfRegen : CustomCardModel
 {
     protected override bool ShouldGlowGoldInternal => base.Owner.Creature.HasPower<BleedingPower>();
@@ -20,7 +25,7 @@ public sealed class JoyOfRegen : CustomCardModel
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [HoverTipFactory.FromPower<BleedingPower>()];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("joy_of_regen");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("joy_of_regen");
 
     public JoyOfRegen()
         : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
@@ -44,3 +49,5 @@ public sealed class JoyOfRegen : CustomCardModel
         AddKeyword(CardKeyword.Retain);
     }
 }
+
+

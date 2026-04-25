@@ -11,8 +11,13 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class HoldOn : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -21,7 +26,7 @@ public sealed class HoldOn : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new BlockVar(7m, ValueProp.Move)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("hold_on");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("hold_on");
 
     public HoldOn()
         : base(1, CardType.Skill, CardRarity.Common, TargetType.Self, autoAdd: false)
@@ -39,3 +44,5 @@ public sealed class HoldOn : CustomCardModel
         base.DynamicVars.Block.UpgradeValueBy(3m);
     }
 }
+
+

@@ -11,8 +11,11 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
 namespace BigDogMod.Scripts.Powers;
 
+[RegisterPower()]
 public sealed class LoyalFriendPower : CustomPowerModel, IAddDumbVariablesToPowerDescription
 {
     public override PowerType Type => PowerType.Buff;
@@ -37,3 +40,4 @@ public sealed class LoyalFriendPower : CustomPowerModel, IAddDumbVariablesToPowe
         }
     }
 }
+

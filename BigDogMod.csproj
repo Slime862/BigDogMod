@@ -22,11 +22,6 @@
       <Private>false</Private>
     </Reference>
 
-    <Reference Include="BaseLib">
-      <HintPath>ThirdParty\BaseLib\BaseLib.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-
     <Reference Include="STS2-RitsuLib">
       <HintPath>ThirdParty\RitsuLib\STS2-RitsuLib.dll</HintPath>
       <Private>false</Private>

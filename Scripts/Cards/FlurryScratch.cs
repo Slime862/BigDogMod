@@ -11,8 +11,13 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class FlurryScratch : CustomCardModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
@@ -21,7 +26,7 @@ public sealed class FlurryScratch : CustomCardModel
             new DynamicVar("Hits", 4m)
         ];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("flurry_scratch");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("flurry_scratch");
 
     public FlurryScratch()
         : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies, autoAdd: false)
@@ -61,3 +66,5 @@ public sealed class FlurryScratch : CustomCardModel
         base.DynamicVars.Damage.UpgradeValueBy(1m);
     }
 }
+
+

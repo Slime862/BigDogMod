@@ -11,8 +11,13 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class AdmireVictory : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -27,7 +32,7 @@ public sealed class AdmireVictory : CustomCardModel
             new PowerVar<WildnessPower>(2m)
         ];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("admire_victory");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("admire_victory");
 
     public AdmireVictory()
         : base(2, CardType.Skill, CardRarity.Common, TargetType.Self, autoAdd: false)
@@ -48,3 +53,5 @@ public sealed class AdmireVictory : CustomCardModel
         base.DynamicVars["WildnessPower"].UpgradeValueBy(1m);
     }
 }
+
+

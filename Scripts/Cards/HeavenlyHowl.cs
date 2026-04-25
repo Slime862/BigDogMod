@@ -16,11 +16,15 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
-public sealed class HeavenlyHowl : CustomCardModel, IBigDogChewPrepSource
+[RegisterCard(typeof(BigDogCardPool))]
+public sealed class HeavenlyHowl : CustomCardModel, IBigDogChewPrepSource, IJiaoCard
 {
-    protected override HashSet<CardTag> CanonicalTags => new() { BigDogTags.Jiao };
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         BigDogHoverTips.FromWantChew(base.DynamicVars["WantChew"])
@@ -43,7 +47,7 @@ public sealed class HeavenlyHowl : CustomCardModel, IBigDogChewPrepSource
             new BlockVar(7m, ValueProp.Move)
         ];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("heavenly_howl");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("heavenly_howl");
 
     public HeavenlyHowl()
         : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self, autoAdd: false)
@@ -73,3 +77,6 @@ public sealed class HeavenlyHowl : CustomCardModel, IBigDogChewPrepSource
         base.DynamicVars.Block.UpgradeValueBy(3m);
     }
 }
+
+
+

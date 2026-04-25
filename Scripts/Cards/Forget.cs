@@ -22,7 +22,7 @@ public sealed class Forget : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new CardsVar(1)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("forget");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("forget");
 
     public Forget()
         : base(0, CardType.Skill, CardRarity.Common, TargetType.Self, autoAdd: false)
@@ -52,3 +52,4 @@ public sealed class Forget : CustomCardModel
         base.DynamicVars.Cards.UpgradeValueBy(1m);
     }
 }
+

@@ -9,8 +9,11 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
 namespace BigDogMod.Scripts.Powers;
 
+[RegisterPower()]
 public sealed class FinaleTrackerPower : CustomPowerModel
 {
     private int _jiaoCountThisTurn;
@@ -45,7 +48,7 @@ public sealed class FinaleTrackerPower : CustomPowerModel
             return Task.CompletedTask;
         }
 
-        if (cardPlay.Card.Tags.Contains(BigDogTags.Jiao))
+        if (BigDogCardTraits.IsJiao(cardPlay.Card))
         {
             _jiaoCountThisTurn++;
         }
@@ -63,3 +66,5 @@ public sealed class FinaleTrackerPower : CustomPowerModel
         return Task.CompletedTask;
     }
 }
+
+

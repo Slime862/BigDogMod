@@ -15,8 +15,14 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Exceptions;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
+using MegaCrit.Sts2.Core.Models.CardPools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(TokenCardPool))]
 public sealed class BigDogChew : CustomCardModel
 {
     private decimal _extraDamageFromWantChew;
@@ -36,7 +42,7 @@ public sealed class BigDogChew : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new DamageVar(1m, ValueProp.Move)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("big_dog_chew");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("big_dog_chew");
 
     public BigDogChew()
         : base(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy, autoAdd: false)
@@ -97,3 +103,6 @@ public sealed class BigDogChew : CustomCardModel
         }
     }
 }
+
+
+

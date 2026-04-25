@@ -9,8 +9,13 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class Makeover : CustomCardModel
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [];
@@ -18,7 +23,7 @@ public sealed class Makeover : CustomCardModel
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [HoverTipFactory.FromPower<WildnessPower>()];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("makeover");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("makeover");
 
     public Makeover()
         : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
@@ -43,3 +48,5 @@ public sealed class Makeover : CustomCardModel
         AddKeyword(CardKeyword.Retain);
     }
 }
+
+

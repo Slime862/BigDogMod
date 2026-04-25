@@ -8,8 +8,11 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
 namespace BigDogMod.Scripts.Powers;
 
+[RegisterPower()]
 public sealed class OpenWoundPower : CustomPowerModel
 {
     public override PowerType Type => PowerType.Debuff;
@@ -36,3 +39,4 @@ public sealed class OpenWoundPower : CustomPowerModel
         }
     }
 }
+

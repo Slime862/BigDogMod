@@ -12,8 +12,13 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class MightyBlow : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -25,7 +30,7 @@ public sealed class MightyBlow : CustomCardModel
             new PowerVar<BleedingPower>(4m)
         ];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("mighty_blow");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("mighty_blow");
 
     public MightyBlow()
         : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, autoAdd: false)
@@ -52,3 +57,5 @@ public sealed class MightyBlow : CustomCardModel
         base.DynamicVars.Damage.UpgradeValueBy(3m);
     }
 }
+
+

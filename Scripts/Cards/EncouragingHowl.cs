@@ -12,13 +12,16 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
-public sealed class EncouragingHowl : CustomCardModel
+[RegisterCard(typeof(BigDogCardPool))]
+public sealed class EncouragingHowl : CustomCardModel, IJiaoCard
 {
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
-
-    protected override HashSet<CardTag> CanonicalTags => new() { BigDogTags.Jiao };
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
@@ -32,7 +35,7 @@ public sealed class EncouragingHowl : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new PowerVar<StrengthPower>(2m)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("encouraging_howl");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("encouraging_howl");
 
     public EncouragingHowl()
         : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
@@ -67,3 +70,6 @@ public sealed class EncouragingHowl : CustomCardModel
         AddKeyword(CardKeyword.Innate);
     }
 }
+
+
+

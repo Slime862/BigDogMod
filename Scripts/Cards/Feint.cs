@@ -9,8 +9,13 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class Feint : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -19,7 +24,7 @@ public sealed class Feint : CustomCardModel
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("feint");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("feint");
 
     public Feint()
         : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
@@ -37,3 +42,5 @@ public sealed class Feint : CustomCardModel
         RemoveKeyword(CardKeyword.Exhaust);
     }
 }
+
+

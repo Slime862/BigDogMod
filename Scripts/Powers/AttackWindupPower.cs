@@ -9,8 +9,11 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
 namespace BigDogMod.Scripts.Powers;
 
+[RegisterPower()]
 public sealed class AttackWindupPower : CustomPowerModel, IAddDumbVariablesToPowerDescription
 {
     public override PowerType Type => PowerType.Buff;
@@ -33,3 +36,4 @@ public sealed class AttackWindupPower : CustomPowerModel, IAddDumbVariablesToPow
         await CardPileCmd.Draw(choiceContext, base.Amount, base.Owner.Player!);
     }
 }
+

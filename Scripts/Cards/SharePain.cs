@@ -11,14 +11,19 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class SharePain : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [HoverTipFactory.FromPower<BleedingPower>()];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("share_pain");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("share_pain");
 
     public SharePain()
         : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self, autoAdd: false)
@@ -46,3 +51,5 @@ public sealed class SharePain : CustomCardModel
         base.EnergyCost.UpgradeBy(-1);
     }
 }
+
+

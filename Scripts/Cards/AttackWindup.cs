@@ -10,8 +10,13 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class AttackWindup : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -20,7 +25,7 @@ public sealed class AttackWindup : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new CardsVar(2)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("attack_windup");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("attack_windup");
 
     public AttackWindup()
         : base(1, CardType.Power, CardRarity.Rare, TargetType.Self, autoAdd: false)
@@ -37,3 +42,5 @@ public sealed class AttackWindup : CustomCardModel
         base.DynamicVars.Cards.UpgradeValueBy(1m);
     }
 }
+
+

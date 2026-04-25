@@ -10,8 +10,11 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
 namespace BigDogMod.Scripts.Powers;
 
+[RegisterPower()]
 public sealed class WolfHowlPower : CustomPowerModel, IAddDumbVariablesToPowerDescription
 {
     public override PowerType Type => PowerType.Buff;
@@ -30,7 +33,7 @@ public sealed class WolfHowlPower : CustomPowerModel, IAddDumbVariablesToPowerDe
             return;
         }
 
-        if (cardPlay.Card is not BigDogChew && !cardPlay.Card.Tags.Contains(BigDogTags.Jiao))
+        if (cardPlay.Card is not BigDogChew && !BigDogCardTraits.IsJiao(cardPlay.Card))
         {
             return;
         }
@@ -42,3 +45,5 @@ public sealed class WolfHowlPower : CustomPowerModel, IAddDumbVariablesToPowerDe
             cardPlay.Card);
     }
 }
+
+

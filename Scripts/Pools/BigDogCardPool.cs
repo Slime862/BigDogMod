@@ -1,9 +1,9 @@
-using BaseLib.Abstracts;
 using Godot;
+using STS2RitsuLib.Scaffolding.Content;
 
 namespace BigDogMod.Scripts.Pools;
 
-public sealed class BigDogCardPool : CustomCardPoolModel
+public sealed class BigDogCardPool : TypeListCardPoolModel
 {
     public override string Title => "big_dog";
 

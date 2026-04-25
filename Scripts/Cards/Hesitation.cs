@@ -11,8 +11,13 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class Hesitation : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -21,7 +26,7 @@ public sealed class Hesitation : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new WantChewVar(8m)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("hesitation");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("hesitation");
 
     public Hesitation()
         : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
@@ -37,3 +42,5 @@ public sealed class Hesitation : CustomCardModel
     {
     }
 }
+
+

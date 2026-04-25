@@ -12,8 +12,13 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class TrainJawMuscles : CustomCardModel, IOnEnterDiscardPileCard
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -23,7 +28,7 @@ public sealed class TrainJawMuscles : CustomCardModel, IOnEnterDiscardPileCard
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new WantChewVar(8m)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("train_jaw_muscles");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("train_jaw_muscles");
 
     public TrainJawMuscles()
         : base(2, CardType.Skill, CardRarity.Common, TargetType.Self, autoAdd: false)
@@ -45,3 +50,5 @@ public sealed class TrainJawMuscles : CustomCardModel, IOnEnterDiscardPileCard
         base.DynamicVars["WantChew"].UpgradeValueBy(4m);
     }
 }
+
+

@@ -1,14 +1,8 @@
-{
-  "BIGDOGMOD-HOUND_COLLAR.title": "猎犬项圈",
-  "BIGDOGMOD-HOUND_COLLAR.description": "打出[gold]大狗嚼[/gold]并成功造成伤害后，回复[green]{Heal}[/green]点生命。",
-  "BIGDOGMOD-HOUND_COLLAR.flavor": "这是大狗最舍不得摘下来的项圈。",
-  "BIGDOGMOD-HONOR_COLLAR.title": "荣誉项圈",
-  "BIGDOGMOD-HONOR_COLLAR.description": "打出[gold]大狗嚼[/gold]并成功造成伤害后，回复[green]{Heal}[/green]点生命。",
-  "BIGDOGMOD-HONOR_COLLAR.flavor": "被擦得发亮的项圈，像勋章一样挂在大狗胸前。",
-  "HOUND_COLLAR.title": "猎犬项圈",
-  "HOUND_COLLAR.description": "打出[gold]大狗嚼[/gold]并成功造成伤害后，回复[green]{Heal}[/green]点生命。",
-  "HOUND_COLLAR.flavor": "这是大狗最舍不得摘下来的项圈。",
-  "HONOR_COLLAR.title": "荣誉项圈",
-  "HONOR_COLLAR.description": "打出[gold]大狗嚼[/gold]并成功造成伤害后，回复[green]{Heal}[/green]点生命。",
-  "HONOR_COLLAR.flavor": "被擦得发亮的项圈，像勋章一样挂在大狗胸前。"
+{   "BIGDOGMOD-HOUND_COLLAR.title": "猎犬项圈",   "BIGDOGMOD-HOUND_COLLAR.description": "打出[gold]大狗嚼[/gold]并成功造成伤害后，回复[green]{Heal}[/green]点生命。",   "BIGDOGMOD-HOUND_COLLAR.flavor": "这是大狗最舍不得摘下来的项圈。",   "BIGDOGMOD-HONOR_COLLAR.title": "荣誉项圈",   "BIGDOGMOD-HONOR_COLLAR.description": "打出[gold]大狗嚼[/gold]并成功造成伤害后，回复[green]{Heal}[/green]点生命。",   "BIGDOGMOD-HONOR_COLLAR.flavor": "被擦得发亮的项圈，像勋章一样挂在大狗胸前。",   "HOUND_COLLAR.title": "猎犬项圈",   "HOUND_COLLAR.description": "打出[gold]大狗嚼[/gold]并成功造成伤害后，回复[green]{Heal}[/green]点生命。",   "HOUND_COLLAR.flavor": "这是大狗最舍不得摘下来的项圈。",   "HONOR_COLLAR.title": "荣誉项圈",   "HONOR_COLLAR.description": "打出[gold]大狗嚼[/gold]并成功造成伤害后，回复[green]{Heal}[/green]点生命。",   "HONOR_COLLAR.flavor": "被擦得发亮的项圈，像勋章一样挂在大狗胸前。",
+  "BIG_DOG_MOD_RELIC_HOUND_COLLAR.title": "猎犬项圈",
+  "BIG_DOG_MOD_RELIC_HOUND_COLLAR.description": "打出[gold]大狗嚼[/gold]并成功造成伤害后，回复[green]{Heal}[/green]点生命。",
+  "BIG_DOG_MOD_RELIC_HOUND_COLLAR.flavor": "这是大狗最舍不得摘下来的项圈。",
+  "BIG_DOG_MOD_RELIC_HONOR_COLLAR.title": "荣誉项圈",
+  "BIG_DOG_MOD_RELIC_HONOR_COLLAR.description": "打出[gold]大狗嚼[/gold]并成功造成伤害后，回复[green]{Heal}[/green]点生命。",
+  "BIG_DOG_MOD_RELIC_HONOR_COLLAR.flavor": "被擦得发亮的项圈，像勋章一样挂在大狗胸前。"
 }

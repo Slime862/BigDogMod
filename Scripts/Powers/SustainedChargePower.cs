@@ -12,8 +12,11 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
 namespace BigDogMod.Scripts.Powers;
 
+[RegisterPower()]
 public sealed class SustainedChargePower : CustomPowerModel, IAddDumbVariablesToPowerDescription
 {
     public override PowerType Type => PowerType.Buff;
@@ -40,3 +43,4 @@ public sealed class SustainedChargePower : CustomPowerModel, IAddDumbVariablesTo
         await WantChewCmd.WantChew(amount, player, this);
     }
 }
+

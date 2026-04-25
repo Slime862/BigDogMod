@@ -9,14 +9,19 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class HighSongForm : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [HoverTipFactory.FromCard<BigDogChew>()];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("high_song_form");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("high_song_form");
 
     public HighSongForm()
         : base(3, CardType.Power, CardRarity.Rare, TargetType.Self, autoAdd: false)
@@ -33,3 +38,5 @@ public sealed class HighSongForm : CustomCardModel
         AddKeyword(CardKeyword.Retain);
     }
 }
+
+

@@ -9,8 +9,13 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class Finale : CustomCardModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
@@ -19,7 +24,7 @@ public sealed class Finale : CustomCardModel
             new DynamicVar("Bonus", 6m)
         ];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("finale");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("finale");
 
     public Finale()
         : base(1, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies, autoAdd: false)
@@ -44,3 +49,5 @@ public sealed class Finale : CustomCardModel
         base.DynamicVars["Bonus"].UpgradeValueBy(2m);
     }
 }
+
+

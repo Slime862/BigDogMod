@@ -20,7 +20,7 @@ public sealed class CowardDog : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new PowerVar<WildnessPower>(-4m)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("coward_dog");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("coward_dog");
 
     public CowardDog()
         : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
@@ -38,3 +38,4 @@ public sealed class CowardDog : CustomCardModel
         base.DynamicVars["WildnessPower"].UpgradeValueBy(-2m);
     }
 }
+

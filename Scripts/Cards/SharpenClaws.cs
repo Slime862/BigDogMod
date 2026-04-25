@@ -13,8 +13,13 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class SharpenClaws : CustomCardModel, IOnEnterDiscardPileCard
 {
     private decimal _extraDamageFromDiscardTriggers;
@@ -25,7 +30,7 @@ public sealed class SharpenClaws : CustomCardModel, IOnEnterDiscardPileCard
             new DynamicVar("Grow", 3m)
         ];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("sharpen_claws");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("sharpen_claws");
 
     public SharpenClaws()
         : base(2, CardType.Skill, CardRarity.Common, TargetType.Self, autoAdd: false)
@@ -83,3 +88,5 @@ public sealed class SharpenClaws : CustomCardModel, IOnEnterDiscardPileCard
         base.DynamicVars.Damage.BaseValue += _extraDamageFromDiscardTriggers;
     }
 }
+
+

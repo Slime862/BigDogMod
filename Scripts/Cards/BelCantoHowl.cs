@@ -9,18 +9,21 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
-public sealed class BelCantoHowl : CustomCardModel
+[RegisterCard(typeof(BigDogCardPool))]
+public sealed class BelCantoHowl : CustomCardModel, IJiaoCard
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [];
-
-    protected override HashSet<CardTag> CanonicalTags => new() { BigDogTags.Jiao };
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new PowerVar<BelCantoHowlPower>(1m)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("bel_canto_howl");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("bel_canto_howl");
 
     public BelCantoHowl()
         : base(2, CardType.Power, CardRarity.Rare, TargetType.Self, autoAdd: false)
@@ -37,3 +40,6 @@ public sealed class BelCantoHowl : CustomCardModel
         AddKeyword(CardKeyword.Innate);
     }
 }
+
+
+

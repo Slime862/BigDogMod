@@ -12,8 +12,14 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
+[RegisterCharacterStarterCard(typeof(BigDog), 1)]
 public sealed class StokeWildness : CustomCardModel
 {
     protected override HashSet<CardTag> CanonicalTags => new() { CardTag.Defend };
@@ -30,7 +36,7 @@ public sealed class StokeWildness : CustomCardModel
             new PowerVar<WildnessPower>(1m)
         ];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("stoke_wildness");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("stoke_wildness");
 
     public StokeWildness()
         : base(1, CardType.Skill, CardRarity.Token, TargetType.Self, autoAdd: false)
@@ -50,3 +56,5 @@ public sealed class StokeWildness : CustomCardModel
         base.EnergyCost.UpgradeBy(-1);
     }
 }
+
+

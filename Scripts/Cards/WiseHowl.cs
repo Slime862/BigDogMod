@@ -11,11 +11,15 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
-public sealed class WiseHowl : CustomCardModel, IBigDogChewPrepSource
+[RegisterCard(typeof(BigDogCardPool))]
+public sealed class WiseHowl : CustomCardModel, IBigDogChewPrepSource, IJiaoCard
 {
-    protected override HashSet<CardTag> CanonicalTags => new() { BigDogTags.Jiao };
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [HoverTipFactory.FromPower<BigDogChewPrepPower>()];
@@ -23,7 +27,7 @@ public sealed class WiseHowl : CustomCardModel, IBigDogChewPrepSource
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new EnergyVar(1)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("wise_howl");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("wise_howl");
 
     public WiseHowl()
         : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
@@ -45,3 +49,6 @@ public sealed class WiseHowl : CustomCardModel, IBigDogChewPrepSource
         base.DynamicVars.Energy.UpgradeValueBy(1m);
     }
 }
+
+
+

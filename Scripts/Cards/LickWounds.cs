@@ -9,8 +9,13 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class LickWounds : CustomCardModel
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
@@ -18,7 +23,7 @@ public sealed class LickWounds : CustomCardModel
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [HoverTipFactory.FromPower<BleedingPower>()];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("lick_wounds");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("lick_wounds");
 
     public LickWounds()
         : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
@@ -45,3 +50,5 @@ public sealed class LickWounds : CustomCardModel
         RemoveKeyword(CardKeyword.Exhaust);
     }
 }
+
+

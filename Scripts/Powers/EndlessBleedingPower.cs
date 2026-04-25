@@ -3,8 +3,11 @@ using BaseLib.Patches.Localization;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Localization;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
 namespace BigDogMod.Scripts.Powers;
 
+[RegisterPower()]
 public sealed class EndlessBleedingPower : CustomPowerModel, IAddDumbVariablesToPowerDescription
 {
     public override PowerType Type => PowerType.Buff;
@@ -16,3 +19,4 @@ public sealed class EndlessBleedingPower : CustomPowerModel, IAddDumbVariablesTo
         description.Add("Amount", base.Amount);
     }
 }
+

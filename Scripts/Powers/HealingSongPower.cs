@@ -11,8 +11,11 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
 namespace BigDogMod.Scripts.Powers;
 
+[RegisterPower()]
 public sealed class HealingSongPower : CustomPowerModel, IAddDumbVariablesToPowerDescription
 {
     public override PowerType Type => PowerType.Buff;
@@ -29,7 +32,7 @@ public sealed class HealingSongPower : CustomPowerModel, IAddDumbVariablesToPowe
 
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner?.Creature != base.Owner || !cardPlay.Card.Tags.Contains(BigDogTags.Jiao))
+        if (cardPlay.Card.Owner?.Creature != base.Owner || !BigDogCardTraits.IsJiao(cardPlay.Card))
         {
             return;
         }
@@ -44,3 +47,5 @@ public sealed class HealingSongPower : CustomPowerModel, IAddDumbVariablesToPowe
         await PowerCmd.ModifyAmount(bleeding, -System.Math.Min(base.Amount, bleeding.Amount), base.Owner, null);
     }
 }
+
+

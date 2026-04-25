@@ -14,9 +14,14 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.ValueProps;
+using MegaCrit.Sts2.Core.Models.RelicPools;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
 namespace BigDogMod.Scripts.Relics;
 
+[RegisterRelic(typeof(EventRelicPool))]
 public sealed class HonorCollar : CustomRelicModel
 {
     public HonorCollar()
@@ -56,7 +61,7 @@ public sealed class HonorCollar : CustomRelicModel
             return Task.CompletedTask;
         }
 
-        if (cardPlay.Card.Tags.Contains(BigDogTags.Jiao))
+        if (BigDogCardTraits.IsJiao(cardPlay.Card))
         {
             BigDogSfxHelper.PlayHowl(base.Owner);
         }
@@ -75,3 +80,6 @@ public sealed class HonorCollar : CustomRelicModel
         await CreatureCmd.Heal(base.Owner.Creature, base.DynamicVars.Heal.BaseValue);
     }
 }
+
+
+

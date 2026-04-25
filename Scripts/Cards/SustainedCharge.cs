@@ -13,8 +13,13 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class SustainedCharge : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -23,7 +28,7 @@ public sealed class SustainedCharge : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new WantChewVar(7m)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("sustained_charge");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("sustained_charge");
 
     public SustainedCharge()
         : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
@@ -40,3 +45,5 @@ public sealed class SustainedCharge : CustomCardModel
         base.DynamicVars["WantChew"].UpgradeValueBy(5m);
     }
 }
+
+

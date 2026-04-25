@@ -12,8 +12,13 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class Bloodthirst : CustomCardModel
 {
     protected override bool ShouldGlowGoldInternal =>
@@ -31,7 +36,7 @@ public sealed class Bloodthirst : CustomCardModel
             new PowerVar<WildnessPower>(2m)
         ];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("bloodthirst");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("bloodthirst");
 
     public Bloodthirst()
         : base(0, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy, autoAdd: false)
@@ -63,3 +68,5 @@ public sealed class Bloodthirst : CustomCardModel
         base.DynamicVars["WildnessPower"].UpgradeValueBy(2m);
     }
 }
+
+

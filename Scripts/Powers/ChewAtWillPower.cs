@@ -1,11 +1,14 @@
-﻿using BaseLib.Abstracts;
+using BaseLib.Abstracts;
 using BigDogMod.Scripts.Cards;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Models;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
 namespace BigDogMod.Scripts.Powers;
 
+[RegisterPower()]
 public sealed class ChewAtWillPower : CustomPowerModel
 {
     public override PowerType Type => PowerType.Buff;
@@ -24,3 +27,4 @@ public sealed class ChewAtWillPower : CustomPowerModel
         return true;
     }
 }
+

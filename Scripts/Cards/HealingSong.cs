@@ -20,7 +20,7 @@ public sealed class HealingSong : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new DynamicVar("BleedReduction", 1m)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("healing_song");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("healing_song");
 
     public HealingSong()
         : base(1, CardType.Power, CardRarity.Rare, TargetType.Self, autoAdd: false)
@@ -37,3 +37,4 @@ public sealed class HealingSong : CustomCardModel
         base.DynamicVars["BleedReduction"].UpgradeValueBy(1m);
     }
 }
+

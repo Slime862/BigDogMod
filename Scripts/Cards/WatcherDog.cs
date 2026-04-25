@@ -10,8 +10,13 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class WatcherDog : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -20,7 +25,7 @@ public sealed class WatcherDog : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new PowerVar<WildnessPower>(1m), new DynamicVar("PerCard", 2m)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("watcher_dog");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("watcher_dog");
 
     public WatcherDog()
         : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self, autoAdd: false)
@@ -40,3 +45,5 @@ public sealed class WatcherDog : CustomCardModel
         base.DynamicVars["PerCard"].UpgradeValueBy(1m);
     }
 }
+
+

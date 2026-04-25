@@ -11,8 +11,13 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class ToxicBlood : CustomCardModel
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
@@ -20,7 +25,7 @@ public sealed class ToxicBlood : CustomCardModel
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [HoverTipFactory.FromPower<BleedingPower>(), HoverTipFactory.FromPower<PoisonPower>(), HoverTipFactory.FromKeyword(CardKeyword.Exhaust)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("toxic_blood");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("toxic_blood");
 
     public ToxicBlood()
         : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies, autoAdd: false)
@@ -43,3 +48,5 @@ public sealed class ToxicBlood : CustomCardModel
         RemoveKeyword(CardKeyword.Exhaust);
     }
 }
+
+

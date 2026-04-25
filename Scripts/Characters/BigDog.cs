@@ -1,20 +1,19 @@
 using System.Collections.Generic;
-using BaseLib.Abstracts;
 using BigDogMod.Scripts.Assets;
-using BigDogMod.Scripts.Cards;
 using BigDogMod.Scripts.Pools;
-using BigDogMod.Scripts.Relics;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Relics;
+using STS2RitsuLib.Interop.AutoRegistration;
+using STS2RitsuLib.Scaffolding.Characters;
 
 namespace BigDogMod.Scripts.Characters;
 
-public sealed class BigDog : PlaceholderCharacterModel
+[RegisterCharacter]
+public sealed class BigDog : ModCharacterTemplate<BigDogCardPool, BigDogRelicPool, BigDogPotionPool>
 {
-    public override string PlaceholderID => "silent";
+    public override string? PlaceholderCharacterId => "silent";
 
     public override Color NameColor => StsColors.green;
 
@@ -22,23 +21,15 @@ public sealed class BigDog : PlaceholderCharacterModel
 
     public override CharacterGender Gender => CharacterGender.Masculine;
 
-    protected override CharacterModel? UnlocksAfterRunAs => null;
-
     public override int StartingHp => 75;
 
     public override int StartingGold => 99;
 
     public override int BaseOrbSlotCount => 0;
 
-    public override CardPoolModel CardPool => ModelDb.CardPool<BigDogCardPool>();
-
-    public override RelicPoolModel RelicPool => ModelDb.RelicPool<BigDogRelicPool>();
-
-    public override PotionPoolModel PotionPool => ModelDb.PotionPool<BigDogPotionPool>();
-
     // Uncomment these one by one after the matching assets are ready.
-    // Until then, keep borrowing Silent assets through PlaceholderID = "silent".
-    // public override string CustomVisualPath => BigDogAssetPaths.CharacterVisualsScene;
+    // Until then, keep borrowing Silent assets through PlaceholderCharacterId = "silent".
+    // public override string CustomVisualsPath => BigDogAssetPaths.CharacterVisualsScene;
     // public override string CustomTrailPath => BigDogAssetPaths.CharacterTrailScene;
     // public override string? CustomMapMarkerPath => BigDogAssetPaths.CharacterMapMarker;
     // public override string CustomIconPath => BigDogAssetPaths.CharacterIconScene;
@@ -54,23 +45,6 @@ public sealed class BigDog : PlaceholderCharacterModel
     // public override string CustomCharacterSelectTransitionPath => BigDogAssetPaths.CharacterTransitionMaterial;
     // public override string? CustomCharacterSelectIconPath => BigDogAssetPaths.CharacterSelectIcon;
     // public override string? CustomCharacterSelectLockedIconPath => BigDogAssetPaths.CharacterSelectLockedIcon;
-
-    public override IEnumerable<CardModel> StartingDeck =>
-        [
-            ModelDb.Card<StrikeBigDog>(),
-            ModelDb.Card<StrikeBigDog>(),
-            ModelDb.Card<StrikeBigDog>(),
-            ModelDb.Card<StrikeBigDog>(),
-            ModelDb.Card<DefendBigDog>(),
-            ModelDb.Card<DefendBigDog>(),
-            ModelDb.Card<DefendBigDog>(),
-            ModelDb.Card<DefendBigDog>(),
-            ModelDb.Card<StokeWildness>(),
-            ModelDb.Card<BigDogHowl>()
-        ];
-
-    public override IReadOnlyList<RelicModel> StartingRelics =>
-        [ModelDb.Relic<HoundCollar>()];
 
     public override float AttackAnimDelay => 0.15f;
 

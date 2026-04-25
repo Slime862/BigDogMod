@@ -7,11 +7,16 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class SharkDog : CustomCardModel
 {
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("shark_dog");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("shark_dog");
 
     public SharkDog()
         : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
@@ -28,3 +33,5 @@ public sealed class SharkDog : CustomCardModel
         AddKeyword(CardKeyword.Innate);
     }
 }
+
+

@@ -15,14 +15,19 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class SplashWater : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [HoverTipFactory.Static(StaticHoverTip.Block), HoverTipFactory.FromKeyword(CardKeyword.Retain)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("splash_water");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("splash_water");
 
     public SplashWater()
         : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
@@ -66,3 +71,5 @@ public sealed class SplashWater : CustomCardModel
         AddKeyword(CardKeyword.Retain);
     }
 }
+
+

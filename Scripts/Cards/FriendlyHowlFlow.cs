@@ -12,11 +12,15 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
-public sealed class FriendlyHowlFlow : CustomCardModel, IBigDogChewPrepSource
+[RegisterCard(typeof(BigDogCardPool))]
+public sealed class FriendlyHowlFlow : CustomCardModel, IBigDogChewPrepSource, IJiaoCard
 {
-    protected override HashSet<CardTag> CanonicalTags => new() { BigDogTags.Jiao };
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [HoverTipFactory.FromPower<BigDogChewPrepPower>()];
@@ -24,7 +28,7 @@ public sealed class FriendlyHowlFlow : CustomCardModel, IBigDogChewPrepSource
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new CardsVar(1)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("friendly_howl_flow");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("friendly_howl_flow");
 
     public FriendlyHowlFlow()
         : base(1, CardType.Skill, CardRarity.Common, TargetType.Self, autoAdd: false)
@@ -47,3 +51,6 @@ public sealed class FriendlyHowlFlow : CustomCardModel, IBigDogChewPrepSource
         base.DynamicVars.Cards.UpgradeValueBy(1m);
     }
 }
+
+
+

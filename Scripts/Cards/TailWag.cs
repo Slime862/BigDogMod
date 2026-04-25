@@ -11,8 +11,13 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class TailWag : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -27,7 +32,7 @@ public sealed class TailWag : CustomCardModel
             new PowerVar<WildnessPower>(-3m)
         ];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("tail_wag");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("tail_wag");
 
     public TailWag()
         : base(0, CardType.Skill, CardRarity.Common, TargetType.Self, autoAdd: false)
@@ -47,3 +52,5 @@ public sealed class TailWag : CustomCardModel
         base.DynamicVars["WildnessPower"].UpgradeValueBy(-2m);
     }
 }
+
+

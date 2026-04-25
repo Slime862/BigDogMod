@@ -11,13 +11,18 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class RunAway : CustomCardModel
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("run_away");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("run_away");
 
     public RunAway()
         : base(0, CardType.Skill, CardRarity.Common, TargetType.Self, autoAdd: false)
@@ -53,3 +58,5 @@ public sealed class RunAway : CustomCardModel
         RemoveKeyword(CardKeyword.Exhaust);
     }
 }
+
+

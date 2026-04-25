@@ -1,15 +1,13 @@
-{
-  "BIGDOGMOD-BIG_DOG.cardsModifierDescription": "Big Dog cards can now appear in rewards and shops.",
-  "BIGDOGMOD-BIG_DOG.cardsModifierTitle": "Big Dog Cards",
-  "BIGDOGMOD-BIG_DOG.description": "A test character using borrowed Defect assets for now.",
-  "BIGDOGMOD-BIG_DOG.eventDeathPrevention": "This run is not over yet.",
-  "BIGDOGMOD-BIG_DOG.possessiveAdjective": "his",
-  "BIGDOGMOD-BIG_DOG.pronounObject": "him",
-  "BIGDOGMOD-BIG_DOG.pronounPossessive": "his",
-  "BIGDOGMOD-BIG_DOG.pronounSubject": "he",
-  "BIGDOGMOD-BIG_DOG.title": "Big Dog",
-  "BIGDOGMOD-BIG_DOG.titleObject": "Big Dog",
-  "BIGDOGMOD-BIG_DOG.unlockText": "Available immediately for testing.",
-  "BIG_DOG.title": "Big Dog",
-  "BIG_DOG.description": "A test character using borrowed Defect assets for now."
+{   "BIGDOGMOD-BIG_DOG.cardsModifierDescription": "Big Dog cards can now appear in rewards and shops.",   "BIGDOGMOD-BIG_DOG.cardsModifierTitle": "Big Dog Cards",   "BIGDOGMOD-BIG_DOG.description": "A test character using borrowed Defect assets for now.",   "BIGDOGMOD-BIG_DOG.eventDeathPrevention": "This run is not over yet.",   "BIGDOGMOD-BIG_DOG.possessiveAdjective": "his",   "BIGDOGMOD-BIG_DOG.pronounObject": "him",   "BIGDOGMOD-BIG_DOG.pronounPossessive": "his",   "BIGDOGMOD-BIG_DOG.pronounSubject": "he",   "BIGDOGMOD-BIG_DOG.title": "Big Dog",   "BIGDOGMOD-BIG_DOG.titleObject": "Big Dog",   "BIGDOGMOD-BIG_DOG.unlockText": "Available immediately for testing.",   "BIG_DOG.title": "Big Dog",   "BIG_DOG.description": "A test character using borrowed Defect assets for now.",
+  "BIG_DOG_MOD_CHARACTER_BIG_DOG.cardsModifierDescription": "Big Dog cards can now appear in rewards and shops.",
+  "BIG_DOG_MOD_CHARACTER_BIG_DOG.cardsModifierTitle": "Big Dog Cards",
+  "BIG_DOG_MOD_CHARACTER_BIG_DOG.description": "A test character using borrowed Defect assets for now.",
+  "BIG_DOG_MOD_CHARACTER_BIG_DOG.eventDeathPrevention": "This run is not over yet.",
+  "BIG_DOG_MOD_CHARACTER_BIG_DOG.possessiveAdjective": "his",
+  "BIG_DOG_MOD_CHARACTER_BIG_DOG.pronounObject": "him",
+  "BIG_DOG_MOD_CHARACTER_BIG_DOG.pronounPossessive": "his",
+  "BIG_DOG_MOD_CHARACTER_BIG_DOG.pronounSubject": "he",
+  "BIG_DOG_MOD_CHARACTER_BIG_DOG.title": "Big Dog",
+  "BIG_DOG_MOD_CHARACTER_BIG_DOG.titleObject": "Big Dog",
+  "BIG_DOG_MOD_CHARACTER_BIG_DOG.unlockText": "Available immediately for testing."
 }

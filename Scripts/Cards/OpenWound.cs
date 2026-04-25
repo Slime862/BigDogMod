@@ -11,8 +11,13 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class OpenWound : CustomCardModel
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
@@ -23,7 +28,7 @@ public sealed class OpenWound : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new DamageVar(3m, ValueProp.Move)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("open_wound");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("open_wound");
 
     public OpenWound()
         : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, autoAdd: false)
@@ -50,3 +55,5 @@ public sealed class OpenWound : CustomCardModel
         base.DynamicVars.Damage.UpgradeValueBy(3m);
     }
 }
+
+

@@ -8,15 +8,20 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class BluesDog : CustomCardModel
 {
     protected override bool IsPlayable => base.Owner.Creature.GetPowerAmount<WildnessPower>() <= base.DynamicVars.Cards.BaseValue;
 
     protected override bool ShouldGlowGoldInternal => IsPlayable;
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("blues_dog");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("blues_dog");
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new CardsVar(-4)];
@@ -36,3 +41,5 @@ public sealed class BluesDog : CustomCardModel
         base.DynamicVars.Cards.UpgradeValueBy(1m);
     }
 }
+
+

@@ -7,8 +7,11 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
 namespace BigDogMod.Scripts.Powers;
 
+[RegisterPower()]
 public sealed class SharkDogPower : CustomPowerModel
 {
     public override PowerType Type => PowerType.Buff;
@@ -37,3 +40,4 @@ public sealed class SharkDogPower : CustomPowerModel
         await WantChewCmd.WantChew(maxBleeding, player, this);
     }
 }
+

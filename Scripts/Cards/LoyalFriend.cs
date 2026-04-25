@@ -8,8 +8,13 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class LoyalFriend : CustomCardModel
 {
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
@@ -17,7 +22,7 @@ public sealed class LoyalFriend : CustomCardModel
     protected override System.Collections.Generic.IEnumerable<DynamicVar> CanonicalVars =>
         [new HealVar(1m)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("loyal_friend");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("loyal_friend");
 
     public LoyalFriend()
         : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self, autoAdd: false)
@@ -34,3 +39,5 @@ public sealed class LoyalFriend : CustomCardModel
         base.EnergyCost.UpgradeBy(-1);
     }
 }
+
+

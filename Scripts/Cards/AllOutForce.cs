@@ -11,8 +11,13 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class AllOutForce : CustomCardModel
 {
     protected override bool IsPlayable => BigDogChewLocator.FindInHand(base.Owner) != null;
@@ -26,7 +31,7 @@ public sealed class AllOutForce : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new WantChewVar(24m)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("all_out_force");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("all_out_force");
 
     public AllOutForce()
         : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self, autoAdd: false)
@@ -43,3 +48,5 @@ public sealed class AllOutForce : CustomCardModel
         base.DynamicVars["WantChew"].UpgradeValueBy(12m);
     }
 }
+
+

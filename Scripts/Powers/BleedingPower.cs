@@ -8,8 +8,11 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using MegaCrit.Sts2.Core.Combat;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
 namespace BigDogMod.Scripts.Powers;
 
+[RegisterPower()]
 public sealed class BleedingPower : CustomPowerModel
 {
     public override PowerType Type => PowerType.Debuff;
@@ -88,3 +91,4 @@ public sealed class BleedingPower : CustomPowerModel
         return false;
     }
 }
+

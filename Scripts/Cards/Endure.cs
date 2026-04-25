@@ -10,8 +10,13 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 
+using STS2RitsuLib.Interop.AutoRegistration;
+
+using BigDogMod.Scripts.Characters;
+using BigDogMod.Scripts.Pools;
 namespace BigDogMod.Scripts.Cards;
 
+[RegisterCard(typeof(BigDogCardPool))]
 public sealed class Endure : CustomCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -20,7 +25,7 @@ public sealed class Endure : CustomCardModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new PowerVar<WildnessPower>(-4m)];
 
-    public override string CustomPortraitPath => BigDogAssetPaths.CardPortrait("endure");
+    public override string? CustomPortraitPath => BigDogAssetPaths.TryCardPortrait("endure");
 
     public Endure()
         : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self, autoAdd: false)
@@ -46,3 +51,5 @@ public sealed class Endure : CustomCardModel
     {
     }
 }
+
+
