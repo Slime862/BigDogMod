@@ -1,3 +1,4 @@
+using BaseLib.Abstracts;
 using HarmonyLib;
 using BigDogMod.Scripts.Assets;
 using BigDogMod.Scripts.Cards;
@@ -10,6 +11,16 @@ namespace BigDogMod.Scripts.Patches;
 
 public static class BigDogCardPortraitFallbacks
 {
+    private static string? TryGetCustomPortraitPath(CardModel card)
+    {
+        if (card is not CustomCardModel customCard || string.IsNullOrWhiteSpace(customCard.CustomPortraitPath))
+        {
+            return null;
+        }
+
+        return BigDogAssetPaths.Exists(customCard.CustomPortraitPath) ? customCard.CustomPortraitPath : null;
+    }
+
     public static CardModel? GetFallbackCard(CardModel card)
     {
         if (card is StrikeBigDog or RendingBite or BigDogChew or BigDogFakeChew or BigDogHowl
@@ -57,6 +68,12 @@ public static class BigDogCardPortraitFallbacks
 
     public static string? GetCustomPortraitPath(CardModel card)
     {
+        string? configuredPortrait = TryGetCustomPortraitPath(card);
+        if (configuredPortrait != null)
+        {
+            return configuredPortrait;
+        }
+
         return card switch
         {
             StrikeBigDog => BigDogAssetPaths.Exists(BigDogAssetPaths.CardPortrait("strike_big_dog")) ? BigDogAssetPaths.CardPortrait("strike_big_dog") : null,
